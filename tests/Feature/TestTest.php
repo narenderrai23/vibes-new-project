@@ -52,14 +52,14 @@ class TestTest extends TestCase
             }
         }
 
-        $fields_data['app_name'] = 'Awesome Laravel Starter';
+        $fields_data['app_name'] = 'Awesome Vibes Healthcare Limited';
 
         $response = $this->postJson(route('backend.settings.store'), $fields_data);
 
         $response->assertStatus(302);
 
         // dump(setting('app_name'));
-        // $response->assertSeeText('Awesome Laravel Starter');
+        // $response->assertSeeText('Awesome Vibes Healthcare Limited');
         // $response->assertSeeText('Settings has been saved.');
 
         // $response->assertRedirect(route('backend.settings'));

@@ -92,7 +92,9 @@ trait UserPresenter
         // If relation is loaded (via eager loading), cache it and return
         if ($this->relationLoaded('roles')) {
             $roles = $this->getRelation('roles');
-            $roles->loadMissing('permissions');
+            if ($roles instanceof \Illuminate\Database\Eloquent\Collection) {
+                $roles->loadMissing('permissions');
+            }
             Cache::forever($cacheKey, $roles);
 
             return $roles;

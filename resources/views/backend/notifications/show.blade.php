@@ -24,11 +24,11 @@
                 <x-slot name="toolbar">
                     <a
                         href="{{ route("backend.$module_name.index") }}"
-                        class="btn btn-secondary btn-sm mt-1"
+                        class="btn btn-outline-secondary btn-sm mt-1"
                         data-toggle="tooltip"
                         title="{{ __(ucwords($module_name)) }} List"
                     >
-                        <i class="fas fa-list"></i>
+                        <i class="fa-solid fa-list"></i>
                         List
                     </a>
                 </x-slot>
@@ -91,3 +91,4 @@
         </div>
     </div>
 @endsection
+

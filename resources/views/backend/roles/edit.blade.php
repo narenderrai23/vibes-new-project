@@ -99,14 +99,14 @@
                             <div class="float-end">
                                 @can("delete_" . $module_name)
                                 <a
-                                    class="btn btn-danger"
+                                    class="btn btn-outline-danger"
                                     data-method="DELETE"
                                     data-token="{{ csrf_token() }}"
                                     data-toggle="tooltip"
                                     href="{{ route("backend.$module_name.destroy", $$module_name_singular) }}"
                                     title="{{ __("labels.backend.delete") }}"
                                 >
-                                    <i class="fas fa-trash-alt"></i>
+                                    <i class="fa-solid fa-trash-can"></i>
                                 </a>
                                 @endcan
                             </div>
@@ -137,3 +137,4 @@
         </div>
     </div>
 @endsection
+

@@ -41,7 +41,7 @@
                 {{ html()->modelForm($user, "PATCH", route("backend.users.update", $user->id))->class("form-horizontal")->acceptsFiles()->open() }}
 
                 <div class="form-group row">
-                    {{ html()->label(__("labels.backend.users.fields.avatar"))->class("col-md-2 form-label")->for("name")->id("avatar-label") }}
+                    {{ html()->label(__("labels.backend.users.fields.avatar"))->class("col-md-2 form-label")->for("file-multiple-input")->id("avatar-label") }}
 
 <div class="col-md-5 mb-3">
     <img
@@ -52,7 +52,7 @@
     />
 </div>
 <div class="col-md-5 mb-3">
-    <input id="file-multiple-input" name="avatar" type="file" multiple="" aria-labelledby="avatar-label" />
+    <input id="file-multiple-input" name="avatar" type="file" aria-labelledby="avatar-label" />
 </div>
                 </div>
 
@@ -132,7 +132,7 @@
 
                             {{ html()->label($field_lable, $field_name)->class("form-label")->id("{$field_name}-label") }}
 {!! field_required($required) !!}
-{{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class("form-select")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
+{{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class("form-select select2")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
                         </div>
                     </div>
 
@@ -226,7 +226,7 @@
                                 class="btn btn-outline-primary btn-sm"
                                 href="{{ route("backend.users.changePassword", $user->id) }}"
                             >
-                                <i class="fas fa-key"></i>
+                                <i class="fa-solid fa-key"></i>
                                 &nbsp;
                                 @lang("Change Password")
                             </a>
@@ -257,7 +257,7 @@
                                     href="{{ route("backend.users.emailConfirmationResend", $user->id) }}"
                                     title="Send Confirmation Email"
                                 >
-                                    <i class="fas fa-envelope"></i>
+                                    <i class="fa-solid fa-envelope"></i>
                                     Send Confirmation Email
                                 </a>
                             @else
@@ -285,7 +285,7 @@
                         <div class="form-group">
                             @forelse ($user->providers as $provider)
                                 <li>
-                                    <i class="fab fa-{{ $provider->provider }} fa-fw"></i>
+                                    <i class="fa-brands fa-{{ $provider->provider }} fa-fw"></i>
                                     {{ label_case($provider->provider) }}
                                 </li>
                             @empty
@@ -334,7 +334,7 @@
                                                             @if ($role->id != 1)
                                                                 @if ($role->permissions->count())
                                                                     @foreach ($role->permissions as $permission)
-                                                                        <i class="far fa-check-circle fa-fw mr-1"></i>
+                                                                        <i class="ph-light ph-check-circle fa-fw mr-1"></i>
                                                                         &nbsp;{{ $permission->name }}&nbsp;
                                                                     @endforeach
                                                                 @else
@@ -396,7 +396,7 @@
                         <div class="float-end">
                             @if ($$module_name_singular->status != 2 && $$module_name_singular->id != 1)
                                 <a
-                                    class="btn btn-danger"
+                                    class="btn btn-outline-danger"
                                     data-method="PATCH"
                                     data-token="{{ csrf_token() }}"
                                     data-toggle="tooltip"
@@ -404,13 +404,13 @@
                                     href="{{ route("backend.users.block", $$module_name_singular) }}"
                                     title="{{ __("labels.backend.block") }}"
                                 >
-                                    <i class="fas fa-ban"></i>
+                                    <i class="fa-solid fa-ban"></i>
                                 </a>
                             @endif
 
                             @if ($$module_name_singular->status == 2)
                                 <a
-                                    class="btn btn-info"
+                                    class="btn btn-outline-info"
                                     data-method="PATCH"
                                     data-token="{{ csrf_token() }}"
                                     data-toggle="tooltip"
@@ -418,33 +418,33 @@
                                     href="{{ route("backend.users.unblock", $$module_name_singular) }}"
                                     title="{{ __("labels.backend.unblock") }}"
                                 >
-                                    <i class="fas fa-check"></i>
+                                    <i class="fa-solid fa-check"></i>
                                     Unblock
                                 </a>
                             @endif
 
                             @if ($$module_name_singular->email_verified_at == null)
                                 <a
-                                    class="btn btn-primary"
+                                    class="btn btn-outline-primary"
                                     data-toggle="tooltip"
                                     href="{{ route("backend.users.emailConfirmationResend", $$module_name_singular->id) }}"
                                     title="Send Confirmation Email"
                                 >
-                                    <i class="fas fa-envelope"></i>
+                                    <i class="fa-solid fa-envelope"></i>
                                 </a>
                             @endif
 
                             @can("delete_" . $module_name)
                                 @if ($$module_name_singular->id != 1)
                                     <a
-                                        class="btn btn-danger"
+                                        class="btn btn-outline-danger"
                                         data-method="DELETE"
                                         data-token="{{ csrf_token() }}"
                                         data-toggle="tooltip"
                                         href="{{ route("backend.$module_name.destroy", $$module_name_singular) }}"
                                         title="{{ __("labels.backend.delete") }}"
                                     >
-                                        <i class="fas fa-trash-alt"></i>
+                                        <i class="fa-solid fa-trash-can"></i>
                                         Delete
                                     </a>
                                 @endif
@@ -468,3 +468,4 @@
         </div>
     </x-cube::backend-layout-edit>
 @endsection
+

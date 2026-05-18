@@ -1,34 +1,34 @@
 @foreach (session('flash_notification', collect())->toArray() as $message)
     <?php
     $variable = $message['level'];
-    
+
     switch ($variable) {
         case 'primary':
-            $icon = '<i class="fa-solid fa-circle-info fa-fw"></i>';
+            $icon = '<i class="ph-light ph-info"></i>';
             break;
         case 'secondary':
-            $icon = '<i class="fa-solid fa-circle-info fa-fw"></i>';
+            $icon = '<i class="ph-light ph-info"></i>';
             break;
         case 'success':
-            $icon = '<i class="fa-solid fa-circle-check fa-fw"></i>';
+            $icon = '<i class="ph-light ph-check-circle"></i>';
             break;
         case 'danger':
-            $icon = '<i class="fa-solid fa-triangle-exclamation fa-fw"></i>';
+            $icon = '<i class="ph-light ph-warning"></i>';
             break;
         case 'warning':
-            $icon = '<i class="fa-solid fa-triangle-exclamation fa-fw"></i>';
+            $icon = '<i class="ph-light ph-warning"></i>';
             break;
         case 'info':
-            $icon = '<i class="fa-solid fa-circle-info fa-fw"></i>';
+            $icon = '<i class="ph-light ph-info"></i>';
             break;
         case 'light':
-            $icon = '<i class="fa-solid fa-bullhorn fa-fw"></i>';
+            $icon = '<i class="ph-light ph-megaphone"></i>';
             break;
         case 'dark':
-            $icon = '<i class="fa-solid fa-circle-question fa-fw"></i>';
+            $icon = '<i class="ph-light ph-question"></i>';
             break;
         default:
-            $icon = '<i class="fa-solid fa-bullhorn fa-fw"></i>';
+            $icon = '<i class="ph-light ph-megaphone"></i>';
             break;
     }
     ?>
@@ -36,8 +36,8 @@
     @if ($message['overlay'])
         @include('flash::modal', [
             'modalClass' => 'flash-modal',
-            'title' => $message['title'],
-            'body' => $message['message'],
+            'title'      => $message['title'],
+            'body'       => $message['message'],
         ])
     @else
         <div class="alert alert-{{ $message['level'] }} {{ $message['important'] ? 'alert-dismissible' : '' }}"

@@ -1,9 +1,14 @@
-@use "/node_modules/@fortawesome/fontawesome-free/css/all.min.css";
-
+// All @use rules must come first in SCSS
 @use "/node_modules/simplebar/dist/simplebar.css";
-
 @use "backend_variables";
-
 @use "/node_modules/@coreui/coreui/scss/coreui.scss";
-
 @use "backend_custom";
+
+// FontAwesome Free (plain CSS — loaded via @import after @use)
+@import "/node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+
+// Phosphor Icons — Light weight
+@import "/node_modules/@phosphor-icons/web/src/light/style.css";
+
+// Select2
+@import "/node_modules/select2/dist/css/select2.min.css";

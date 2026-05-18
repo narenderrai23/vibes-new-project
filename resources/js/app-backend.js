@@ -3,10 +3,13 @@ import * as coreui from '@coreui/coreui';
 import "/node_modules/simplebar/dist/simplebar.min.js";
 import "/resources/js/laravel.js";
 import "/resources/js/backend-custom.js";
+import select2 from 'select2';
 
 window.$ = $;
 window.jQuery = $;
 window.coreui = coreui;
+
+select2();
 
 // Initialize sidebar immediately if DOM is ready, or wait for DOMContentLoaded
 function initializeSidebar() {
@@ -27,7 +30,16 @@ function initializeSidebar() {
 initializeSidebar();
 
 // Also initialize on DOMContentLoaded to be safe
-document.addEventListener('DOMContentLoaded', initializeSidebar);
+document.addEventListener('DOMContentLoaded', () => {
+    initializeSidebar();
+    
+    // Initialize Select2
+    $('.select2').select2({
+        placeholder: '-- Select an option --',
+        width: '100%',
+        theme: 'default'
+    });
+});
 
 // Enable tooltips everywhere
 const tooltipTriggerList = document.querySelectorAll('[data-toggle="tooltip"]')

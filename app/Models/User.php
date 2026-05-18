@@ -89,23 +89,32 @@ class User extends Authenticatable implements HasMedia, MustVerifyEmail
     }
 
     /**
-     * Override assignRole to clear the permission cache after Spatie v7 internally
+     * Override assignRole to clear the permission cache before AND after Spatie v7 internally
      * accesses $this->roles (which would otherwise cache a stale empty collection).
      */
     public function assignRole(...$roles): static
     {
+        // Clear before: prevents Spatie from reading a stale cached empty collection
+        // and re-caching it during the assignment process.
+        $this->clearPermissionCache();
+
         $result = $this->assignRoleOriginal(...$roles);
+
+        // Clear after: ensures the newly assigned role is not shadowed by any
+        // cache entry that was written during the assignment.
         $this->clearPermissionCache();
 
         return $result;
     }
 
     /**
-     * Override givePermissionTo to clear the permission cache after Spatie v7 internally
+     * Override givePermissionTo to clear the permission cache before AND after Spatie v7 internally
      * accesses $this->permissions (which would otherwise cache a stale empty collection).
      */
     public function givePermissionTo(...$permissions): static
     {
+        $this->clearPermissionCache();
+
         $result = $this->givePermissionToOriginal(...$permissions);
         $this->clearPermissionCache();
 

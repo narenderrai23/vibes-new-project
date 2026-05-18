@@ -33,7 +33,7 @@
                     href="{{ route("backend.users.index") }}"
                     title="List"
                 >
-                    <i class="fas fa-list"></i>
+                    <i class="fa-solid fa-list"></i>
                     List
                 </a>
                 <x-backend-button-edit
@@ -104,7 +104,7 @@
                                 <ul class="list-unstyled">
                                     @foreach ($user->providers as $provider)
                                         <li>
-                                            <i class="fab fa-{{ $provider->provider }}"></i>
+                                            <i class="fa-brands fa-{{ $provider->provider }}"></i>
                                             {{ label_case($provider->provider) }}
                                         </li>
                                     @endforeach
@@ -128,7 +128,7 @@
                                             href="{{ route("backend.users.emailConfirmationResend", $user->id) }}"
                                             title="Send Confirmation Email"
                                         >
-                                            <i class="fas fa-envelope"></i>
+                                            <i class="fa-solid fa-envelope"></i>
                                             Send Confirmation Reminder
                                         </a>
                                 @endif
@@ -201,7 +201,7 @@
                             href="{{ route("backend.users.block", $user) }}"
                             title="{{ __("labels.backend.block") }}"
                         >
-                            <i class="fas fa-ban"></i>
+                            <i class="fa-solid fa-ban"></i>
                             @lang("Block")
                         </a>
                     @endif
@@ -216,7 +216,7 @@
                             href="{{ route("backend.users.unblock", $user) }}"
                             title="{{ __("labels.backend.unblock") }}"
                         >
-                            <i class="fas fa-check"></i>
+                            <i class="fa-solid fa-check"></i>
                             @lang("Unblock")
                         </a>
                     @endif
@@ -230,7 +230,7 @@
                         href="{{ route("backend.users.destroy", $user) }}"
                         title="{{ __("labels.backend.delete") }}"
                     >
-                        <i class="fas fa-trash-alt"></i>
+                        <i class="fa-solid fa-trash-can"></i>
                         @lang("Delete")
                     </a>
                     @if ($user->email_verified_at == null)
@@ -240,7 +240,7 @@
                             href="{{ route("backend.users.emailConfirmationResend", $user->id) }}"
                             title="Send Confirmation Email"
                         >
-                            <i class="fas fa-envelope"></i>
+                            <i class="fa-solid fa-envelope"></i>
                             @lang("Email Confirmation")
                         </a>
                     @endif
@@ -249,3 +249,4 @@
         </div>
     </x-cube::backend-layout-show>
 @endsection
+

@@ -234,6 +234,13 @@ class UserController extends Controller
             'last_name' => 'required|min:3|max:191',
             'email' => 'required|email:rfc,dns|regex:/(.+)@(.+)\.(.+)/i|max:191|unique:users',
             'password' => 'required|confirmed|min:6',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'mobile' => 'nullable|max:191',
+            'gender' => 'nullable|max:191',
+            'date_of_birth' => 'nullable|date',
+            'address' => 'nullable',
+            'bio' => 'nullable',
+            'social_profiles' => 'nullable|array',
             'roles' => 'nullable|array',
             'permissions' => 'nullable|array',
         ]);
@@ -247,6 +254,14 @@ class UserController extends Controller
             $data_array = Arr::add($data_array, 'email_verified_at', Carbon::now());
         } else {
             $data_array = Arr::add($data_array, 'email_verified_at', null);
+        }
+
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $filename = time().'.'.$avatar->getClientOriginalExtension();
+            $path = 'uploads/avatars/'.$filename;
+            $avatar->move(public_path('uploads/avatars'), $filename);
+            $data_array['avatar'] = $path;
         }
 
         // Create a User
@@ -463,6 +478,13 @@ class UserController extends Controller
             'first_name' => 'required|min:3|max:191',
             'last_name' => 'required|min:3|max:191',
             'email' => 'required|email:rfc,dns|regex:/(.+)@(.+)\.(.+)/i|max:191|unique:users,email,'.$id,
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'mobile' => 'nullable|max:191',
+            'gender' => 'nullable|max:191',
+            'date_of_birth' => 'nullable|date',
+            'address' => 'nullable',
+            'bio' => 'nullable',
+            'social_profiles' => 'nullable|array',
             'roles' => 'nullable|array',
             'permissions' => 'nullable|array',
         ]);
@@ -471,21 +493,30 @@ class UserController extends Controller
 
         $$module_name_singular = User::findOrFail($id);
 
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $filename = time().'.'.$avatar->getClientOriginalExtension();
+            $path = 'uploads/avatars/'.$filename;
+            $avatar->move(public_path('uploads/avatars'), $filename);
+            $validated_data['avatar'] = $path;
+        } else {
+            // Remove avatar from validated data if no new file is uploaded to avoid overwriting with null
+            unset($validated_data['avatar']);
+        }
+
         $$module_name_singular->update(Arr::except($validated_data, ['roles', 'permissions']));
 
         if ((int) $id === 1) {
+            // Always enforce super admin role — never allow it to be removed via the edit form
             $$module_name_singular->syncRoles(['super admin']);
-
-            // Clear Cache
-            Artisan::call('cache:clear');
+            $$module_name_singular->clearPermissionCache();
 
             flash(Str::singular($module_title).' Updated Successfully')->success()->important();
 
+            logUserAccess("{$module_title} {$module_action} {$$module_name_singular->name} ($id)");
+
             return redirect("admin/{$module_name}");
         }
-
-        // Clear Cache
-        Artisan::call('cache:clear');
 
         // Sync Roles
         $$module_name_singular->syncRoles((isset($validated_data['roles'])) ? $validated_data['roles'] : []);
@@ -493,11 +524,8 @@ class UserController extends Controller
         // Sync Permissions
         $$module_name_singular->syncPermissions((isset($validated_data['permissions'])) ? $validated_data['permissions'] : []);
 
-        // Clear user's permission cache
+        // Clear user's permission cache AFTER syncing roles/permissions
         $$module_name_singular->clearPermissionCache();
-
-        // Clear Cache
-        Artisan::call('cache:clear');
 
         event(new UserUpdated($$module_name_singular));
 

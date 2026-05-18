@@ -59,7 +59,7 @@
                                     <ul class="list-unstyled">
                                         @foreach ($user->providers as $provider)
                                             <li>
-                                                <i class="fab fa-{{ $provider->provider }}"></i>
+                                                <i class="fa-brands fa-{{ $provider->provider }}"></i>
                                                 {{ label_case($provider->provider) }}
                                             </li>
                                         @endforeach
@@ -73,7 +73,7 @@
                                         href="{{ route("backend.users.show", $user) }}"
                                         title="{{ __("labels.backend.show") }}"
                                     >
-                                        <i class="fas fa-desktop fa-fw"></i>
+                                        <i class="fa-solid fa-display fa-fw"></i>
                                     </a>
                                     @can("edit_users")
                                         <a
@@ -82,7 +82,7 @@
                                             href="{{ route("backend.users.edit", $user) }}"
                                             title="{{ __("labels.backend.edit") }}"
                                         >
-                                            <i class="fas fa-wrench fa-fw"></i>
+                                            <i class="fa-solid fa-edit fa-fw"></i>
                                         </a>
                                         <a
                                             class="btn btn-outline-info btn-sm mt-1"
@@ -90,7 +90,7 @@
                                             href="{{ route("backend.users.changePassword", $user) }}"
                                             title="{{ __("labels.backend.changePassword") }}"
                                         >
-                                            <i class="fas fa-key fa-fw"></i>
+                                            <i class="fa-solid fa-key fa-fw"></i>
                                         </a>
                                         @if ($user->status != 2)
                                             <a
@@ -102,7 +102,7 @@
                                                 href="{{ route("backend.users.block", $user) }}"
                                                 title="{{ __("labels.backend.block") }}"
                                             >
-                                                <i class="fas fa-ban fa-fw"></i>
+                                                <i class="fa-solid fa-ban fa-fw"></i>
                                             </a>
                                         @endif
 
@@ -116,7 +116,7 @@
                                                 href="{{ route("backend.users.unblock", $user) }}"
                                                 title="{{ __("labels.backend.unblock") }}"
                                             >
-                                                <i class="fas fa-check fa-fw"></i>
+                                                <i class="fa-solid fa-check fa-fw"></i>
                                             </a>
                                         @endif
 
@@ -129,7 +129,7 @@
                                             href="{{ route("backend.users.destroy", $user) }}"
                                             title="{{ __("labels.backend.delete") }}"
                                         >
-                                            <i class="fas fa-trash-alt fa-fw"></i>
+                                            <i class="fa-solid fa-trash-can fa-fw"></i>
                                         </a>
                                         @if ($user->email_verified_at == null)
                                             <a
@@ -138,7 +138,7 @@
                                                 href="{{ route("backend.users.emailConfirmationResend", $user->id) }}"
                                                 title="Send Confirmation Email"
                                             >
-                                                <i class="fas fa-envelope fa-fw"></i>
+                                                <i class="fa-solid fa-envelope fa-fw"></i>
                                             </a>
                                         @endif
                                     @endcan
@@ -157,3 +157,4 @@
         </div>
     </div>
 </div>
+

@@ -30,6 +30,22 @@
             <div class="col">
                 {{ html()->form("POST", route("backend.$module_name.store"))->acceptsFiles()->open() }}
 
+                <div class="form-group row mb-3">
+                    {{ html()->label(__("labels.backend.users.fields.avatar"))->class("col-md-2 form-label")->for("file-multiple-input")->id("avatar-label") }}
+
+                    <div class="col-md-5 mb-3">
+                        <img
+                            class="user-profile-image img-fluid img-thumbnail"
+                            src="{{ asset("img/default-avatar.jpg") }}"
+                            style="max-height: 200px; max-width: 200px"
+                            aria-labelledby="avatar-label"
+                        />
+                    </div>
+                    <div class="col-md-5 mb-3">
+                        <input id="file-multiple-input" name="avatar" type="file" aria-labelledby="avatar-label" />
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="col-12 col-sm-6 mb-3">
                         <div class="form-group">
@@ -171,7 +187,7 @@
                                                         @if ($role->id != 1)
                                                             @if ($role->permissions->count())
                                                                 @foreach ($role->permissions as $permission)
-                                                                    <i class="far fa-check-circle mr-1"></i>
+                                                                    <i class="ph-light ph-check-circle mr-1"></i>
                                                                     &nbsp;{{ $permission->name }}&nbsp;
                                                                 @endforeach
                                                             @else
@@ -228,3 +244,4 @@
         </div>
     </x-cube::backend-layout-create>
 @endsection
+

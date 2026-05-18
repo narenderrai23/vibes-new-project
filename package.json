@@ -26,5 +26,9 @@
         "simplebar": "^6.3.0",
         "tailwindcss": "^4.2.2",
         "vite": "^8.0.5"
+    },
+    "dependencies": {
+        "@phosphor-icons/web": "^2.1.2",
+        "select2": "^4.1.0-rc.0"
     }
 }

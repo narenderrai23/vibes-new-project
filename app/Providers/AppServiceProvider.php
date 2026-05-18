@@ -52,9 +52,28 @@ class AppServiceProvider extends ServiceProvider
         /**
          * Implicitly grant "Super Admin" role all permissions
          * This works in the app by using gate-related functions like auth()->user->can() and @can().
+         *
+         * Falls back to a direct DB query if the permission cache is stale,
+         * ensuring super admin is never locked out after a fresh seed or cache flush.
          */
         Gate::before(function ($user, $ability) {
-            return $user->hasRole('super admin') ? true : null;
+            if ($user->hasRole('super admin')) {
+                return true;
+            }
+
+            // Fallback: bypass cache and query DB directly (guards against stale cache)
+            \App\Models\User::$useCachedPermissions = false;
+            $isSuperAdmin = $user->hasRole('super admin');
+            \App\Models\User::$useCachedPermissions = true;
+
+            if ($isSuperAdmin) {
+                // Cache was stale — bust it so subsequent requests use fresh data
+                $user->clearPermissionCache();
+
+                return true;
+            }
+
+            return null;
         });
     }
 

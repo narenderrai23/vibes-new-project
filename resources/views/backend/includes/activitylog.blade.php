@@ -1,4 +1,4 @@
-<div class="accordion" id="activityLogBlock">
+﻿<div class="accordion" id="activityLogBlock">
     <div class="card card-accent-primary">
         <div class="card-header" id="activityLog">
             <button
@@ -24,21 +24,11 @@
                             <table class="table-sm table-bordered table">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">
-                                            @lang("Current")
-                                        </th>
-                                        <th class="text-center">
-                                            @lang("Old")
-                                        </th>
-                                        <th>
-                                            @lang("At")
-                                        </th>
-                                        <th>
-                                            @lang("User")
-                                        </th>
-                                        <th>
-                                            @lang("Type")
-                                        </th>
+                                        <th class="text-center">@lang("Current")</th>
+                                        <th class="text-center">@lang("Old")</th>
+                                        <th>@lang("At")</th>
+                                        <th>@lang("User")</th>
+                                        <th>@lang("Type")</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -46,22 +36,17 @@
                                         <tr>
                                             <td>
                                                 <?php $attributes = $activity->properties["attributes"]; ?>
-
                                                 <ul class="list-unstyled">
                                                     @foreach ($attributes as $key => $value)
                                                         @if (is_array($value))
                                                             <li>
-                                                                <i class="fas fa-angle-right"></i>
-                                                                <em>{{ label_case($key) }}</em>
-                                                                :
-                                                                <mark><?php print_r($value); ?></mark>
+                                                                <i class="ph-light ph-caret-right"></i>
+                                                                <em>{{ label_case($key) }}</em>: <mark><?php print_r($value); ?></mark>
                                                             </li>
                                                         @else
                                                             <li>
-                                                                <i class="fas fa-angle-right"></i>
-                                                                <em>{{ label_case($key) }}</em>
-                                                                :
-                                                                <mark>{{ $value }}</mark>
+                                                                <i class="ph-light ph-caret-right"></i>
+                                                                <em>{{ label_case($key) }}</em>: <mark>{{ $value }}</mark>
                                                             </li>
                                                         @endif
                                                     @endforeach
@@ -70,22 +55,17 @@
                                             <td>
                                                 @if (isset($activity->properties["old"]))
                                                     <?php $attributes = $activity->properties["old"]; ?>
-
                                                     <ul class="list-unstyled">
                                                         @foreach ($attributes as $key => $value)
                                                             @if (is_array($value))
                                                                 <li>
-                                                                    <i class="fas fa-angle-right"></i>
-                                                                    <em>{{ label_case($key) }}</em>
-                                                                    :
-                                                                    <mark><?php print_r($value); ?></mark>
+                                                                    <i class="ph-light ph-caret-right"></i>
+                                                                    <em>{{ label_case($key) }}</em>: <mark><?php print_r($value); ?></mark>
                                                                 </li>
                                                             @else
                                                                 <li>
-                                                                    <i class="fas fa-angle-right"></i>
-                                                                    <em>{{ label_case($key) }}</em>
-                                                                    :
-                                                                    <mark>{{ $value }}</mark>
+                                                                    <i class="ph-light ph-caret-right"></i>
+                                                                    <em>{{ label_case($key) }}</em>: <mark>{{ $value }}</mark>
                                                                 </li>
                                                             @endif
                                                         @endforeach
@@ -93,18 +73,11 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                @lang("Updated")
-                                                : {{ $activity->updated_at->diffForHumans() }}
-                                                <br />
-                                                @lang("At")
-                                                : {{ $activity->updated_at->isoFormat("llll") }}
+                                                @lang("Updated"): {{ $activity->updated_at->diffForHumans() }}<br />
+                                                @lang("At"): {{ $activity->updated_at->isoFormat("llll") }}
                                             </td>
-                                            <td>
-                                                {{ label_case($activity->causer_id) }}
-                                            </td>
-                                            <td>
-                                                {{ label_case($activity->description) }}
-                                            </td>
+                                            <td>{{ label_case($activity->causer_id) }}</td>
+                                            <td>{{ label_case($activity->description) }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

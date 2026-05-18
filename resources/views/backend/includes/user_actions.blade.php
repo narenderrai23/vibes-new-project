@@ -5,7 +5,7 @@
         data-toggle="tooltip"
         title="{{ __("labels.backend.show") }}"
     >
-        <i class="fas fa-desktop"></i>
+        <i class="ph-light ph-monitor"></i>
     </a>
     <a
         href="{{ route("backend.users.edit", $data) }}"
@@ -13,7 +13,7 @@
         data-toggle="tooltip"
         title="{{ __("labels.backend.edit") }}"
     >
-        <i class="fas fa-wrench"></i>
+        <i class="ph-light ph-wrench"></i>
     </a>
     <a
         href="{{ route("backend.users.changePassword", $data) }}"
@@ -21,7 +21,7 @@
         data-toggle="tooltip"
         title="{{ __("labels.backend.changePassword") }}"
     >
-        <i class="fas fa-key"></i>
+        <i class="ph-light ph-key"></i>
     </a>
 
     @if ($data->status != 2 && $data->id != 1)
@@ -34,7 +34,7 @@
             title="{{ __("labels.backend.block") }}"
             data-confirm="@lang("Are you sure?")"
         >
-            <i class="fas fa-ban"></i>
+            <i class="ph-light ph-prohibit"></i>
         </a>
     @endif
 
@@ -48,7 +48,7 @@
             title="{{ __("labels.backend.unblock") }}"
             data-confirm="@lang("Are you sure?")"
         >
-            <i class="fas fa-check"></i>
+            <i class="ph-light ph-check"></i>
         </a>
     @endif
 
@@ -62,7 +62,7 @@
             title="{{ __("labels.backend.delete") }}"
             data-confirm="@lang("Are you sure?")"
         >
-            <i class="fas fa-trash-alt"></i>
+            <i class="ph-light ph-trash"></i>
         </a>
     @endif
 
@@ -73,7 +73,7 @@
             data-toggle="tooltip"
             title="@lang("Send confirmation email")"
         >
-            <i class="fas fa-envelope"></i>
+            <i class="ph-light ph-envelope"></i>
         </a>
     @endif
 </div>

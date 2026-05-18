@@ -33,7 +33,7 @@
                         data-toggle="tooltip"
                         title="@lang("Mark all as read")"
                     >
-                        <i class="fas fa-check-square"></i>
+                        <i class="fa-solid fa-square-check"></i>
                         @lang("Mark all as read")
                     </a>
                     <a
@@ -44,7 +44,7 @@
                         data-toggle="tooltip"
                         title="@lang("Delete all notifications")"
                     >
-                        <i class="fas fa-trash-alt"></i>
+                        <i class="fa-solid fa-trash-can"></i>
                     </a>
                 </x-slot>
             </x-cube::backend-section-header>
@@ -97,11 +97,11 @@
                                     <td class="text-end">
                                         <a
                                             href="{!! route("backend.$module_name.show", $module_name_singular) !!}"
-                                            class="btn btn-sm btn-success mt-1"
+                                            class="btn btn-sm btn-outline-success mt-1"
                                             data-toggle="tooltip"
                                             title="@lang("Show") {{ ucwords(Str::singular($module_name)) }}"
                                         >
-                                            <i class="fas fa-tv"></i>
+                                            <i class="fa-solid fa-display"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -128,3 +128,4 @@
         </div>
     </div>
 @endsection
+

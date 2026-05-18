@@ -75,7 +75,7 @@ class BackendViewSuperAdminTest extends TestCase
             }
         }
 
-        $fields_data['app_name'] = 'Awesome Laravel Starter';
+        $fields_data['app_name'] = 'Awesome Vibes Healthcare Limited';
 
         $response = $this->postJson(route('backend.settings.store'), $fields_data);
 

@@ -22,7 +22,7 @@
                         data-coreui-placement="top"
                         title="Tooltip"
                     >
-                        <i class="fa-solid fa-bullhorn"></i>
+                        <i class="ph-light ph-megaphone"></i>
                     </button>
                 </x-slot>
             </x-cube::backend-section-header>
