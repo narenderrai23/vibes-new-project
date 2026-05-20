@@ -1,35 +1,35 @@
-@extends("backend.layouts.app")
+@extends("backend.layouts.app-new")
 
 @section("title")
         {{ $$module_name_singular->name }} - {{ __($module_action) }} - {{ __($module_title) }}
 @endsection
 
 @section("breadcrumbs")
-    <x-cube::backend-breadcrumbs>
-        <x-cube::backend-breadcrumb-item route='{{ route("backend.$module_name.index") }}' icon="{{ $module_icon }}">
+    <x-backend.breadcrumbs>
+        <x-backend.breadcrumb-item route='{{ route("backend.$module_name.index") }}' icon="{{ $module_icon }}">
             {{ __($module_title) }}
-        </x-cube::backend-breadcrumb-item>
-        <x-cube::backend-breadcrumb-item type="active">{{ __($module_action) }}</x-cube::backend-breadcrumb-item>
-    </x-cube::backend-breadcrumbs>
+        </x-backend.breadcrumb-item>
+        <x-backend.breadcrumb-item type="active">{{ __($module_action) }}</x-backend.breadcrumb-item>
+    </x-backend.breadcrumbs>
 @endsection
 
 @section("content")
-    <x-cube::backend-layout-show :data="$$module_name_singular">
-        <x-cube::backend-section-header>
-            <i class="{{ $module_icon }} fa-fw"></i>
+    <x-backend.layouts.show :data="$$module_name_singular">
+        <x-backend.section-header>
+            <i class="{{ $module_icon }}"></i>
             {{ $$module_name_singular->name }}
             <small class="text-muted">{{ __($module_title) }}</small>
 
             <x-slot name="toolbar">
-                <x-cube::backend-button-return-back :small="true" />
-                <x-cube::backend-button-edit
+                <x-backend.buttons.return-back :small="true" />
+                <x-backend.buttons.edit
                     class="ms-1"
                     title="{{ __('Edit') }} {{ ucwords(Str::singular($module_name)) }}"
                     route='{!! route("backend.$module_name.edit", $$module_name_singular) !!}'
                     :small="true"
                 />
             </x-slot>
-        </x-cube::backend-section-header>
+        </x-backend.section-header>
 
         <div class="row">
             <div class="col-12 col-sm-6">
@@ -99,5 +99,5 @@
                 </div>
             </div>
         </div>
-    </x-cube::backend-layout-show>
+    </x-backend.layouts.show>
 @endsection

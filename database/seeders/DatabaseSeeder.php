@@ -7,10 +7,16 @@ use App\Models\User;
 use App\Traits\AutoDiscoverModuleSeeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
+use Modules\Center\database\seeders\CenterDatabaseSeeder;
 
 class DatabaseSeeder extends Seeder
 {
     use AutoDiscoverModuleSeeders;
+
+    /**
+     * Run command:
+     * php artisan db:seed --class="Database\\Seeders\\DatabaseSeeder"
+     */
 
     /**
      * Seed the application's database.
@@ -25,10 +31,8 @@ class DatabaseSeeder extends Seeder
         // Always run Menu seeder (essential for navigation)
         $this->callEssentialModuleSeeders();
 
-        // Only run dummy data seeders if enabled
-        if ($this->shouldSeedDummyData()) {
-            $this->callDummyDataSeeders();
-        }
+        // Seed Center module data
+        $this->call(CenterDatabaseSeeder::class);
 
         Schema::enableForeignKeyConstraints();
 
@@ -75,23 +79,11 @@ class DatabaseSeeder extends Seeder
 
     /**
      * Call dummy data module seeders for development/testing purposes.
+     * Category, Tag, and Post modules have been removed.
      */
     protected function callDummyDataSeeders(): void
     {
-        // Order matters: Category and Tag must be seeded before Post (due to foreign keys)
-        $dummyDataModules = ['Category', 'Tag', 'Post'];
-
-        if (! app()->runningUnitTests()) {
-            $this->command->info('Seeding dummy data modules (Category, Tag, Post)...');
-        }
-
-        foreach ($dummyDataModules as $moduleName) {
-            $this->callModuleSeeder($moduleName);
-        }
-
-        if (! app()->runningUnitTests()) {
-            $this->command->info('Dummy data seeders completed');
-        }
+        // No dummy data modules configured
     }
 
     /**

@@ -1,38 +1,14 @@
-@extends("backend.layouts.app")
+@extends("backend.layouts.app-new")
 
 @section("title")
     @lang("Dashboard")
 @endsection
 
 @section("breadcrumbs")
-    <x-cube::backend-breadcrumbs />
+    <x-backend.breadcrumbs />
 @endsection
 
 @section("content")
-    <div class="card mb-4">
-        <div class="card-body">
-            <x-cube::backend-section-header>
-                @lang("Admin Dashboard")
-
-                <x-slot name="toolbar">
-                    <button
-                        class="btn btn-outline-primary mb-1"
-                        type="button"
-                        data-toggle="tooltip"
-                        data-coreui-placement="top"
-                        title="Tooltip"
-                    >
-                        <i class="ph-light ph-megaphone"></i>
-                    </button>
-                </x-slot>
-            </x-cube::backend-section-header>
-
-            <!-- Dashboard Content Area -->
-
-            <!-- / Dashboard Content Area -->
-        </div>
-    </div>
-
     {{-- Demo content --}}
     @include("backend.includes.dashboard_demo_data")
 @endsection

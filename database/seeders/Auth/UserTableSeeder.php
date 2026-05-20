@@ -10,6 +10,9 @@ use Illuminate\Database\Seeder;
 
 /**
  * Class UserTableSeeder.
+ *
+ * Run command:
+ * php artisan db:seed --class="Database\\Seeders\\Auth\\UserTableSeeder"
  */
 class UserTableSeeder extends Seeder
 {

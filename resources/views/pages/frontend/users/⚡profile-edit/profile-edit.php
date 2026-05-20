@@ -60,7 +60,7 @@ new #[Layout('layouts::frontend')] #[Title('Edit Profile')] class extends Compon
 
     public string $module_name_singular = 'user';
 
-    public string $module_icon = 'fas fa-users';
+    public string $module_icon = 'ph-light ph-users';
 
     public string $module_action = 'Edit Profile';
 
@@ -169,7 +169,7 @@ new #[Layout('layouts::frontend')] #[Title('Edit Profile')] class extends Compon
         $userProvider = UserProvider::findOrFail($userProviderId);
 
         if ($this->user->id !== $userProvider->user_id) {
-            flash('<i class="fas fa-exclamation-triangle"></i> Request rejected. Please contact the Administrator!')->warning();
+            flash('<i class="ph-light ph-exclamation-triangle"></i> Request rejected. Please contact the Administrator!')->warning();
             abort(403);
         }
 
@@ -179,7 +179,7 @@ new #[Layout('layouts::frontend')] #[Title('Edit Profile')] class extends Compon
         $this->user->refresh();
         $this->syncProviderNames();
 
-        flash('<i class="fas fa-check-circle"></i> Successfully unlinked '.$providerName.' from your account!')->success();
+        flash('<i class="ph-light ph-check-circle"></i> Successfully unlinked '.$providerName.' from your account!')->success();
     }
 
     protected function syncProviderNames(): void

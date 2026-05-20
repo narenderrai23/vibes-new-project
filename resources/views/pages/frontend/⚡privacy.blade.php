@@ -18,7 +18,7 @@ new #[Layout('layouts::frontend')] #[Title('Privacy Policy')] class extends Comp
 ?>
 
 <div>
-    <x-cube::header-block :title="$title" />
+    <x-header-block :title="$title" />
 
     <section class="mx-auto max-w-screen-xl bg-white p-6 text-gray-600 sm:p-20">
         <div class="grid grid-cols-1">

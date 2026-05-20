@@ -1,471 +1,513 @@
-@extends("backend.layouts.app")
+@extends("backend.layouts.app-new")
 
 @section("title")
-    {{ $$module_name_singular->name }} - {{ $$module_name_singular->username }} - {{ __($module_action) }}
+    {{ $$module_name_singular->name }} -
+    {{ $$module_name_singular->username }} -
+    {{ __($module_action) }}
     {{ __($module_title) }}
 @endsection
 
 @section("breadcrumbs")
-    <x-cube::backend-breadcrumbs>
-        <x-cube::backend-breadcrumb-item route='{{ route("backend.$module_name.index") }}' icon="{{ $module_icon }}">
-            {{ $$module_name_singular->name }}
-        </x-cube::backend-breadcrumb-item>
+    <x-backend.breadcrumbs>
 
-        <x-cube::backend-breadcrumb-item type="active">
+        <x-backend.breadcrumb-item
+            route='{{ route("backend.$module_name.index") }}'
+            icon="{{ $module_icon }}">
+
+            {{ $$module_name_singular->name }}
+
+        </x-backend.breadcrumb-item>
+
+        <x-backend.breadcrumb-item type="active">
+
             {{ __($module_title) }}
             {{ __($module_action) }}
-        </x-cube::backend-breadcrumb-item>
-    </x-cube::backend-breadcrumbs>
+
+        </x-backend.breadcrumb-item>
+
+    </x-backend.breadcrumbs>
 @endsection
 
 @section("content")
-    <x-cube::backend-layout-edit :data="$user">
-        <x-cube::backend-section-header>
+
+    <x-backend.layouts.edit :data="$user">
+
+        <x-backend.section-header>
+
             <i class="{{ $module_icon }}"></i>
+
             {{ $$module_name_singular->name }}
-            <small class="text-muted">{{ __($module_title) }} {{ __($module_action) }}</small>
+
+            <small class="text-muted">
+                {{ __($module_title) }} {{ __($module_action) }}
+            </small>
 
             <x-slot name="toolbar">
-                <x-cube::backend-button-return-back :small="true" />
-                <x-cube::backend-button-show
+
+                <x-backend.buttons.return-back :small="true" />
+
+                <x-backend.buttons.show
                     class="ms-1"
                     title="{{ __('Show') }} {{ ucwords(Str::singular($module_name)) }}"
                     route='{!! route("backend.$module_name.show", $$module_name_singular) !!}'
                     :small="true"
                 />
+
             </x-slot>
-        </x-cube::backend-section-header>
+
+        </x-backend.section-header>
 
         <div class="row mt-4">
+
             <div class="col">
-                {{ html()->modelForm($user, "PATCH", route("backend.users.update", $user->id))->class("form-horizontal")->acceptsFiles()->open() }}
 
-                <div class="form-group row">
-                    {{ html()->label(__("labels.backend.users.fields.avatar"))->class("col-md-2 form-label")->for("file-multiple-input")->id("avatar-label") }}
+                <form action="{{ route('backend.users.update', $user->id) }}"
+                      method="POST"
+                      class="form-horizontal"
+                      enctype="multipart/form-data">
 
-<div class="col-md-5 mb-3">
-    <img
-        class="user-profile-image img-fluid img-thumbnail"
-        src="{{ asset($$module_name_singular->avatar) }}"
-        style="max-height: 200px; max-width: 200px"
-        aria-labelledby="avatar-label"
-    />
-</div>
-<div class="col-md-5 mb-3">
-    <input id="file-multiple-input" name="avatar" type="file" aria-labelledby="avatar-label" />
-</div>
-                </div>
+                    @csrf
+                    @method('PATCH')
 
-                <div class="row">
-                    <div class="col-sm-6 col-12 mb-3">
-                        <div class="form-group">
-                            <?php
-                            $field_name = "first_name";
-                            $field_lable = __(label_case($field_name));
-                            $field_placeholder = $field_lable;
-                            $required = "required";
-                            ?>
+                    {{-- Avatar --}}
+                    <div class="form-group row">
 
-                            {{ html()->label($field_lable, $field_name)->class("form-label")->id("{$field_name}-label") }}
-{!! field_required($required) !!}
-{{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
+                        <label for="avatar"
+                               id="avatar-label"
+                               class="col-md-2 form-label">
+
+                            {{ __("labels.backend.users.fields.avatar") }}
+
+                        </label>
+
+                        <div class="col-md-5 mb-3">
+
+                            <img class="user-profile-image img-fluid img-thumbnail"
+                                 src="{{ asset($$module_name_singular->avatar) }}"
+                                 style="max-height: 200px; max-width: 200px"
+                                 aria-labelledby="avatar-label" />
+
                         </div>
-                    </div>
-                    <div class="col-sm-6 col-12 mb-3">
-                        <div class="form-group">
-                            <?php
-                            $field_name = "last_name";
-                            $field_lable = __(label_case($field_name));
-                            $field_placeholder = $field_lable;
-                            $required = "required";
-                            ?>
 
-                            {{ html()->label($field_lable, $field_name)->class("form-label")->id("{$field_name}-label") }}
-{!! field_required($required) !!}
-{{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
+                        <div class="col-md-5 mb-3">
+
+                            <input type="file"
+                                   name="avatar"
+                                   id="avatar"
+                                   aria-labelledby="avatar-label">
+
                         </div>
-                    </div>
-                    <div class="col-sm-6 col-12 mb-3">
-                        <div class="form-group">
-                            <?php
-                            $field_name = "email";
-                            $field_lable = __(label_case($field_name));
-                            $field_placeholder = $field_lable;
-                            $required = "required";
-                            ?>
 
-                            {{ html()->label($field_lable, $field_name)->class("form-label")->id("{$field_name}-label") }}
-{!! field_required($required) !!}
-{{ html()->email($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-12 mb-3">
-                        <div class="form-group">
-                            <?php
-                            $field_name = "mobile";
-                            $field_lable = __(label_case($field_name));
-                            $field_placeholder = $field_lable;
-                            $required = "";
-                            ?>
-
-                            {{ html()->label($field_lable, $field_name)->class("form-label")->id("{$field_name}-label") }}
-{!! field_required($required) !!}
-{{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-6 col-12 mb-3">
-                        <div class="form-group">
-                            <?php
-                            $field_name = "gender";
-                            $field_lable = __(label_case($field_name));
-                            $field_placeholder = "-- Select an option --";
-                            $required = "";
-                            $select_options = [
-                                "Female" => "Female",
-                                "Male" => "Male",
-                                "Other" => "Other",
-                            ];
-                            ?>
-
-                            {{ html()->label($field_lable, $field_name)->class("form-label")->id("{$field_name}-label") }}
-{!! field_required($required) !!}
-{{ html()->select($field_name, $select_options)->placeholder($field_placeholder)->class("form-select select2")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
-                        </div>
                     </div>
 
-                    <div class="col-sm-6 col-12 mb-3">
-                        <div class="form-group">
-                            <?php
-                            $field_name = "date_of_birth";
-                            $field_lable = __(label_case($field_name));
-                            $field_placeholder = $field_lable;
-                            $required = "";
-                            ?>
+                    {{-- First Name / Last Name --}}
+                    <div class="row">
 
-                            {{ html()->label($field_lable, $field_name)->class("form-label")->id("{$field_name}-label") }}
-{!! field_required($required) !!}
-{{ html()->date($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-6 col-12 mb-3">
-                        <div class="form-group">
-                            <?php
-                            $field_name = "address";
-                            $field_lable = __(label_case($field_name));
-                            $field_placeholder = $field_lable;
-                            $required = "";
-                            ?>
-
-                            {{ html()->label($field_lable, $field_name)->class("form-label")->id("{$field_name}-label") }}
-{!! field_required($required) !!}
-{{ html()->textarea($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-12 mb-3">
-                        <div class="form-group">
-                            <?php
-                            $field_name = "bio";
-                            $field_lable = __(label_case($field_name));
-                            $field_placeholder = $field_lable;
-                            $required = "";
-                            ?>
-
-                            {{ html()->label($field_lable, $field_name)->class("form-label")->id("{$field_name}-label") }}
-{!! field_required($required) !!}
-{{ html()->textarea($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
-                        </div>
-                    </div>
-                </div>
-
-                @php
-                    $socialFieldsNames = $$module_name_singular->socialFieldsNames();
-                @endphp
-
-                <div class="row">
-                    @foreach ($$module_name_singular->socialFieldsNames() as $item)
                         <div class="col-sm-6 col-12 mb-3">
+
                             <div class="form-group">
-                                <?php
-                                $field_name = "social_profiles[" . $item . "]";
-                                $field_lable = label_case($item);
-                                $field_placeholder = $field_lable;
-                                $required = "";
-                                ?>
 
-                                {{ html()->label($field_lable, $field_name)->class("form-label")->id("{$field_name}-label") }}
-{!! field_required($required) !!}
-{{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required", "aria-labelledby" => "{$field_name}-label"]) }}
+                                <label for="first_name"
+                                       id="first_name-label"
+                                       class="form-label">
+
+                                    {{ __(label_case('first_name')) }}
+
+                                </label>
+
+                                {!! field_required('required') !!}
+
+                                <input type="text"
+                                       name="first_name"
+                                       id="first_name"
+                                       class="form-control"
+                                       placeholder="{{ __(label_case('first_name')) }}"
+                                       required
+                                       aria-labelledby="first_name-label"
+                                       value="{{ old('first_name', $user->first_name) }}">
+
                             </div>
-                        </div>
-                    @endforeach
-                </div>
 
-                <div class="row mb-3">
-                    <?php
-                    $field_name = "password";
-                    $field_lable = __("labels.backend.users.fields.password");
-                    $field_placeholder = $field_lable;
-                    $required = "required";
-                    ?>
-
-                    <div class="col-sm-2 col-12">
-                        <div class="form-group">
-                            {{ html()->label($field_lable, $field_name)->class("form-label") }}
-                            {!! field_required($required) !!}
                         </div>
+
+                        <div class="col-sm-6 col-12 mb-3">
+
+                            <div class="form-group">
+
+                                <label for="last_name"
+                                       id="last_name-label"
+                                       class="form-label">
+
+                                    {{ __(label_case('last_name')) }}
+
+                                </label>
+
+                                {!! field_required('required') !!}
+
+                                <input type="text"
+                                       name="last_name"
+                                       id="last_name"
+                                       class="form-control"
+                                       placeholder="{{ __(label_case('last_name')) }}"
+                                       required
+                                       aria-labelledby="last_name-label"
+                                       value="{{ old('last_name', $user->last_name) }}">
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-6 col-12 mb-3">
+
+                            <div class="form-group">
+
+                                <label for="email"
+                                       id="email-label"
+                                       class="form-label">
+
+                                    {{ __(label_case('email')) }}
+
+                                </label>
+
+                                {!! field_required('required') !!}
+
+                                <input type="email"
+                                       name="email"
+                                       id="email"
+                                       class="form-control"
+                                       placeholder="{{ __(label_case('email')) }}"
+                                       required
+                                       aria-labelledby="email-label"
+                                       value="{{ old('email', $user->email) }}">
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-6 col-12 mb-3">
+
+                            <div class="form-group">
+
+                                <label for="mobile"
+                                       id="mobile-label"
+                                       class="form-label">
+
+                                    {{ __(label_case('mobile')) }}
+
+                                </label>
+
+                                <input type="text"
+                                       name="mobile"
+                                       id="mobile"
+                                       class="form-control"
+                                       placeholder="{{ __(label_case('mobile')) }}"
+                                       aria-labelledby="mobile-label"
+                                       value="{{ old('mobile', $user->mobile) }}">
+
+                            </div>
+
+                        </div>
+
                     </div>
-                    <div class="col-sm-10 col-12">
-                        <div class="form-group">
-                            <a
-                                class="btn btn-outline-primary btn-sm"
-                                href="{{ route("backend.users.changePassword", $user->id) }}"
-                            >
-                                <i class="fa-solid fa-key"></i>
-                                &nbsp;
+
+                    {{-- Gender / DOB --}}
+                    <div class="row">
+
+                        <div class="col-sm-6 col-12 mb-3">
+
+                            <div class="form-group">
+
+                                <label for="gender"
+                                       id="gender-label"
+                                       class="form-label">
+
+                                    {{ __(label_case('gender')) }}
+
+                                </label>
+
+                                <select name="gender"
+                                        id="gender"
+                                        class="form-select select2"
+                                        aria-labelledby="gender-label">
+
+                                    <option value="">
+                                        -- Select an option --
+                                    </option>
+
+                                    <option value="Female"
+                                        {{ old('gender', $user->gender) == 'Female' ? 'selected' : '' }}>
+                                        Female
+                                    </option>
+
+                                    <option value="Male"
+                                        {{ old('gender', $user->gender) == 'Male' ? 'selected' : '' }}>
+                                        Male
+                                    </option>
+
+                                    <option value="Other"
+                                        {{ old('gender', $user->gender) == 'Other' ? 'selected' : '' }}>
+                                        Other
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-6 col-12 mb-3">
+
+                            <div class="form-group">
+
+                                <label for="date_of_birth"
+                                       id="date_of_birth-label"
+                                       class="form-label">
+
+                                    {{ __(label_case('date_of_birth')) }}
+
+                                </label>
+
+                                <input type="date"
+                                       name="date_of_birth"
+                                       id="date_of_birth"
+                                       class="form-control"
+                                       aria-labelledby="date_of_birth-label"
+                                       value="{{ old('date_of_birth', $user->date_of_birth) }}">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    {{-- Address / Bio --}}
+                    <div class="row">
+
+                        <div class="col-sm-6 col-12 mb-3">
+
+                            <div class="form-group">
+
+                                <label for="address"
+                                       id="address-label"
+                                       class="form-label">
+
+                                    {{ __(label_case('address')) }}
+
+                                </label>
+
+                                <textarea name="address"
+                                          id="address"
+                                          class="form-control"
+                                          aria-labelledby="address-label"
+                                          placeholder="{{ __(label_case('address')) }}">{{ old('address', $user->address) }}</textarea>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-6 col-12 mb-3">
+
+                            <div class="form-group">
+
+                                <label for="bio"
+                                       id="bio-label"
+                                       class="form-label">
+
+                                    {{ __(label_case('bio')) }}
+
+                                </label>
+
+                                <textarea name="bio"
+                                          id="bio"
+                                          class="form-control"
+                                          aria-labelledby="bio-label"
+                                          placeholder="{{ __(label_case('bio')) }}">{{ old('bio', $user->bio) }}</textarea>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    {{-- Social Profiles --}}
+                    <div class="row">
+
+                        @foreach ($$module_name_singular->socialFieldsNames() as $item)
+
+                            <div class="col-sm-6 col-12 mb-3">
+
+                                <div class="form-group">
+
+                                    <label for="social_{{ $item }}"
+                                           class="form-label">
+
+                                        {{ label_case($item) }}
+
+                                    </label>
+
+                                    <input type="text"
+                                           name="social_profiles[{{ $item }}]"
+                                           id="social_{{ $item }}"
+                                           class="form-control"
+                                           placeholder="{{ label_case($item) }}"
+                                           value="{{ old('social_profiles.'.$item, $user->social_profiles[$item] ?? '') }}">
+
+                                </div>
+
+                            </div>
+
+                        @endforeach
+
+                    </div>
+
+                    {{-- Change Password --}}
+                    <div class="row mb-3">
+
+                        <div class="col-sm-2 col-12">
+
+                            <label class="form-label">
+                                {{ __("labels.backend.users.fields.password") }}
+                            </label>
+
+                        </div>
+
+                        <div class="col-sm-10 col-12">
+
+                            <a class="btn btn-outline-primary btn-sm"
+                               href="{{ route('backend.users.changePassword', $user->id) }}">
+
+                                <i class="ti ti-key"></i>
                                 @lang("Change Password")
+
                             </a>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="row mb-3">
-                    <?php
-                    $field_name = "confirmed";
-                    $field_lable = __("labels.backend.users.fields.confirmed");
-                    $field_placeholder = $field_lable;
-                    $required = "";
-                    ?>
-
-                    <div class="col-sm-2 col-12">
-                        <div class="form-group">
-                            {{ html()->label($field_lable, $field_name)->class("form-label") }}
-                            {!! field_required($required) !!}
                         </div>
+
                     </div>
-                    <div class="col-sm-10 col-12">
-                        <div class="form-group">
+
+                    {{-- Email Verification --}}
+                    <div class="row mb-3">
+
+                        <div class="col-sm-2 col-12">
+
+                            <label class="form-label">
+                                {{ __("labels.backend.users.fields.confirmed") }}
+                            </label>
+
+                        </div>
+
+                        <div class="col-sm-10 col-12">
+
                             @if ($user->email_verified_at == null)
-                                <a
-                                    class="btn btn-outline-primary btn-sm"
-                                    data-toggle="tooltip"
-                                    href="{{ route("backend.users.emailConfirmationResend", $user->id) }}"
-                                    title="Send Confirmation Email"
-                                >
-                                    <i class="fa-solid fa-envelope"></i>
+
+                                <a class="btn btn-outline-primary btn-sm"
+                                   href="{{ route('backend.users.emailConfirmationResend', $user->id) }}">
+
+                                    <i class="ti ti-mail"></i>
                                     Send Confirmation Email
+
                                 </a>
+
                             @else
+
                                 {!! $user->confirmed_label !!}
-                            @endif
-                        </div>
-                    </div>
-                </div>
 
-                <div class="row mb-3">
-                    <?php
-                    $field_name = "social";
-                    $field_lable = __("labels.backend.users.fields.social");
-                    $field_placeholder = $field_lable;
-                    $required = "";
-                    ?>
-
-                    <div class="col-sm-2 col-12">
-                        <div class="form-group">
-                            {{ html()->label($field_lable, $field_name)->class("form-label") }}
-                            {!! field_required($required) !!}
-                        </div>
-                    </div>
-                    <div class="col-sm-10 col-12">
-                        <div class="form-group">
-                            @forelse ($user->providers as $provider)
-                                <li>
-                                    <i class="fa-brands fa-{{ $provider->provider }} fa-fw"></i>
-                                    {{ label_case($provider->provider) }}
-                                </li>
-                            @empty
-                                {{ __("No social profile added!") }}
-                            @endforelse
-                        </div>
-                    </div>
-                </div>
-
-                @can("edit_users_permissions")
-                    <div class="form-group row mb-3">
-                        {{ html()->label(__("Abilities"))->class("col-sm-2 form-label") }}
-                        <div class="col">
-                            <div class="row">
-                                <div class="col-sm-6 mb-3">
-                                    <div class="card card-accent-primary">
-                                        <div class="card-header">
-                                            @lang("Roles")
-                                        </div>
-                                        <div class="card-body">
-                                            @if ($roles->count())
-                                                @foreach ($roles as $role)
-                                                    <div class="card mb-3">
-                                                        <div class="card-header">
-                                                            <div class="checkbox">
-    <div class="form-check">
-        <input
-            class="form-check-input"
-            id="{{ "role-" . $role->id }}"
-            name="roles[]"
-            type="checkbox"
-            value="{{ $role->name }}"
-            {{ in_array($role->name, $userRoles) ? "checked" : "" }}
-            aria-label="{{ label_case($role->name) . " (" . $role->name . ")" }}"
-        />
-        <label
-            class="form-check-label"
-            for="{{ "role-" . $role->id }}"
-        >
-            &nbsp;{{ label_case($role->name) . " (" . $role->name . ")" }}
-        </label>
-    </div>
-</div>
-                                                        </div>
-                                                        <div class="card-body">
-                                                            @if ($role->id != 1)
-                                                                @if ($role->permissions->count())
-                                                                    @foreach ($role->permissions as $permission)
-                                                                        <i class="ph-light ph-check-circle fa-fw mr-1"></i>
-                                                                        &nbsp;{{ $permission->name }}&nbsp;
-                                                                    @endforeach
-                                                                @else
-                                                                    @lang("None")
-                                                                @endif
-                                                            @else
-                                                                @lang("All Permissions")
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                @endforeach
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 mb-3">
-                                    <div class="card card-accent-info">
-                                        <div class="card-header">
-                                            @lang("Permissions")
-                                        </div>
-                                        <div class="card-body">
-                                            @if ($permissions->count())
-                                                @foreach ($permissions as $permission)
-                                                    <div class="mb-2">
-    <input
-        class="form-check-input"
-        id="{{ "permission-" . $permission->id }}"
-        name="permissions[]"
-        type="checkbox"
-        value="{{ $permission->name }}"
-        {{ in_array($permission->name, $userPermissions) ? "checked" : "" }}
-        aria-label="{{ label_case($permission->name) . " (" . $permission->name . ")" }}"
-    />
-    <label
-        class="form-check-label"
-        for="{{ "permission-" . $permission->id }}"
-    >
-        &nbsp;{{ label_case($permission->name) . " (" . $permission->name . ")" }}
-    </label>
-</div>
-                                                @endforeach
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endcan
-
-                <div class="row">
-                    <div class="col-4 mb-3">
-                        <div class="form-group">
-                            <x-cube::backend-button-save />
-                        </div>
-                    </div>
-
-                    <div class="col-8 mb-3">
-                        <div class="float-end">
-                            @if ($$module_name_singular->status != 2 && $$module_name_singular->id != 1)
-                                <a
-                                    class="btn btn-outline-danger"
-                                    data-method="PATCH"
-                                    data-token="{{ csrf_token() }}"
-                                    data-toggle="tooltip"
-                                    data-confirm="Are you sure?"
-                                    href="{{ route("backend.users.block", $$module_name_singular) }}"
-                                    title="{{ __("labels.backend.block") }}"
-                                >
-                                    <i class="fa-solid fa-ban"></i>
-                                </a>
                             @endif
 
-                            @if ($$module_name_singular->status == 2)
-                                <a
-                                    class="btn btn-outline-info"
-                                    data-method="PATCH"
-                                    data-token="{{ csrf_token() }}"
-                                    data-toggle="tooltip"
-                                    data-confirm="Are you sure?"
-                                    href="{{ route("backend.users.unblock", $$module_name_singular) }}"
-                                    title="{{ __("labels.backend.unblock") }}"
-                                >
-                                    <i class="fa-solid fa-check"></i>
-                                    Unblock
-                                </a>
-                            @endif
+                        </div>
 
-                            @if ($$module_name_singular->email_verified_at == null)
-                                <a
-                                    class="btn btn-outline-primary"
-                                    data-toggle="tooltip"
-                                    href="{{ route("backend.users.emailConfirmationResend", $$module_name_singular->id) }}"
-                                    title="Send Confirmation Email"
-                                >
-                                    <i class="fa-solid fa-envelope"></i>
-                                </a>
-                            @endif
+                    </div>
 
-                            @can("delete_" . $module_name)
-                                @if ($$module_name_singular->id != 1)
-                                    <a
-                                        class="btn btn-outline-danger"
-                                        data-method="DELETE"
-                                        data-token="{{ csrf_token() }}"
-                                        data-toggle="tooltip"
-                                        href="{{ route("backend.$module_name.destroy", $$module_name_singular) }}"
-                                        title="{{ __("labels.backend.delete") }}"
-                                    >
-                                        <i class="fa-solid fa-trash-can"></i>
-                                        Delete
+                    {{-- Submit --}}
+                    <div class="row">
+
+                        <div class="col-4 mb-3">
+
+                            <x-backend.buttons.save />
+
+                        </div>
+
+                        <div class="col-8 mb-3">
+
+                            <div class="float-end">
+
+                                @if ($$module_name_singular->status != 2 && $$module_name_singular->id != 1)
+
+                                    <a class="btn btn-outline-danger"
+                                       data-method="PATCH"
+                                       data-token="{{ csrf_token() }}"
+                                       data-confirm="Are you sure?"
+                                       href="{{ route('backend.users.block', $$module_name_singular) }}">
+
+                                        <i class="ti ti-ban"></i>
+
                                     </a>
+
                                 @endif
-                            @endcan
+
+                                @if ($$module_name_singular->status == 2)
+
+                                    <a class="btn btn-outline-info"
+                                       data-method="PATCH"
+                                       data-token="{{ csrf_token() }}"
+                                       data-confirm="Are you sure?"
+                                       href="{{ route('backend.users.unblock', $$module_name_singular) }}">
+
+                                        <i class="ti ti-check"></i>
+                                        Unblock
+
+                                    </a>
+
+                                @endif
+
+                                @can("delete_" . $module_name)
+
+                                    @if ($$module_name_singular->id != 1)
+
+                                        <a class="btn btn-outline-danger"
+                                           data-method="DELETE"
+                                           data-token="{{ csrf_token() }}"
+                                           href="{{ route("backend.$module_name.destroy", $$module_name_singular) }}">
+
+                                            <i class="ti ti-trash"></i>
+                                            Delete
+
+                                        </a>
+
+                                    @endif
+
+                                @endcan
+
+                            </div>
 
                         </div>
+
                     </div>
-                </div>
-                {{ html()->closeModelForm() }}
-                
-                <!-- Cancel button outside the form to prevent accidental form submission -->
+
+                </form>
+
+                {{-- Cancel --}}
+                {{-- Cancel button outside the form to prevent accidental form submission --}}
                 <div class="row">
-                    <div class="col-12 mb-3">
-                        <div class="float-end">
-                            <x-cube::backend-button-return-back>@lang("Cancel")</x-cube::backend-button-return-back>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--/.col-->
-        </div>
-    </x-cube::backend-layout-edit>
-@endsection
 
+                    <div class="col-12 mb-3">
+
+                        <div class="float-end">
+
+                            <x-backend.buttons.return-back>
+                                @lang("Cancel")
+                            </x-backend.buttons.return-back>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </x-backend.layouts.edit>
+
+@endsection

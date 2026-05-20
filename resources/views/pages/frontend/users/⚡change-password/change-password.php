@@ -25,7 +25,7 @@ new #[Layout('layouts::frontend')] #[Title('Change Password')] class extends Com
 
     public string $module_name_singular = 'user';
 
-    public string $module_icon = 'fas fa-users';
+    public string $module_icon = 'ph-light ph-users';
 
     public string $module_action = 'Change Password';
 

@@ -105,7 +105,7 @@
         <div class="card mb-4">
             <div class="card-body d-flex align-items-center p-3">
                 <div class="bg-primary me-3 p-3 text-white">
-                    <i class="ph-light ph-gear"></i>
+                    <i class="ti ti-settings"></i>
                 </div>
                 <div>
                     <div class="fs-6 fw-semibold text-primary">$1.999,50</div>
@@ -115,7 +115,7 @@
             <div class="card-footer px-3 py-2">
                 <a class="btn-block text-medium-emphasis d-flex justify-content-between align-items-center" href="#">
                     <span class="small fw-semibold">View More</span>
-                    <i class="ph-light ph-arrow-circle-right"></i>
+                    <i class="ti ti-circle-arrow-right"></i>
                 </a>
             </div>
         </div>
@@ -124,7 +124,7 @@
         <div class="card mb-4">
             <div class="card-body d-flex align-items-center p-3">
                 <div class="bg-info me-3 p-3 text-white">
-                    <i class="ph-light ph-laptop"></i>
+                    <i class="ti ti-device-laptop"></i>
                 </div>
                 <div>
                     <div class="fs-6 fw-semibold text-info">$1.999,50</div>
@@ -134,7 +134,7 @@
             <div class="card-footer px-3 py-2">
                 <a class="btn-block text-medium-emphasis d-flex justify-content-between align-items-center" href="#">
                     <span class="small fw-semibold">View More</span>
-                    <i class="ph-light ph-arrow-circle-right"></i>
+                    <i class="ti ti-circle-arrow-right"></i>
                 </a>
             </div>
         </div>
@@ -143,7 +143,7 @@
         <div class="card mb-4">
             <div class="card-body d-flex align-items-center p-3">
                 <div class="bg-warning me-3 p-3 text-white">
-                    <i class="ph-light ph-magnifying-glass"></i>
+                    <i class="ti ti-search"></i>
                 </div>
                 <div>
                     <div class="fs-6 fw-semibold text-warning">$1.999,50</div>
@@ -153,7 +153,7 @@
             <div class="card-footer px-3 py-2">
                 <a class="btn-block text-medium-emphasis d-flex justify-content-between align-items-center" href="#">
                     <span class="small fw-semibold">View More</span>
-                    <i class="ph-light ph-arrow-circle-right"></i>
+                    <i class="ti ti-circle-arrow-right"></i>
                 </a>
             </div>
         </div>
@@ -162,7 +162,7 @@
         <div class="card mb-4">
             <div class="card-body d-flex align-items-center p-3">
                 <div class="bg-danger me-3 p-3 text-white">
-                    <i class="ph-light ph-bell"></i>
+                    <i class="ti ti-bell"></i>
                 </div>
                 <div>
                     <div class="fs-6 fw-semibold text-danger">$1.999,50</div>
@@ -172,7 +172,7 @@
             <div class="card-footer px-3 py-2">
                 <a class="btn-block text-medium-emphasis d-flex justify-content-between align-items-center" href="#">
                     <span class="small fw-semibold">View More</span>
-                    <i class="ph-light ph-arrow-circle-right"></i>
+                    <i class="ti ti-circle-arrow-right"></i>
                 </a>
             </div>
         </div>

@@ -4,31 +4,31 @@
 
     switch ($variable) {
         case 'primary':
-            $icon = '<i class="ph-light ph-info"></i>';
+            $icon = '<i class="ti ti-info-circle"></i>';
             break;
         case 'secondary':
-            $icon = '<i class="ph-light ph-info"></i>';
+            $icon = '<i class="ti ti-info-circle"></i>';
             break;
         case 'success':
-            $icon = '<i class="ph-light ph-check-circle"></i>';
+            $icon = '<i class="ti ti-check-circle"></i>';
             break;
         case 'danger':
-            $icon = '<i class="ph-light ph-warning"></i>';
+            $icon = '<i class="ti ti-alert-triangle"></i>';
             break;
         case 'warning':
-            $icon = '<i class="ph-light ph-warning"></i>';
+            $icon = '<i class="ti ti-alert-triangle"></i>';
             break;
         case 'info':
-            $icon = '<i class="ph-light ph-info"></i>';
+            $icon = '<i class="ti ti-info-circle"></i>';
             break;
         case 'light':
-            $icon = '<i class="ph-light ph-megaphone"></i>';
+            $icon = '<i class="ti ti-speakerphone"></i>';
             break;
         case 'dark':
-            $icon = '<i class="ph-light ph-question"></i>';
+            $icon = '<i class="ti ti-help-circle"></i>';
             break;
         default:
-            $icon = '<i class="ph-light ph-megaphone"></i>';
+            $icon = '<i class="ti ti-speakerphone"></i>';
             break;
     }
     ?>

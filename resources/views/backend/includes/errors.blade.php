@@ -1,7 +1,7 @@
 @if ($errors->any())
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
         <p>
-            <i class="ph-light ph-warning"></i>
+            <i class="ti ti-alert-triangle"></i>
             @lang("Please fix the following errors & try again!")
         </p>
         <ul>

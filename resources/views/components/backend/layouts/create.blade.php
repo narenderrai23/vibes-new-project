@@ -1,0 +1,69 @@
+@props([
+    'data'          => '',
+    'module_name'   => '',
+    'module_path'   => '',
+    'module_title'  => '',
+    'module_icon'   => '',
+    'module_action' => '',
+])
+
+<div class="card">
+    @if ($slot->isNotEmpty())
+        <div class="card-body">
+            {{ $slot }}
+        </div>
+    @else
+        <div class="card-body">
+            <x-backend.section-header
+                :module_name="$module_name"
+                :module_title="$module_title"
+                :module_icon="$module_icon"
+                :module_action="$module_action"
+            />
+
+            <div class="row mt-4">
+                <div class="col">
+                    <form
+                        action="{{ route("backend.$module_name.store") }}"
+                        method="POST"
+                        enctype="multipart/form-data"
+                    >
+                        @csrf
+
+                    @include("$module_path.$module_name.form")
+
+                    <div class="row">
+                        <div class="col-6">
+                            <x-backend.buttons.create>Create</x-backend.buttons.create>
+                        </div>
+                    </div>
+
+                    </form>
+
+                    {{-- Cancel button outside the form to prevent accidental form submission --}}
+                    <div class="row">
+                        <div class="col-12 mt-3">
+                            <div class="float-end">
+                                <x-backend.buttons.cancel />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
+    <div class="card-footer">
+        <div class="row">
+            <div class="col">
+                @if ($data != '')
+                    <small class="text-muted float-end text-end">
+                        @lang('Updated at'): {{ $data->updated_at->diffForHumans() }},
+                        <br class="d-block d-sm-none" />
+                        @lang('Created at'): {{ $data->created_at->isoFormat('LLLL') }}
+                    </small>
+                @endif
+            </div>
+        </div>
+    </div>
+</div>

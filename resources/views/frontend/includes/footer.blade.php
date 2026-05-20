@@ -6,7 +6,7 @@
             wire:navigate
             aria-label="Go to homepage"
         >
-            <img class="h-10 rounded" src="{{ asset("img/logo-with-text.jpg") }}" alt="{{ app_name() }} Logo" />
+            <img class="h-10 rounded" src="{{ asset("img/logo-with-text.png") }}" alt="{{ app_name() }} Logo" />
         </a>
         <p class="mx-auto my-6 text-gray-500 sm:w-1/2 dark:text-gray-400">
             {!! setting("meta_description") !!}
@@ -17,7 +17,7 @@
         />
 
         @if (setting("show_footer_social_profiles"))
-        <x-cube::social.links
+        <x-social.links
             class="my-6"
             :website="setting('website_url')"
             :instagram="setting('instagram_url')"
@@ -29,11 +29,11 @@
         @endif
 
         @if (setting("show_license"))
-        <x-cube::footer-license license="cc-by-sa" :author="app_name()" :author-url="app_url()" />
+        <x-ui.footer-license license="cc-by-sa" :author="app_name()" :author-url="app_url()" />
         @endif
 
         @if (setting("show_credit"))
-        <x-cube::footer-credit :text="setting('footer_text')" />
+        <x-ui.footer-credit :text="setting('footer_text')" />
         @endif
 
     </div>

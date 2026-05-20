@@ -1,5 +1,5 @@
-<x-cube::validation-errors />
+<x-validation-errors />
 
-<x-cube::flash-message />
+<x-flash-message />
 
 

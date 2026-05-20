@@ -1,4 +1,4 @@
-@extends("backend.layouts.app")
+@extends("backend.layouts.app-new")
 
 @section("title")
     {{ $$module_name_singular->name }} - {{ $$module_name_singular->username }} - {{ __($module_action) }}
@@ -6,43 +6,43 @@
 @endsection
 
 @section("breadcrumbs")
-    <x-cube::backend-breadcrumbs>
-        <x-cube::backend-breadcrumb-item route='{{ route("backend.$module_name.index") }}' icon="{{ $module_icon }}">
+    <x-backend.breadcrumbs>
+        <x-backend.breadcrumb-item route='{{ route("backend.$module_name.index") }}' icon="{{ $module_icon }}">
             {{ $$module_name_singular->name }}
-        </x-cube::backend-breadcrumb-item>
+        </x-backend.breadcrumb-item>
 
-        <x-cube::backend-breadcrumb-item type="active">
+        <x-backend.breadcrumb-item type="active">
             {{ __($module_title) }}
             {{ __($module_action) }}
-        </x-cube::backend-breadcrumb-item>
-    </x-cube::backend-breadcrumbs>
+        </x-backend.breadcrumb-item>
+    </x-backend.breadcrumbs>
 @endsection
 
 @section("content")
-    <x-cube::backend-layout-show :data="$user">
-        <x-cube::backend-section-header>
+    <x-backend.layouts.show :data="$user">
+        <x-backend.section-header>
             <i class="{{ $module_icon }}"></i>
             {{ $$module_name_singular->name }}
             <small class="text-muted">{{ __($module_title) }} {{ __($module_action) }}</small>
 
             <x-slot name="toolbar">
-                <x-cube::backend-button-return-back :small="true" />
+                <x-backend.buttons.return-back :small="true" />
                 <a
                     class="btn btn-outline-primary btn-sm m-1"
                     data-toggle="tooltip"
                     href="{{ route("backend.users.index") }}"
                     title="List"
                 >
-                    <i class="fa-solid fa-list"></i>
+                    <i class="ti ti-list"></i>
                     List
                 </a>
-                <x-backend-button-edit
+                <x-backend.buttons.edit
                     title="{{ __('Edit') }} {{ ucwords(Str::singular($module_name)) }}"
                     route='{!! route("backend.$module_name.edit", $$module_name_singular) !!}'
                     :small="true"
                 />
             </x-slot>
-        </x-cube::backend-section-header>
+        </x-backend.section-header>
 
         <div class="row">
             <div class="col">
@@ -104,7 +104,11 @@
                                 <ul class="list-unstyled">
                                     @foreach ($user->providers as $provider)
                                         <li>
-                                            <i class="fa-brands fa-{{ $provider->provider }}"></i>
+                                            @php
+    $providerIcons = ['github' => 'ti ti-brand-github', 'google' => 'ti ti-brand-google', 'facebook' => 'ti ti-brand-facebook', 'twitter' => 'ti ti-brand-twitter', 'linkedin' => 'ti ti-brand-linkedin'];
+    $providerIcon = $providerIcons[$provider->provider] ?? 'ti ti-link';
+@endphp
+                                            <i class="{{ $providerIcon }}"></i>
                                             {{ label_case($provider->provider) }}
                                         </li>
                                     @endforeach
@@ -128,7 +132,7 @@
                                             href="{{ route("backend.users.emailConfirmationResend", $user->id) }}"
                                             title="Send Confirmation Email"
                                         >
-                                            <i class="fa-solid fa-envelope"></i>
+                                            <i class="ti ti-mail"></i>
                                             Send Confirmation Reminder
                                         </a>
                                 @endif
@@ -201,7 +205,7 @@
                             href="{{ route("backend.users.block", $user) }}"
                             title="{{ __("labels.backend.block") }}"
                         >
-                            <i class="fa-solid fa-ban"></i>
+                            <i class="ti ti-ban"></i>
                             @lang("Block")
                         </a>
                     @endif
@@ -216,7 +220,7 @@
                             href="{{ route("backend.users.unblock", $user) }}"
                             title="{{ __("labels.backend.unblock") }}"
                         >
-                            <i class="fa-solid fa-check"></i>
+                            <i class="ti ti-check"></i>
                             @lang("Unblock")
                         </a>
                     @endif
@@ -230,7 +234,7 @@
                         href="{{ route("backend.users.destroy", $user) }}"
                         title="{{ __("labels.backend.delete") }}"
                     >
-                        <i class="fa-solid fa-trash-can"></i>
+                        <i class="ti ti-trash"></i>
                         @lang("Delete")
                     </a>
                     @if ($user->email_verified_at == null)
@@ -240,13 +244,13 @@
                             href="{{ route("backend.users.emailConfirmationResend", $user->id) }}"
                             title="Send Confirmation Email"
                         >
-                            <i class="fa-solid fa-envelope"></i>
+                            <i class="ti ti-mail"></i>
                             @lang("Email Confirmation")
                         </a>
                     @endif
                 </div>
             </div>
         </div>
-    </x-cube::backend-layout-show>
+    </x-backend.layouts.show>
 @endsection
 

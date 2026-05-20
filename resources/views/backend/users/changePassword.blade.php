@@ -1,94 +1,182 @@
-@extends("backend.layouts.app")
+@extends("backend.layouts.app-new")
 
 @section("title")
     {{ __($module_action) }} {{ __($module_title) }}
 @endsection
 
 @section("breadcrumbs")
-    <x-cube::backend-breadcrumbs>
-        <x-cube::backend-breadcrumb-item route='{{ route("backend.$module_name.index") }}' icon="{{ $module_icon }}">
-            {{ __($module_title) }}
-        </x-cube::backend-breadcrumb-item>
+    <x-backend.breadcrumbs>
 
-        <x-cube::backend-breadcrumb-item type="active">{{ __($module_action) }}</x-cube::backend-breadcrumb-item>
-    </x-cube::backend-breadcrumbs>
+        <x-backend.breadcrumb-item
+            route='{{ route("backend.$module_name.index") }}'
+            icon="{{ $module_icon }}">
+
+            {{ __($module_title) }}
+
+        </x-backend.breadcrumb-item>
+
+        <x-backend.breadcrumb-item type="active">
+            {{ __($module_action) }}
+        </x-backend.breadcrumb-item>
+
+    </x-backend.breadcrumbs>
 @endsection
 
 @section("content")
+
     <div class="card">
+
         <div class="card-body">
-            <x-cube::backend-section-header>
+
+            <x-backend.section-header>
+
                 <i class="{{ $module_icon }}"></i>
+
                 {{ __($module_title) }}
                 <small class="text-muted">{{ __($module_action) }}</small>
 
                 <x-slot name="toolbar">
-                    <x-cube::backend-button-return-back :small="true" />
+                    <x-backend.buttons.return-back :small="true" />
                 </x-slot>
-            </x-cube::backend-section-header>
 
+            </x-backend.section-header>
+
+            {{-- User Info --}}
             <div class="row mb-3">
+
                 <div class="col">
+
                     <strong>
-                        @lang("Name")
-                        :
+                        @lang("Name") :
                     </strong>
+
                     {{ $$module_name_singular->name }}
+
                 </div>
+
                 <div class="col">
+
                     <strong>
-                        @lang("Email")
-                        :
+                        @lang("Email") :
                     </strong>
+
                     {{ $$module_name_singular->email }}
+
                 </div>
+
             </div>
+
+            {{-- Password Change Form --}}
             <div class="row mb-4 mt-4">
+
                 <div class="col">
-                    {{ html()->form("PATCH", route("backend.users.changePasswordUpdate", $$module_name_singular->id))->class("form-horizontal")->open() }}
 
-                    <div class="form-group row mb-3">
-    {{ html()->label(__("labels.backend.users.fields.password"))->class("col-md-2 form-label")->for("password")->id("password-label") }}
+                    <form action="{{ route('backend.users.changePasswordUpdate', $$module_name_singular->id) }}"
+                          method="POST"
+                          class="form-horizontal">
 
-    <div class="col-md-10">
-        {{ html()->password("password")->class("form-control")->placeholder(__("labels.backend.users.fields.password"))->required()->attributes(["aria-labelledby" => "password-label"]) }}
-    </div>
-</div>
+                        @csrf
+                        @method('PATCH')
 
-<div class="form-group row mb-3">
-    {{ html()->label(__("labels.backend.users.fields.password_confirmation"))->class("col-md-2 form-label")->for("password_confirmation")->id("password_confirmation-label") }}
+                        {{-- Password --}}
+                        <div class="form-group row mb-3">
 
-    <div class="col-md-10">
-        {{ html()->password("password_confirmation")->class("form-control")->placeholder(__("labels.backend.users.fields.password_confirmation"))->required()->attributes(["aria-labelledby" => "password_confirmation-label"]) }}
-    </div>
-</div>
+                            <label for="password"
+                                   id="password-label"
+                                   class="col-md-2 form-label">
 
-                    <div class="row">
-                        <div class="col">
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        {{ html()->button($text = "<i class='ph-light ph-floppy-disk'></i> Save", $type = "submit")->class("btn btn-outline-success") }}
+                                {{ __("labels.backend.users.fields.password") }}
+
+                            </label>
+
+                            <div class="col-md-10">
+
+                                <input type="password"
+                                       name="password"
+                                       id="password"
+                                       class="form-control"
+                                       placeholder="{{ __('labels.backend.users.fields.password') }}"
+                                       required
+                                       aria-labelledby="password-label">
+
+                            </div>
+
+                        </div>
+
+                        {{-- Confirm Password --}}
+                        <div class="form-group row mb-3">
+
+                            <label for="password_confirmation"
+                                   id="password_confirmation-label"
+                                   class="col-md-2 form-label">
+
+                                {{ __("labels.backend.users.fields.password_confirmation") }}
+
+                            </label>
+
+                            <div class="col-md-10">
+
+                                <input type="password"
+                                       name="password_confirmation"
+                                       id="password_confirmation"
+                                       class="form-control"
+                                       placeholder="{{ __('labels.backend.users.fields.password_confirmation') }}"
+                                       required
+                                       aria-labelledby="password_confirmation-label">
+
+                            </div>
+
+                        </div>
+
+                        {{-- Submit Button --}}
+                        <div class="row">
+
+                            <div class="col">
+                                <div class="row">
+
+                                    <div class="col-4">
+
+                                        <div class="form-group">
+
+                                            <button type="submit"
+                                                    class="btn btn-outline-success">
+
+                                                <i class="ti ti-device-floppy"></i>
+                                                Save
+
+                                            </button>
+
+                                        </div>
+
                                     </div>
+
                                 </div>
                             </div>
+
                         </div>
-                    </div>
-                    {{ html()->closeModelForm() }}
+
+                    </form>
+
                 </div>
-                <!--/.col-->
+
             </div>
-            <!--/.row-->
+
         </div>
 
         <div class="card-footer">
-            <x-cube::backend-section-footer>
+
+            <x-backend.section-footer>
+
                 @lang("Updated")
                 : {{ $$module_name_singular->updated_at->diffForHumans() }},
+
                 @lang("Created at")
                 : {{ $$module_name_singular->created_at->isoFormat("LLLL") }}
-            </x-cube::backend-section-footer>
-        </div>
-    </div>
-@endsection
 
+            </x-backend.section-footer>
+
+        </div>
+
+    </div>
+
+@endsection

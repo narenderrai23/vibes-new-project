@@ -57,8 +57,7 @@ class SeedEssentialData extends Command
 
         $this->info('Essential data seeding completed successfully!');
         $this->line('');
-        $this->line('<fg=yellow>Note:</fg=yellow> Dummy data (Posts, Categories, Tags) was skipped.');
-        $this->line('<fg=green>To seed dummy data:</fg=green> Set SEED_DUMMY_DATA=true in .env and run php artisan db:seed');
+        $this->line('<fg=green>To seed additional data:</fg=green> Set SEED_DUMMY_DATA=true in .env and run php artisan db:seed');
 
         return self::SUCCESS;
     }

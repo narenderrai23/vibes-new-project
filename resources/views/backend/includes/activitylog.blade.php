@@ -1,4 +1,4 @@
-﻿<div class="accordion" id="activityLogBlock">
+<div class="accordion" id="activityLogBlock">
     <div class="card card-accent-primary">
         <div class="card-header" id="activityLog">
             <button
@@ -40,12 +40,12 @@
                                                     @foreach ($attributes as $key => $value)
                                                         @if (is_array($value))
                                                             <li>
-                                                                <i class="ph-light ph-caret-right"></i>
+                                                                <i class="ti ti-chevron-right"></i>
                                                                 <em>{{ label_case($key) }}</em>: <mark><?php print_r($value); ?></mark>
                                                             </li>
                                                         @else
                                                             <li>
-                                                                <i class="ph-light ph-caret-right"></i>
+                                                                <i class="ti ti-chevron-right"></i>
                                                                 <em>{{ label_case($key) }}</em>: <mark>{{ $value }}</mark>
                                                             </li>
                                                         @endif
@@ -59,12 +59,12 @@
                                                         @foreach ($attributes as $key => $value)
                                                             @if (is_array($value))
                                                                 <li>
-                                                                    <i class="ph-light ph-caret-right"></i>
+                                                                    <i class="ti ti-chevron-right"></i>
                                                                     <em>{{ label_case($key) }}</em>: <mark><?php print_r($value); ?></mark>
                                                                 </li>
                                                             @else
                                                                 <li>
-                                                                    <i class="ph-light ph-caret-right"></i>
+                                                                    <i class="ti ti-chevron-right"></i>
                                                                     <em>{{ label_case($key) }}</em>: <mark>{{ $value }}</mark>
                                                                 </li>
                                                             @endif

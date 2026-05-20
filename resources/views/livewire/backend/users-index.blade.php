@@ -34,11 +34,11 @@
                                 </td>
                                 <td>
                                     @if ($user->getRoleNames()->count() > 0)
-                                        <ul class="fa-ul">
+                                        <ul class="list-unstyled">
                                             @foreach ($user->getRoleNames() as $role)
                                                 <li>
-                                                    <span class="fa-li">
-                                                        <i class="fa-solid fa-user-shield fa-fw"></i>
+                                                    <span class="">
+                                                        <i class="ti ti-shield-check"></i>
                                                     </span>
                                                     {{ ucwords($role) }}
                                                 </li>
@@ -59,7 +59,11 @@
                                     <ul class="list-unstyled">
                                         @foreach ($user->providers as $provider)
                                             <li>
-                                                <i class="fa-brands fa-{{ $provider->provider }}"></i>
+                                                @php
+    $providerIcons = ['github' => 'ti ti-brand-github', 'google' => 'ti ti-brand-google', 'facebook' => 'ti ti-brand-facebook', 'twitter' => 'ti ti-brand-twitter', 'linkedin' => 'ti ti-brand-linkedin'];
+    $providerIcon = $providerIcons[$provider->provider] ?? 'ti ti-link';
+@endphp
+                                            <i class="{{ $providerIcon }}"></i>
                                                 {{ label_case($provider->provider) }}
                                             </li>
                                         @endforeach
@@ -73,7 +77,7 @@
                                         href="{{ route("backend.users.show", $user) }}"
                                         title="{{ __("labels.backend.show") }}"
                                     >
-                                        <i class="fa-solid fa-display fa-fw"></i>
+                                        <i class="ti ti-device-desktop"></i>
                                     </a>
                                     @can("edit_users")
                                         <a
@@ -82,7 +86,7 @@
                                             href="{{ route("backend.users.edit", $user) }}"
                                             title="{{ __("labels.backend.edit") }}"
                                         >
-                                            <i class="fa-solid fa-edit fa-fw"></i>
+                                            <i class="ti ti-edit"></i>
                                         </a>
                                         <a
                                             class="btn btn-outline-info btn-sm mt-1"
@@ -90,7 +94,7 @@
                                             href="{{ route("backend.users.changePassword", $user) }}"
                                             title="{{ __("labels.backend.changePassword") }}"
                                         >
-                                            <i class="fa-solid fa-key fa-fw"></i>
+                                            <i class="ti ti-key"></i>
                                         </a>
                                         @if ($user->status != 2)
                                             <a
@@ -102,7 +106,7 @@
                                                 href="{{ route("backend.users.block", $user) }}"
                                                 title="{{ __("labels.backend.block") }}"
                                             >
-                                                <i class="fa-solid fa-ban fa-fw"></i>
+                                                <i class="ti ti-ban"></i>
                                             </a>
                                         @endif
 
@@ -116,7 +120,7 @@
                                                 href="{{ route("backend.users.unblock", $user) }}"
                                                 title="{{ __("labels.backend.unblock") }}"
                                             >
-                                                <i class="fa-solid fa-check fa-fw"></i>
+                                                <i class="ti ti-check"></i>
                                             </a>
                                         @endif
 
@@ -129,7 +133,7 @@
                                             href="{{ route("backend.users.destroy", $user) }}"
                                             title="{{ __("labels.backend.delete") }}"
                                         >
-                                            <i class="fa-solid fa-trash-can fa-fw"></i>
+                                            <i class="ti ti-trash"></i>
                                         </a>
                                         @if ($user->email_verified_at == null)
                                             <a
@@ -138,7 +142,7 @@
                                                 href="{{ route("backend.users.emailConfirmationResend", $user->id) }}"
                                                 title="Send Confirmation Email"
                                             >
-                                                <i class="fa-solid fa-envelope fa-fw"></i>
+                                                <i class="ti ti-mail"></i>
                                             </a>
                                         @endif
                                     @endcan

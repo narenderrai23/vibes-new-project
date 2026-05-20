@@ -14,8 +14,8 @@ class AllFormsStructureTest extends TestCase
      */
     public function test_all_forms_have_cancel_buttons_outside_forms(): void
     {
-        // Layout components live in the cube package (symlinked to vendor)
-        $cubePackagePath = 'vendor/nasirkhan/laravel-cube/resources/views/components/backend/layouts';
+        // Layout components now live in resources/views/components/backend/layouts
+        $layoutComponentsPath = 'resources/views/components/backend/layouts';
 
         $formsToCheck = [
             // Backend edit forms
@@ -26,9 +26,9 @@ class AllFormsStructureTest extends TestCase
             'resources/views/backend/users/create.blade.php',
             'resources/views/backend/roles/create.blade.php',
 
-            // Layout components (in cube package)
-            $cubePackagePath.'/edit.blade.php',
-            $cubePackagePath.'/create.blade.php',
+            // Layout components (now local)
+            $layoutComponentsPath.'/edit.blade.php',
+            $layoutComponentsPath.'/create.blade.php',
         ];
 
         foreach ($formsToCheck as $formFile) {
@@ -46,11 +46,8 @@ class AllFormsStructureTest extends TestCase
             $cancelPositions = [];
 
             // Look for various form closing patterns
-            if (strpos($content, '{{ html()->closeModelForm() }}') !== false) {
-                $formClosePositions[] = strpos($content, '{{ html()->closeModelForm() }}');
-            }
-            if (strpos($content, '{{ html()->form()->close() }}') !== false) {
-                $formClosePositions[] = strpos($content, '{{ html()->form()->close() }}');
+            if (strpos($content, '</form>') !== false) {
+                $formClosePositions[] = strpos($content, '</form>');
             }
 
             // Look for Cancel button patterns
@@ -102,8 +99,8 @@ class AllFormsStructureTest extends TestCase
      */
     public function test_return_back_button_component_is_safe(): void
     {
-        // The button component lives in the cube package (symlinked to vendor)
-        $returnBackComponent = base_path('vendor/nasirkhan/laravel-cube/resources/views/components/backend/buttons/return-back.blade.php');
+        // The button component now lives in resources/views/components/backend/buttons
+        $returnBackComponent = base_path('resources/views/components/backend/buttons/return-back.blade.php');
         $this->assertFileExists($returnBackComponent);
 
         $content = file_get_contents($returnBackComponent);
@@ -122,8 +119,8 @@ class AllFormsStructureTest extends TestCase
      */
     public function test_cancel_button_component_is_safe(): void
     {
-        // The button component lives in the cube package (symlinked to vendor)
-        $cancelComponent = base_path('vendor/nasirkhan/laravel-cube/resources/views/components/backend/buttons/cancel.blade.php');
+        // The button component now lives in resources/views/components/backend/buttons
+        $cancelComponent = base_path('resources/views/components/backend/buttons/cancel.blade.php');
         $this->assertFileExists($cancelComponent);
 
         $content = file_get_contents($cancelComponent);

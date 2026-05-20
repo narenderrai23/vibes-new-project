@@ -9,7 +9,7 @@
             <div class="flex w-full max-w-sm flex-col gap-2">
                 <a href="{{ route('home') }}" class="flex flex-col items-center gap-2 font-medium" wire:navigate>
                     <span class="mb-1 flex items-center justify-center rounded-md">
-                        <x-cube::application-logo class="h-10 rounded fill-current text-black dark:text-white" />
+                        <x-application-logo class="h-10 rounded fill-current text-black dark:text-white" />
                     </span>
                     <span class="sr-only">{{ config('app.name', 'Laravel') }}</span>
                 </a>

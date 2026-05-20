@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Artisan;
 
 /**
  * Class UserRoleTableSeeder.
+ *
+ * Run command:
+ * php artisan db:seed --class="Database\\Seeders\\Auth\\UserRoleTableSeeder"
  */
 class UserRoleTableSeeder extends Seeder
 {

@@ -299,15 +299,15 @@
                                         <div class="flex items-center">
                                             <div class="shrink-0">
                                                 @if($provider->provider === 'github')
-                                                    <i class="fa-brands fa-github text-2xl text-gray-800"></i>
+                                                    <i class="ti ti-brand-github text-2xl text-gray-800"></i>
                                                 @elseif($provider->provider === 'google')
-                                                    <i class="fa-brands fa-google text-2xl text-red-500"></i>
+                                                    <i class="ti ti-brand-google text-2xl text-red-500"></i>
                                                 @elseif($provider->provider === 'facebook')
-                                                    <i class="fa-brands fa-facebook text-2xl text-blue-600"></i>
+                                                    <i class="ti ti-brand-facebook text-2xl text-blue-600"></i>
                                                 @elseif($provider->provider === 'twitter')
-                                                    <i class="fa-brands fa-twitter text-2xl text-blue-400"></i>
+                                                    <i class="ti ti-brand-twitter text-2xl text-blue-400"></i>
                                                 @else
-                                                    <i class="fa-solid fa-link text-2xl text-gray-500"></i>
+                                                    <i class="ti ti-link text-2xl text-gray-500"></i>
                                                 @endif
                                             </div>
                                             <div class="ml-3">
@@ -329,11 +329,11 @@
                                                 aria-label="@lang('Unlink Provider')"
                                             >
                                                 <span wire:loading.remove wire:target="unlinkProvider({{ $provider->id }})">
-                                                    <i class="fa-solid fa-link-slash me-1"></i>
+                                                    <i class="ti ti-link-off me-1"></i>
                                                     @lang('Unlink')
                                                 </span>
                                                 <span wire:loading wire:target="unlinkProvider({{ $provider->id }})">
-                                                    <i class="fa-solid fa-spinner fa-spin me-1"></i>
+                                                    <i class="ti ti-loader-2 ti-spin me-1"></i>
                                                     @lang('Unlinking...')
                                                 </span>
                                             </button>

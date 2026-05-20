@@ -18,9 +18,19 @@
 
         <title>@yield("title") | {{ config("app.name") }}</title>
 
-        <script src="{{ asset("vendor/jquery/jquery-3.6.4.min.js") }}"></script>
+        <!-- CDNs for CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/simplebar@6.2.5/dist/simplebar.min.css" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.0.0/dist/css/coreui.min.css" rel="stylesheet" />
+        <link href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/light/style.css" rel="stylesheet" />
 
-        @vite(["resources/sass/app-backend.scss", "resources/js/app-backend.js"])
+        <!-- CDNs for JS -->
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.0.0/dist/js/coreui.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simplebar@6.2.5/dist/simplebar.min.js"></script>
+
+        @vite(["resources/sass/app-backend.scss"])
 
         {{-- Use Roboto font --}}
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
@@ -32,6 +42,10 @@
             :lang(bn),
             [lang^="bn"] {
                 font-family: 'Noto Sans Bengali', Arial, Helvetica, sans-serif;
+            }
+
+            ul.nav-group-items.compact {
+                margin-left: 10px;
             }
         </style>
 
@@ -66,7 +80,7 @@
             </div>
 
             {{-- Footer block --}}
-            <x-cube::backend-include-footer />
+            <x-backend.includes.footer />
         </div>
 
         <!-- Scripts -->

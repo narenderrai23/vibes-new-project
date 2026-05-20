@@ -1,15 +1,6 @@
-import $ from 'jquery';
-import * as coreui from '@coreui/coreui';
-import "/node_modules/simplebar/dist/simplebar.min.js";
+// External dependencies (jQuery, CoreUI, SimpleBar, Select2) are loaded via CDN
 import "/resources/js/laravel.js";
 import "/resources/js/backend-custom.js";
-import select2 from 'select2';
-
-window.$ = $;
-window.jQuery = $;
-window.coreui = coreui;
-
-select2();
 
 // Initialize sidebar immediately if DOM is ready, or wait for DOMContentLoaded
 function initializeSidebar() {

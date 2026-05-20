@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Artisan;
 
 /**
  * Class PermissionRoleTableSeeder.
+ *
+ * Run command:
+ * php artisan db:seed --class="Database\\Seeders\\Auth\\PermissionRoleTableSeeder"
  */
 class PermissionRoleTableSeeder extends Seeder
 {
@@ -46,27 +49,6 @@ class PermissionRoleTableSeeder extends Seeder
         foreach ($permissions as $permission) {
             $permission = Permission::make(['name' => $permission]);
             $permission->saveOrFail();
-        }
-
-        Artisan::call('auth:permissions', [
-            'name' => 'posts',
-        ]);
-        if (! app()->runningUnitTests()) {
-            $this->command->info('_Posts_ Permissions Created.');
-        }
-
-        Artisan::call('auth:permissions', [
-            'name' => 'categories',
-        ]);
-        if (! app()->runningUnitTests()) {
-            $this->command->info('_Categories_ Permissions Created.');
-        }
-
-        Artisan::call('auth:permissions', [
-            'name' => 'tags',
-        ]);
-        if (! app()->runningUnitTests()) {
-            $this->command->info('_Tags_ Permissions Created.');
         }
 
         Artisan::call('auth:permissions', [

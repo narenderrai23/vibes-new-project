@@ -19,13 +19,10 @@ class ModuleLoadingTest extends TestCase
     /** The canonical list of modules that ship with the package. */
     private const MODULES = [
         'Backup',
-        'Category',
         'FileManager',
         'LogViewer',
         'Menu',
-        'Post',
         'Settings',
-        'Tag',
     ];
 
     /**
@@ -92,28 +89,28 @@ class ModuleLoadingTest extends TestCase
      */
     public function test_disabled_module_service_provider_is_not_registered(): void
     {
-        // Re-run registerModules() against a temporary status file with Post=false
+        // Re-run registerModules() against a temporary status file with Backup=false
         $tempFile = base_path('modules_statuses_test_temp.json');
 
-        File::put($tempFile, json_encode(['Post' => false], JSON_PRETTY_PRINT));
+        File::put($tempFile, json_encode(['Backup' => false], JSON_PRETTY_PRINT));
 
         $statusFile = base_path('modules_statuses.json');
         $backup = File::get($statusFile);
 
         try {
             // Swap the real file for the temp one
-            File::put($statusFile, json_encode(['Post' => false], JSON_PRETTY_PRINT));
+            File::put($statusFile, json_encode(['Backup' => false], JSON_PRETTY_PRINT));
 
             // Trigger re-registration in a fresh container
             $app = $this->createApplication();
 
-            $vendorClass = 'Nasirkhan\\ModuleManager\\Modules\\Post\\Providers\\PostServiceProvider';
+            $vendorClass = 'Nasirkhan\\ModuleManager\\Modules\\Backup\\Providers\\BackupServiceProvider';
             $loadedKeys = array_keys($app->getLoadedProviders());
 
             $this->assertNotContains(
                 $vendorClass,
                 $loadedKeys,
-                'PostServiceProvider must not be registered when Post is disabled in modules_statuses.json'
+                'BackupServiceProvider must not be registered when Backup is disabled in modules_statuses.json'
             );
         } finally {
             // Always restore the original file

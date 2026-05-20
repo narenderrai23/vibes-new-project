@@ -263,7 +263,7 @@ class StarterInstallCommand extends Command
         });
 
         // Optionally seed demo data on top
-        $seedDemo = $this->option('demo') || $this->confirm('Also seed demo data (posts, categories, tags)?', false);
+        $seedDemo = $this->option('demo') || $this->confirm('Also seed demo data?', false);
 
         if ($seedDemo) {
             $this->components->task('Seeding demo data', function () {

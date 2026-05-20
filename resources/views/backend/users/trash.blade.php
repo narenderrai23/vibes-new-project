@@ -1,19 +1,19 @@
-@extends("backend.layouts.app")
+@extends("backend.layouts.app-new")
 
 @section("title")
     {{ __($module_action) }} {{ __($module_title) }}
 @endsection
 
 @section("breadcrumbs")
-    <x-cube::backend-breadcrumbs>
-        <x-cube::backend-breadcrumb-item type="active" icon="{{ $module_icon }}">
+    <x-backend.breadcrumbs>
+        <x-backend.breadcrumb-item type="active" icon="{{ $module_icon }}">
             {{ __($module_title) }}
-        </x-cube::backend-breadcrumb-item>
-    </x-cube::backend-breadcrumbs>
+        </x-backend.breadcrumb-item>
+    </x-backend.breadcrumbs>
 @endsection
 
 @section("content")
-    <x-cube::backend-layout-trash
+    <x-backend.layouts.trash
         :data="$$module_name"
         :module_name="$module_name"
         :module_path="$module_path"

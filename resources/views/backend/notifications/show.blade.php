@@ -1,22 +1,22 @@
-@extends("backend.layouts.app")
+@extends("backend.layouts.app-new")
 
 @section("title")
     {{ __($module_action) }} {{ __($module_title) }}
 @endsection
 
 @section("breadcrumbs")
-    <x-cube::backend-breadcrumbs>
-        <x-cube::backend-breadcrumb-item route='{{ route("backend.$module_name.index") }}' icon="{{ $module_icon }}">
+    <x-backend.breadcrumbs>
+        <x-backend.breadcrumb-item route='{{ route("backend.$module_name.index") }}' icon="{{ $module_icon }}">
             {{ __($module_title) }}
-        </x-cube::backend-breadcrumb-item>
-        <x-cube::backend-breadcrumb-item type="active">{{ __($module_action) }}</x-cube::backend-breadcrumb-item>
-    </x-cube::backend-breadcrumbs>
+        </x-backend.breadcrumb-item>
+        <x-backend.breadcrumb-item type="active">{{ __($module_action) }}</x-backend.breadcrumb-item>
+    </x-backend.breadcrumbs>
 @endsection
 
 @section("content")
     <div class="card">
         <div class="card-body">
-            <x-cube::backend-section-header>
+            <x-backend.section-header>
                 <i class="{{ $module_icon }}"></i>
                 {{ __($module_title) }}
                 <small class="text-muted">{{ __($module_action) }}</small>
@@ -28,11 +28,11 @@
                         data-toggle="tooltip"
                         title="{{ __(ucwords($module_name)) }} List"
                     >
-                        <i class="fa-solid fa-list"></i>
+                        <i class="ti ti-list"></i>
                         List
                     </a>
                 </x-slot>
-            </x-cube::backend-section-header>
+            </x-backend.section-header>
 
             <div class="row">
                 <div class="col">

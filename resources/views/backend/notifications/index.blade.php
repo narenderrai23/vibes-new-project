@@ -1,21 +1,21 @@
-@extends("backend.layouts.app")
+@extends("backend.layouts.app-new")
 
 @section("title")
     {{ __($module_action) }} {{ __($module_title) }}
 @endsection
 
-@section("breadcrumbs")
-    <x-cube::backend-breadcrumbs>
-        <x-cube::backend-breadcrumb-item type="active" icon="{{ $module_icon }}">
+{{-- @section("breadcrumbs")
+    <x-backend.breadcrumbs>
+        <x-backend.breadcrumb-item type="active" icon="{{ $module_icon }}">
             {{ __($module_title) }}
-        </x-cube::backend-breadcrumb-item>
-    </x-cube::backend-breadcrumbs>
-@endsection
+        </x-backend.breadcrumb-item>
+    </x-backend.breadcrumbs>
+@endsection --}}
 
 @section("content")
     <div class="card mb-4">
         <div class="card-body">
-            <x-cube::backend-section-header>
+            <x-backend.section-header>
                 <i class="{{ $module_icon }}"></i>
                 {{ __($module_title) }}
                 @if ($unread_notifications_count)
@@ -33,7 +33,7 @@
                         data-toggle="tooltip"
                         title="@lang("Mark all as read")"
                     >
-                        <i class="fa-solid fa-square-check"></i>
+                        <i class="ti ti-checkbox"></i>
                         @lang("Mark all as read")
                     </a>
                     <a
@@ -44,10 +44,10 @@
                         data-toggle="tooltip"
                         title="@lang("Delete all notifications")"
                     >
-                        <i class="fa-solid fa-trash-can"></i>
+                        <i class="ti ti-trash"></i>
                     </a>
                 </x-slot>
-            </x-cube::backend-section-header>
+            </x-backend.section-header>
 
             <div class="row">
                 <div class="col">
@@ -101,7 +101,7 @@
                                             data-toggle="tooltip"
                                             title="@lang("Show") {{ ucwords(Str::singular($module_name)) }}"
                                         >
-                                            <i class="fa-solid fa-display"></i>
+                                            <i class="ti ti-device-desktop"></i>
                                         </a>
                                     </td>
                                 </tr>

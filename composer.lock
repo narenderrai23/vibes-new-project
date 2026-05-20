@@ -4,89 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4b3d558ad869d0470c39e3c599b03e36",
+    "content-hash": "1a28db404ec45af707bb2040ad6b5ca5",
     "packages": [
-        {
-            "name": "blade-ui-kit/blade-icons",
-            "version": "1.10.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/driesvints/blade-icons.git",
-                "reference": "74189a80bbaa4966aebaee54fec3a3c2ef0a5f3a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/driesvints/blade-icons/zipball/74189a80bbaa4966aebaee54fec3a3c2ef0a5f3a",
-                "reference": "74189a80bbaa4966aebaee54fec3a3c2ef0a5f3a",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/contracts": "^8.0|^9.0|^10.0|^11.0|^12.0|^13.0",
-                "illuminate/filesystem": "^8.0|^9.0|^10.0|^11.0|^12.0|^13.0",
-                "illuminate/support": "^8.0|^9.0|^10.0|^11.0|^12.0|^13.0",
-                "illuminate/view": "^8.0|^9.0|^10.0|^11.0|^12.0|^13.0",
-                "php": "^7.4|^8.0",
-                "symfony/console": "^5.3|^6.0|^7.0|^8.0",
-                "symfony/finder": "^5.3|^6.0|^7.0|^8.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.5.1",
-                "orchestra/testbench": "^6.0|^7.0|^8.0|^9.0|^10.0|^11.0",
-                "phpunit/phpunit": "^9.0|^10.5|^11.0"
-            },
-            "bin": [
-                "bin/blade-icons-generate"
-            ],
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "BladeUI\\Icons\\BladeIconsServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/helpers.php"
-                ],
-                "psr-4": {
-                    "BladeUI\\Icons\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dries Vints",
-                    "homepage": "https://driesvints.com"
-                }
-            ],
-            "description": "A package to easily make use of icons in your Laravel Blade views.",
-            "homepage": "https://github.com/driesvints/blade-icons",
-            "keywords": [
-                "blade",
-                "icons",
-                "laravel",
-                "svg"
-            ],
-            "support": {
-                "issues": "https://github.com/driesvints/blade-icons/issues",
-                "source": "https://github.com/driesvints/blade-icons"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/sponsors/driesvints",
-                    "type": "github"
-                },
-                {
-                    "url": "https://www.paypal.com/paypalme/driesvints",
-                    "type": "paypal"
-                }
-            ],
-            "time": "2026-04-23T19:03:45+00:00"
-        },
         {
             "name": "brick/math",
             "version": "0.14.8",
@@ -2938,79 +2857,6 @@
             "time": "2026-01-02T08:56:05+00:00"
         },
         {
-            "name": "nasirkhan/laravel-cube",
-            "version": "v2.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nasirkhan/laravel-cube.git",
-                "reference": "cd9c2a7a1b5a44d967823dc45830ab0d5a39ea50"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nasirkhan/laravel-cube/zipball/cd9c2a7a1b5a44d967823dc45830ab0d5a39ea50",
-                "reference": "cd9c2a7a1b5a44d967823dc45830ab0d5a39ea50",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "^11.0|^12.0|^13.0",
-                "illuminate/view": "^11.0|^12.0|^13.0",
-                "php": "^8.3",
-                "themesberg/flowbite-blade-icons": "^1.3"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^9.0|^10.0|^11.0",
-                "phpunit/phpunit": "^11.0|^12.0"
-            },
-            "suggest": {
-                "livewire/livewire": "Required if you use Livewire-powered examples or extend cube components with Livewire functionality (^3.0|^4.0)"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Nasirkhan\\LaravelCube\\CubeServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Nasirkhan\\LaravelCube\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-3.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Nasir Khan Saikat",
-                    "email": "nasir8891@gmail.com",
-                    "homepage": "https://github.com/nasirkhan",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A unified component library for Laravel applications supporting both Tailwind CSS (with Flowbite) and Bootstrap frameworks",
-            "homepage": "https://github.com/nasirkhan/laravel-cube",
-            "keywords": [
-                "Forms",
-                "alpine",
-                "blade-components",
-                "bootstrap",
-                "components",
-                "cube",
-                "flowbite",
-                "laravel",
-                "navigation",
-                "tailwind",
-                "ui-components"
-            ],
-            "support": {
-                "issues": "https://github.com/nasirkhan/laravel-cube/issues",
-                "source": "https://github.com/nasirkhan/laravel-cube/tree/v2.5.0"
-            },
-            "time": "2026-04-07T19:52:41+00:00"
-        },
-        {
             "name": "nasirkhan/laravel-jodit",
             "version": "v1.6.0",
             "source": {
@@ -3135,10 +2981,10 @@
                     "role": "Developer"
                 }
             ],
-            "description": "Module Manager & Generator for Vibes Healthcare Limited Kit (https://github.com/nasirkhan/laravel-starter)",
+            "description": "Module Manager & Generator for Laravel Starter Kit (https://github.com/nasirkhan/laravel-starter)",
             "homepage": "https://github.com/nasirkhan/module-manager",
             "keywords": [
-                "Vibes Healthcare Limited",
+                "Laravel Starter",
                 "Module Manager",
                 "module generator",
                 "nasirkhan",
@@ -5074,84 +4920,6 @@
                 }
             ],
             "time": "2026-03-24T10:30:33+00:00"
-        },
-        {
-            "name": "spatie/laravel-html",
-            "version": "3.13.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/laravel-html.git",
-                "reference": "0579bf41959b4c4068206ec9bf1fcd1b59d8fa25"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-html/zipball/0579bf41959b4c4068206ec9bf1fcd1b59d8fa25",
-                "reference": "0579bf41959b4c4068206ec9bf1fcd1b59d8fa25",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/http": "^10.0|^11.0|^12.0|^13.0",
-                "illuminate/support": "^10.0|^11.0|^12.0|^13.0",
-                "php": "^8.2"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.3",
-                "orchestra/testbench": "^8.0|^9.0|^10.0|^11.0",
-                "pestphp/pest": "^2.34|^3.7|^4.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "aliases": {
-                        "Html": "Spatie\\Html\\Facades\\Html"
-                    },
-                    "providers": [
-                        "Spatie\\Html\\HtmlServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/helpers.php"
-                ],
-                "psr-4": {
-                    "Spatie\\Html\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Sebastian De Deyne",
-                    "email": "sebastian@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A fluent html builder",
-            "homepage": "https://github.com/spatie/laravel-html",
-            "keywords": [
-                "html",
-                "spatie"
-            ],
-            "support": {
-                "source": "https://github.com/spatie/laravel-html/tree/3.13.0"
-            },
-            "funding": [
-                {
-                    "url": "https://spatie.be/open-source/support-us",
-                    "type": "custom"
-                }
-            ],
-            "time": "2026-02-22T09:05:56+00:00"
         },
         {
             "name": "spatie/laravel-medialibrary",
@@ -8065,67 +7833,6 @@
             "time": "2026-03-31T07:15:36+00:00"
         },
         {
-            "name": "themesberg/flowbite-blade-icons",
-            "version": "V1.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/themesberg/flowbite-blade-icons.git",
-                "reference": "ffd4fb89f666ecbf43f353517aeb3c85b9db783a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/themesberg/flowbite-blade-icons/zipball/ffd4fb89f666ecbf43f353517aeb3c85b9db783a",
-                "reference": "ffd4fb89f666ecbf43f353517aeb3c85b9db783a",
-                "shasum": ""
-            },
-            "require": {
-                "blade-ui-kit/blade-icons": "^1.6",
-                "illuminate/support": "^9.0|^10.0|^11.0|^12.0|^13.0",
-                "php": "^8.1"
-            },
-            "require-dev": {
-                "laravel/pint": "^1.13",
-                "orchestra/testbench": "^7.0|^8.0|^9.0|^10.0|^11.0",
-                "pestphp/pest": "^1.23|^2.0",
-                "phpunit/phpunit": "^9.0|^10.5|^11.0|^12.0|^13.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Themesberg\\FlowbiteBladeIcons\\FlowbiteBladeIconsServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Themesberg\\FlowbiteBladeIcons\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dominique Thomas",
-                    "email": "domthomas@ncoo-dev.com"
-                }
-            ],
-            "description": "A package to easily make use of Flowbite Icons in your Laravel Blade views.",
-            "homepage": "https://github.com/themesberg/flowbite-blade-icons",
-            "keywords": [
-                "blade",
-                "flowbite",
-                "laravel"
-            ],
-            "support": {
-                "issues": "https://github.com/themesberg/flowbite-blade-icons/issues",
-                "source": "https://github.com/themesberg/flowbite-blade-icons/tree/V1.4.0"
-            },
-            "time": "2026-03-20T10:56:06+00:00"
-        },
-        {
             "name": "tijsverkoyen/css-to-inline-styles",
             "version": "v2.4.0",
             "source": {
@@ -8340,16 +8047,16 @@
         },
         {
             "name": "yajra/laravel-datatables-oracle",
-            "version": "v13.1.1",
+            "version": "v13.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yajra/laravel-datatables.git",
-                "reference": "8ad058f503efbe9c5c3f4ff62406061efa119ada"
+                "reference": "ded9345b7c00c85ce0fe0cea40e24e61c8489e10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/8ad058f503efbe9c5c3f4ff62406061efa119ada",
-                "reference": "8ad058f503efbe9c5c3f4ff62406061efa119ada",
+                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/ded9345b7c00c85ce0fe0cea40e24e61c8489e10",
+                "reference": "ded9345b7c00c85ce0fe0cea40e24e61c8489e10",
                 "shasum": ""
             },
             "require": {
@@ -8417,7 +8124,7 @@
             ],
             "support": {
                 "issues": "https://github.com/yajra/laravel-datatables/issues",
-                "source": "https://github.com/yajra/laravel-datatables/tree/v13.1.1"
+                "source": "https://github.com/yajra/laravel-datatables/tree/v13.1.2"
             },
             "funding": [
                 {
@@ -8425,7 +8132,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-05-16T02:04:48+00:00"
+            "time": "2026-05-19T03:34:29+00:00"
         }
     ],
     "packages-dev": [

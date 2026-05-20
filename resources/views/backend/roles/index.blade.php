@@ -1,33 +1,33 @@
-@extends("backend.layouts.app")
+@extends("backend.layouts.app-new")
 
 @section("title")
     {{ __($module_action) }} {{ __($module_title) }}
 @endsection
 
 @section("breadcrumbs")
-    <x-cube::backend-breadcrumbs>
-        <x-cube::backend-breadcrumb-item type="active" icon="{{ $module_icon }}">
+    <x-backend.breadcrumbs>
+        <x-backend.breadcrumb-item type="active" icon="{{ $module_icon }}">
             {{ __($module_title) }}
-        </x-cube::backend-breadcrumb-item>
-    </x-cube::backend-breadcrumbs>
+        </x-backend.breadcrumb-item>
+    </x-backend.breadcrumbs>
 @endsection
 
 @section("content")
     <div class="card">
         <div class="card-body">
-            <x-cube::backend-section-header>
+            <x-backend.section-header>
                 <i class="{{ $module_icon }}"></i>
                 {{ __($module_title) }}
                 <small class="text-muted">{{ __($module_action) }}</small>
 
                 <x-slot name="toolbar">
-                    <x-cube::backend-button-create
+                    <x-backend.buttons.create
                         title="{{ __('Create') }} {{ ucwords(Str::singular($module_name)) }}"
                         route='{{ route("backend.$module_name.create") }}'
                         :small="true"
                     />
                 </x-slot>
-            </x-cube::backend-section-header>
+            </x-backend.section-header>
 
             <div class="row">
                 <div class="col">
@@ -63,14 +63,14 @@
                                         </td>
                                         <td class="text-end">
                                             @can("edit_" . $module_name)
-                                                <x-cube::backend-button-edit
+                                                <x-backend.buttons.edit
                                                     title="{{ __('Edit') }} {{ ucwords(Str::singular($module_name)) }}"
                                                     route='{!! route("backend.$module_name.edit", $module_name_singular) !!}'
                                                     small="true"
                                                 />
                                             @endcan
 
-                                            <x-cube::backend-button-show
+                                            <x-backend.buttons.show
                                                 title="{{ __('Show') }} {{ ucwords(Str::singular($module_name)) }}"
                                                 route='{!! route("backend.$module_name.show", $module_name_singular) !!}'
                                                 small="true"

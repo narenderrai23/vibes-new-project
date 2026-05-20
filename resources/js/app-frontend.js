@@ -1,5 +1,4 @@
 import './bootstrap';
-import 'flowbite';
 
 /**
  * Frontend Theme Switcher
@@ -65,14 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initThemeToggle();
 });
 
-// Re-initialize Flowbite components after Livewire navigation (SPA-like page transitions)
+// Re-initialize custom scripts after Livewire navigation (SPA-like page transitions)
 document.addEventListener('livewire:navigated', () => {
-    initFlowbite();
     updateThemeToggleIcons();
     initThemeToggle();
-});
-
-// Re-initialize Flowbite components after Livewire updates the DOM (for dynamic content)
-document.addEventListener('livewire:update', () => {
-    initFlowbite();
 });

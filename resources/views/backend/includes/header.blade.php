@@ -12,13 +12,13 @@ $notifications_latest = optional($notifications)->take(5);
             style="margin-inline-start: -14px"
             onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()"
         >
-            <i class="ph-light ph-list"></i>
+            <i class="ti ti-list"></i>
         </button>
         <ul class="header-nav d-none d-lg-flex">
             <li class="nav-item">
                 <a class="nav-link" href="{{ route("frontend.index") }}" target="_blank">
                     {{ app_name() }}&nbsp;
-                    <i class="ph-light ph-arrow-square-out"></i>
+                    <i class="ti ti-external-link"></i>
                 </a>
             </li>
         </ul>
@@ -30,7 +30,7 @@ $notifications_latest = optional($notifications)->take(5);
                     type="button"
                     aria-expanded="false"
                 >
-                    <i class="ph-light ph-bell"></i>
+                    <i class="ti ti-bell"></i>
                     @if ($notifications_count)
                         &nbsp;
                         <span class="badge badge-pill bg-danger">{{ $notifications_count }}</span>
@@ -58,7 +58,7 @@ $notifications_latest = optional($notifications)->take(5);
                                     class="dropdown-item d-flex align-items-center"
                                     href="{{ route("backend.notifications.show", $notification) }}"
                                 >
-                                    <i class="ph-light ph-megaphone"></i>
+                                    <i class="ti ti-speakerphone"></i>
                                     &nbsp;{{ $notification_text }}
                                 </a>
                             </li>
@@ -171,8 +171,8 @@ $notifications_latest = optional($notifications)->take(5);
                         type="button"
                         aria-expanded="false"
                     >
-                        <i class="ph-light ph-translate"></i>
-                        &nbsp; {{ strtoupper(App::getLocale()) }}
+                        {{ strtoupper(App::getLocale()) }} &nbsp; 
+                        <i class="ti ti-corner-down-right"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" style="--cui-dropdown-min-width: 8rem">
                         @foreach (config("app.available_locales") as $locale_code => $locale_name)
@@ -217,15 +217,15 @@ $notifications_latest = optional($notifications)->take(5);
                         {{ __("Account") }}
                     </div>
                     <a class="dropdown-item" href="{{ route("backend.users.show", Auth::user()->id) }}">
-                        <i class="ph-light ph-user me-2"></i>
+                        <i class="ti ti-user me-2"></i>
                         &nbsp;{{ Auth::user()->name }}
                     </a>
                     <a class="dropdown-item" href="{{ route("backend.users.show", Auth::user()->id) }}">
-                        <i class="ph-light ph-at me-2"></i>
+                        <i class="ti ti-at me-2"></i>
                         &nbsp;{{ Auth::user()->email }}
                     </a>
                     <a class="dropdown-item" href="{{ route("backend.notifications.index", Auth::user()->id) }}">
-                        <i class="ph-light ph-bell me-2"></i>
+                        <i class="ti ti-bell me-2"></i>
                         &nbsp;
                         @lang("Notifications")
                         @if ($notifications_count)
@@ -244,7 +244,7 @@ $notifications_latest = optional($notifications)->take(5);
                             document.getElementById('logout-form').submit();
                         "
                     >
-                        <i class="ph-light ph-sign-out me-2"></i>
+                        <i class="ti ti-logout me-2"></i>
                         &nbsp;
                         @lang("Logout")
                     </a>
