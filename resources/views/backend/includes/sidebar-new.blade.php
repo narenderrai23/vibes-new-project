@@ -24,13 +24,13 @@ function sidebar1Open(string ...$patterns): bool
 
     <!-- Logo -->
     <div class="sidebar-logo">
-        <a href="{{ route('backend.home') }}" class="text-center logo logo-normal">
+        <a href="{{ route('backend.home') }}" class="logo logo-normal">
             <img src="{{ asset('img/logo-with-text-dark.png') }}" alt="{{ app_name() }}" width="100">
         </a>
-        <a href="{{ route('backend.home') }}" class="text-center logo-small">
+        <a href="{{ route('backend.home') }}" class="logo-small">
             <img src="{{ asset('img/logo-square.jpg') }}" alt="{{ app_name() }}" >
         </a>
-        <a href="{{ route('backend.home') }}" class="text-center dark-logo">
+        <a href="{{ route('backend.home') }}" class="dark-logo">
             <img src="{{ asset('img/logo-with-text.png') }}" alt="{{ app_name() }}"  width="100">
         </a>
     </div>
