@@ -453,7 +453,7 @@ new class extends Component {
         RateLimiter::clear($this->throttleKey());
         session()->regenerate();
 
-        $this->redirect(route('frontend.index'), navigate: true);
+        $this->redirect(route('home'), navigate: true);
     }
 
     protected function ensureIsNotRateLimited(): void

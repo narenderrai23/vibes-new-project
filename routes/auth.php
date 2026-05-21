@@ -1,42 +1,48 @@
 <?php
 
+use App\Http\Controllers\Auth\ConfirmPasswordController;
+use App\Http\Controllers\Auth\EmailVerificationController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\SocialLoginController;
 use App\Http\Controllers\Auth\VerifyEmailController;
-use App\Livewire\Actions\Logout;
-use App\Livewire\Auth\ConfirmPassword;
-use App\Livewire\Auth\ForgotPassword;
-use App\Livewire\Auth\Login;
-use App\Livewire\Auth\Register;
-use App\Livewire\Auth\ResetPassword;
-use App\Livewire\Auth\VerifyEmail;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
-    Route::livewire('login', Login::class)->name('login');
+    Route::get('login', [LoginController::class, 'create'])->name('login');
+    Route::post('login', [LoginController::class, 'store']);
+
     if (user_registration()) {
-        Route::livewire('register', Register::class)->name('register');
+        Route::get('register', [RegisterController::class, 'create'])->name('register');
+        Route::post('register', [RegisterController::class, 'store']);
     }
-    Route::livewire('forgot-password', ForgotPassword::class)->name('password.request');
-    Route::livewire('reset-password/{token}', ResetPassword::class)->name('password.reset');
+
+    Route::get('forgot-password', [ForgotPasswordController::class, 'create'])->name('password.request');
+    Route::post('forgot-password', [ForgotPasswordController::class, 'store'])->name('password.email');
+
+    Route::get('reset-password/{token}', [ResetPasswordController::class, 'create'])->name('password.reset');
+    Route::post('reset-password', [ResetPasswordController::class, 'store'])->name('password.update');
 });
 
 Route::middleware('auth')->group(function () {
-    Route::livewire('verify-email', VerifyEmail::class)
-        ->name('verification.notice');
+    Route::get('verify-email', [EmailVerificationController::class, 'notice'])->name('verification.notice');
+    Route::post('verify-email/send', [EmailVerificationController::class, 'send'])->name('verification.send');
 
     Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)
         ->middleware(['signed', 'throttle:6,1'])
         ->name('verification.verify');
 
-    Route::livewire('confirm-password', ConfirmPassword::class)
-        ->name('password.confirm');
+    Route::get('confirm-password', [ConfirmPasswordController::class, 'show'])->name('password.confirm');
+    Route::post('confirm-password', [ConfirmPasswordController::class, 'store']);
 });
 
-Route::post('logout', Logout::class)
-    ->name('logout');
+Route::post('logout', LogoutController::class)->name('logout');
 
 // Social Login Routes
-Route::group(['namespace' => 'Auth', 'middleware' => 'guest'], function () {
+Route::middleware('guest')->group(function () {
     Route::get('login/{provider}', [SocialLoginController::class, 'redirectToProvider'])->name('social.login');
     Route::get('login/{provider}/callback', [SocialLoginController::class, 'handleProviderCallback'])->name('social.login.callback');
 });

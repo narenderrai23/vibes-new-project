@@ -53,9 +53,7 @@
         </style>
 
         @stack("after-styles")
-
-        @livewireStyles
-    </head>
+</head>
 
     <body>
         <x-selected-theme />
@@ -87,9 +85,7 @@
         </div>
 
         <!-- Scripts -->
-        @livewireScripts
-
-        @stack("after-scripts")
+@stack("after-scripts")
         <!-- / Scripts -->
     </body>
 </html>

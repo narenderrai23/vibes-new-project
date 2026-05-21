@@ -27,21 +27,18 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
 
-    <!-- Tabler Icons — preload for faster icon rendering -->
-    <link rel="preload" href="{{ asset('assets/css/tabler-icons.min.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="{{ asset('assets/css/tabler-icons.min.css') }}"></noscript>
-
-    <!-- Select2 CSS — deferred, only needed after interaction -->
-    <link rel="preload" href="{{ asset('assets/css/select2.min.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="{{ asset('assets/css/select2.min.css') }}"></noscript>
-
     <!-- SmartHR Main CSS — largest file, preload to start download early -->
     <link rel="preload" href="{{ asset('assets/css/style.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"></noscript>
 
-    
-    @livewireStyles
-    @stack('after-styles')
+      <!-- Tabler Icons — preload for faster icon rendering -->
+    <link rel="preload" href="{{ asset('assets/css/tabler-icons.min.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ asset('assets/css/tabler-icons.min.css') }}"></noscript>
+
+    <!-- Select2 CSS — deferred, only needed after interaction -->
+    {{-- <link rel="preload" href="{{ asset('assets/css/select2.min.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ asset('assets/css/select2.min.css') }}"></noscript> --}}
+@stack('after-styles')
 </head>
 
 <body>
@@ -122,9 +119,7 @@
             });
         });
     </script>
-
-    @livewireScripts
-    @stack('after-scripts')
+@stack('after-scripts')
 
 </body>
 </html>

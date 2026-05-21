@@ -111,9 +111,6 @@ let themesettings = `
                                 <div class="theme-layout mb-3">
                                     <input type="radio" name="size" id="defaultSize" value="default" checked>
                                     <label for="defaultSize">
-                                        <span class="d-block mb-2 layout-img">
-                                            <img src="${_baseUrl}/assets/img/theme/default.svg" alt="img">
-                                        </span>                                     
                                         <span class="layout-type">Default</span>
                                     </label>
                                 </div>
@@ -122,9 +119,6 @@ let themesettings = `
                                 <div class="theme-layout mb-3">
                                     <input type="radio" name="size" id="compactSize" value="compact" >
                                     <label for="compactSize">
-                                        <span class="d-block mb-2 layout-img">
-                                            <img src="${_baseUrl}/assets/img/theme/compact.svg" alt="img">
-                                        </span>                                    
                                         <span class="layout-type">Compact</span>
                                     </label>
                                 </div>
@@ -133,9 +127,6 @@ let themesettings = `
                                 <div class="theme-layout mb-3">
                                     <input type="radio" name="size" id="hoverviewSize" value="hoverview" >
                                     <label for="hoverviewSize">
-                                        <span class="d-block mb-2 layout-img">
-                                            <img src="${_baseUrl}/assets/img/theme/hoverview.svg" alt="img">
-                                        </span>                                    
                                         <span class="layout-type">Hover View</span>
                                     </label>
                                 </div>

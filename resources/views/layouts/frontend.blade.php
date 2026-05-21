@@ -10,12 +10,11 @@
         @include('frontend.includes.header')
 
         <main class="bg-white dark:bg-gray-800" id="main-content" role="main">
-            {{ $slot }}
+            @yield('content')
         </main>
 
         @include('frontend.includes.footer')
 
-        @livewireScripts
         @stack('after-scripts')
     </body>
 </html>
