@@ -1,0 +1,14 @@
+{
+    "name": "Auth",
+    "alias": "auth",
+    "description": "Multi-guard authentication for Admin, Student, Trainer, and Clinic portals",
+    "version": "1.0.0",
+    "keywords": ["auth", "guard", "student", "trainer", "clinic", "admin"],
+    "priority": 0,
+    "providers": [
+        "Modules\\Auth\\Providers\\AuthServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

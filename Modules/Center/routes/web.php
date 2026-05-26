@@ -1,12 +1,27 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Modules\Center\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
 | Center Module Web Routes
 |--------------------------------------------------------------------------
 */
+
+// ── Center portal — dedicated 'center' guard ──────────────────────────────────
+Route::prefix('center')->name('center.')->middleware('web')->group(function () {
+
+    Route::middleware('auth.guest:center')->group(function () {
+        Route::get('login',  [LoginController::class, 'showLoginForm'])->name('login');
+        Route::post('login', [LoginController::class, 'login'])->name('login.submit');
+    });
+
+    Route::middleware('auth.guard:center')->group(function () {
+        Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+        Route::get('dashboard', fn () => view('center::portal.dashboard'))->name('dashboard');
+    });
+});
 
 /*
  * Frontend Routes

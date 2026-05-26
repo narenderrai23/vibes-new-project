@@ -3,37 +3,49 @@
 @section('title', __('Forgot Password'))
 
 @section('content')
-<div class="flex flex-col gap-6">
-    <x-auth-header
-        :title="__('Forgot password')"
-        :description="__('Enter your email to receive a password reset link')"
-    />
+<form action="{{ route('password.email') }}" method="POST">
+    @csrf
 
-    <x-auth-session-status class="text-center" :status="session('status')" />
+    <div class="text-center mb-4">
+        <h2 class="fs-28 fw-bold mb-1">{{ __('Forgot password') }}</h2>
+        <p class="text-muted">{{ __('Enter your email to receive a password reset link') }}</p>
+
+        <!-- Session Status -->
+        <x-auth-session-status class="text-center mt-2 text-success fw-semibold" :status="session('status')" />
+    </div>
 
     @if ($errors->any())
-        <div class="rounded-md bg-red-50 p-3 text-sm text-red-600">
-            @foreach ($errors->all() as $error)
-                <p>{{ $error }}</p>
-            @endforeach
+        <div class="alert alert-danger py-2 px-3 mb-4 fs-14" role="alert">
+            <ul class="mb-0 ps-3">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
     @endif
 
-    <form action="{{ route('password.email') }}" method="POST" class="flex flex-col gap-6">
-        @csrf
-
-        <x-forms.group name="email" label="Email Address" required>
-            <x-forms.input class="w-full" type="email" name="email" value="{{ old('email') }}" required autofocus />
-        </x-forms.group>
-
-        <x-ui.button class="w-full" variant="primary" type="submit">
-            {{ __('Email password reset link') }}
-        </x-ui.button>
-    </form>
-
-    <div class="space-x-1 text-center text-sm text-zinc-600">
-        {{ __('Or, return to') }}
-        <x-ui.link class="text-sm" :href="route('login')">{{ __('log in') }}</x-ui.link>
+    <div class="mb-3">
+        <label class="form-label" for="email">{{ __('Email Address') }}</label>
+        <div class="input-group">
+            <input type="email" name="email" id="email" value="{{ old('email') }}" class="form-control border-end-0 @error('email') is-invalid @enderror" required autofocus>
+            <span class="input-group-text border-start-0">
+                <i class="ti ti-mail"></i>
+            </span>
+        </div>
+        @error('email')
+            <div class="invalid-feedback d-block mt-1">{{ $message }}</div>
+        @enderror
     </div>
-</div>
+
+    <div class="mb-4">
+        <button type="submit" class="btn btn-primary w-100 py-2 fs-16 fw-semibold">{{ __('Email password reset link') }}</button>
+    </div>
+
+    <div class="text-center mb-4">
+        <h6 class="fw-normal text-dark mb-0">
+            {{ __('Or, return to') }}
+            <a href="{{ route('login') }}" class="hover-a fw-semibold text-primary ms-1">{{ __('Log in') }}</a>
+        </h6>
+    </div>
+</form>
 @endsection

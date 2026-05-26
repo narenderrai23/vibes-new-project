@@ -23,8 +23,14 @@ require __DIR__.'/auth.php';
 */
 
 // Named 'home' — used by auth redirects, layouts, etc.
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+// Route::get('/', function () {
+//     if (!auth()->check()) {
+//         return redirect()->route('login');
+//     }else{
+//         return redirect()->route('backend.dashboard');
+//     }
+//     // Note: You should also define what happens if they are NOT logged in!
+// });
 
 // Language Switch
 Route::get('language/{language}', [LanguageController::class, 'switch'])->name('language.switch');

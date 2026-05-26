@@ -4,5 +4,8 @@
     "LogViewer": true,
     "Menu": true,
     "Settings": true,
-    "Center": true
+    "Center": true,
+    "Auth": true,
+    "Student": true,
+    "Trainer": true
 }

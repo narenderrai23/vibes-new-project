@@ -1,9 +1,28 @@
 @php
-    $notifications        = optional(auth()->user())->unreadNotifications;
-    $notifications_count  = optional($notifications)->count() ?? 0;
-    $notifications_latest = optional($notifications)->take(5);
-    $authUser             = auth()->user();
-    $avatar               = $authUser ? asset($authUser->avatar) : asset('img/default-avatar.jpg');
+    // Resolve the authenticated user from whichever guard is active.
+    // Portal guards (student, trainer, center) don't have web-guard Users,
+    // so we check each guard in priority order.
+    $activeGuard = collect(['web', 'student', 'trainer', 'center'])
+        ->first(fn ($g) => Auth::guard($g)->check());
+
+    $authUser   = $activeGuard ? Auth::guard($activeGuard)->user() : null;
+    $isWebUser  = $activeGuard === 'web';   // only web users have backend profile/notifications
+    $avatar     = $authUser && !empty($authUser->avatar)
+                    ? asset($authUser->avatar)
+                    : asset('img/default-avatar.jpg');
+
+    // Notifications are only available for web-guard users (App\Models\User)
+    $notifications        = $isWebUser ? optional($authUser)->unreadNotifications : collect();
+    $notifications_count  = $notifications->count();
+    $notifications_latest = $notifications->take(5);
+
+    // Logout route per guard
+    $logoutRoute = match($activeGuard) {
+        'student' => 'student.logout',
+        'trainer' => 'trainer.logout',
+        'center'  => 'center.logout',
+        default   => 'logout',
+    };
 @endphp
 
 <!-- Header -->
@@ -85,12 +104,14 @@
                                 <h4 class="notification-title">
                                     {{ __('Notifications') }} ({{ $notifications_count }})
                                 </h4>
+                                @if ($isWebUser)
                                 <div class="d-flex align-items-center">
                                     <a href="{{ route('backend.notifications.index') }}"
                                        class="text-primary fs-15 me-3 lh-1">
                                         {{ __('View all') }}
                                     </a>
                                 </div>
+                                @endif
                             </div>
                             <div class="noti-content">
                                 <div class="d-flex flex-column">
@@ -119,10 +140,12 @@
                                     @endforelse
                                 </div>
                             </div>
+                            @if ($isWebUser)
                             <div class="d-flex p-0 mt-3">
                                 <a href="{{ route('backend.notifications.index') }}"
                                    class="btn btn-primary w-100">{{ __('View All') }}</a>
                             </div>
+                            @endif
                         </div>
                     </div>
 
@@ -150,6 +173,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
+                                    @if ($isWebUser)
                                     <a class="dropdown-item d-inline-flex align-items-center p-0 py-2"
                                        href="{{ route('backend.users.show', $authUser?->id) }}">
                                         <i class="ti ti-user-circle me-1"></i>{{ __('My Profile') }}
@@ -165,14 +189,20 @@
                                             <span class="badge bg-danger ms-2">{{ $notifications_count }}</span>
                                         @endif
                                     </a>
+                                    @else
+                                    <p class="mb-0 text-muted small">
+                                        <i class="ti ti-shield me-1"></i>
+                                        {{ ucfirst($activeGuard) }} Portal
+                                    </p>
+                                    @endif
                                 </div>
                                 <div class="card-footer">
                                     <a class="dropdown-item d-inline-flex align-items-center p-0 py-2"
-                                       href="{{ route('logout') }}"
+                                       href="{{ route($logoutRoute) }}"
                                        onclick="event.preventDefault(); document.getElementById('logout-form-h1').submit();">
                                         <i class="ti ti-login me-2"></i>{{ __('Logout') }}
                                     </a>
-                                    <form id="logout-form-h1" action="{{ route('logout') }}"
+                                    <form id="logout-form-h1" action="{{ route($logoutRoute) }}"
                                           method="POST" style="display:none;">@csrf</form>
                                 </div>
                             </div>
@@ -190,13 +220,15 @@
                 <i class="ti ti-dots-vertical"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-end">
+                @if ($isWebUser)
                 <a class="dropdown-item" href="{{ route('backend.users.show', $authUser?->id) }}">
                     {{ __('My Profile') }}
                 </a>
                 <a class="dropdown-item" href="{{ route('backend.settings.index') }}">
                     {{ __('Settings') }}
                 </a>
-                <a class="dropdown-item" href="{{ route('logout') }}"
+                @endif
+                <a class="dropdown-item" href="{{ route($logoutRoute) }}"
                    onclick="event.preventDefault(); document.getElementById('logout-form-h1').submit();">
                     {{ __('Logout') }}
                 </a>

@@ -21,11 +21,11 @@ class UserRoleTableSeeder extends Seeder
      */
     public function run()
     {
-        User::findOrFail(1)->assignRole('super admin');
-        User::findOrFail(2)->assignRole('administrator');
-        User::findOrFail(3)->assignRole('manager');
-        User::findOrFail(4)->assignRole('executive');
-        User::findOrFail(5)->assignRole('user');
+        User::where('email', 'admin@gmail.com')->firstOrFail()->assignRole('super admin');
+        User::where('email', 'admin@admin.com')->firstOrFail()->assignRole('administrator');
+        User::where('email', 'manager@manager.com')->firstOrFail()->assignRole('manager');
+        User::where('email', 'executive@executive.com')->firstOrFail()->assignRole('executive');
+        User::where('email', 'user@user.com')->firstOrFail()->assignRole('user');
 
         Artisan::call('cache:clear');
     }

@@ -3,28 +3,29 @@
 @section('title', __('Verify Email'))
 
 @section('content')
-<div class="mt-4 flex flex-col gap-6">
-    <div class="text-center">
-        {{ __('Please verify your email address by clicking on the link we just emailed to you.') }}
+<div>
+    <div class="text-center mb-4">
+        <h2 class="fs-28 fw-bold mb-1">{{ __('Verify Email') }}</h2>
+        <p class="text-muted">{{ __('Please verify your email address by clicking on the link we just emailed to you.') }}</p>
     </div>
 
     @if (session('status') === 'verification-link-sent')
-        <div class="text-center font-medium text-green-600 dark:text-green-400">
+        <div class="alert alert-success text-center py-2 px-3 mb-4 fs-14 fw-semibold" role="alert">
             {{ __('A new verification link has been sent to the email address you provided during registration.') }}
         </div>
     @endif
 
-    <div class="flex flex-col items-center justify-between space-y-3">
-        <form action="{{ route('verification.send') }}" method="POST" class="w-full">
+    <div class="d-flex flex-column align-items-center gap-3">
+        <form action="{{ route('verification.send') }}" method="POST" class="w-100">
             @csrf
-            <x-ui.button class="w-full" variant="primary" type="submit">
+            <button type="submit" class="btn btn-primary w-100 py-2 fs-16 fw-semibold">
                 {{ __('Resend Verification Email') }}
-            </x-ui.button>
+            </button>
         </form>
 
-        <form action="{{ route('logout') }}" method="POST">
+        <form action="{{ route('logout') }}" method="POST" class="w-100">
             @csrf
-            <button type="submit" class="text-sm text-zinc-600 underline hover:text-zinc-900 dark:text-zinc-400">
+            <button type="submit" class="btn btn-link text-muted fs-14 w-100 text-center text-decoration-underline">
                 {{ __('Log out') }}
             </button>
         </form>
