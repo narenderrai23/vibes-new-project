@@ -1,10 +1,6 @@
 <?php
 
-<<<<<<< HEAD
 namespace Modules\Menu\Models;
-=======
-namespace Nasirkhan\ModuleManager\Modules\Menu\Models;
->>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 
 use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -13,11 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
-<<<<<<< HEAD
 use Modules\Menu\database\factories\MenuItemFactory;
-=======
-use Nasirkhan\ModuleManager\Modules\Menu\database\factories\MenuItemFactory;
->>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 
 class MenuItem extends BaseModel
 {

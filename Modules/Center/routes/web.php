@@ -9,26 +9,11 @@ use Modules\Center\Http\Controllers\Auth\LoginController;
 |--------------------------------------------------------------------------
 */
 
-<<<<<<< HEAD
 require __DIR__.'/auth.php';
 
 // ── Authenticated center routes ──────────────────────────────────────
 Route::prefix('center')->name('center.')->middleware(['web', 'auth.guard:center'])->group(function () {
     Route::get('dashboard', fn () => view('center::portal.dashboard'))->name('dashboard');
-=======
-// ── Center portal — dedicated 'center' guard ──────────────────────────────────
-Route::prefix('center')->name('center.')->middleware('web')->group(function () {
-
-    Route::middleware('auth.guest:center')->group(function () {
-        Route::get('login',  [LoginController::class, 'showLoginForm'])->name('login');
-        Route::post('login', [LoginController::class, 'login'])->name('login.submit');
-    });
-
-    Route::middleware('auth.guard:center')->group(function () {
-        Route::post('logout', [LoginController::class, 'logout'])->name('logout');
-        Route::get('dashboard', fn () => view('center::portal.dashboard'))->name('dashboard');
-    });
->>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 });
 
 /*

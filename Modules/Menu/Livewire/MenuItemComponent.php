@@ -1,21 +1,12 @@
 <?php
 
-<<<<<<< HEAD
 namespace Modules\Menu\Livewire;
-=======
-namespace Nasirkhan\ModuleManager\Modules\Menu\Livewire;
->>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
-<<<<<<< HEAD
 use Modules\Menu\Models\Menu;
 use Modules\Menu\Models\MenuItem;
-=======
-use Nasirkhan\ModuleManager\Modules\Menu\Models\Menu;
-use Nasirkhan\ModuleManager\Modules\Menu\Models\MenuItem;
->>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 

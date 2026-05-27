@@ -1,10 +1,6 @@
 <?php
 
-<<<<<<< HEAD
 namespace Modules\Backup\Controllers;
-=======
-namespace Nasirkhan\ModuleManager\Modules\Backup\Controllers;
->>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 
 use App\Authorizable;
 use App\Http\Controllers\Controller;

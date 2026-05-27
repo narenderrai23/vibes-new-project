@@ -1,10 +1,6 @@
 <?php
 
-<<<<<<< HEAD
 namespace Modules\Backup\Providers;
-=======
-namespace Nasirkhan\ModuleManager\Modules\Backup\Providers;
->>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 
 use Illuminate\Support\ServiceProvider;
 

@@ -3,11 +3,7 @@
 @section('title', __('Confirm Password'))
 
 @section('content')
-<<<<<<< HEAD
 <form action="{{ route('admin.password.confirm') }}" method="POST">
-=======
-<form action="{{ route('password.confirm') }}" method="POST">
->>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
     @csrf
 
     <div class="text-center mb-4">

@@ -21,11 +21,7 @@
         'student' => 'student.logout',
         'trainer' => 'trainer.logout',
         'center'  => 'center.logout',
-<<<<<<< HEAD
         default   => 'admin.logout',
-=======
-        default   => 'logout',
->>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
     };
 @endphp
 

@@ -5,11 +5,7 @@ namespace Modules\Center\Providers;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Modules\Auth\Http\Middleware\AuthenticateGuard;
-<<<<<<< HEAD
 use App\Http\Middleware\RedirectIfAuthenticated;
-=======
-use Modules\Auth\Http\Middleware\RedirectIfAuthenticated;
->>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 use Symfony\Component\Finder\Finder;
 
 class CenterServiceProvider extends ServiceProvider

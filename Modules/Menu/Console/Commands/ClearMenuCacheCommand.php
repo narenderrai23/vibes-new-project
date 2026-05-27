@@ -1,16 +1,9 @@
 <?php
 
-<<<<<<< HEAD
 namespace Modules\Menu\Console\Commands;
 
 use Illuminate\Console\Command;
 use Modules\Menu\Models\Menu;
-=======
-namespace Nasirkhan\ModuleManager\Modules\Menu\Console\Commands;
-
-use Illuminate\Console\Command;
-use Nasirkhan\ModuleManager\Modules\Menu\Models\Menu;
->>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 
 class ClearMenuCacheCommand extends Command
 {

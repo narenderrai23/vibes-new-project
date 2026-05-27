@@ -3,11 +3,7 @@
 @section('title', __('Reset Password'))
 
 @section('content')
-<<<<<<< HEAD
 <form action="{{ route('admin.password.update') }}" method="POST">
-=======
-<form action="{{ route('password.update') }}" method="POST">
->>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
     @csrf
     <input type="hidden" name="token" value="{{ $token }}">
 

@@ -23,11 +23,7 @@
 @endsection
 
 @section('content')
-<<<<<<< HEAD
 <form method="POST" action="{{ route('center.login') }}">
-=======
-<form method="POST" action="{{ route('center.login.submit') }}">
->>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
     @csrf
 
     <div class="text-center mb-4">
@@ -91,11 +87,7 @@
     </div>
 
     <div class="text-center">
-<<<<<<< HEAD
         <a href="{{ route('admin.login') }}" class="portal-link text-decoration-none fs-13">
-=======
-        <a href="{{ route('login') }}" class="portal-link text-decoration-none fs-13">
->>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
             <i class="ti ti-arrow-left me-1"></i>Back to Admin Login
         </a>
     </div>

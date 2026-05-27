@@ -1,18 +1,10 @@
 <?php
 
-<<<<<<< HEAD
 namespace Modules\Menu\database\factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Modules\Menu\Models\Menu;
 use Modules\Menu\Models\MenuItem;
-=======
-namespace Nasirkhan\ModuleManager\Modules\Menu\database\factories;
-
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Nasirkhan\ModuleManager\Modules\Menu\Models\Menu;
-use Nasirkhan\ModuleManager\Modules\Menu\Models\MenuItem;
->>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 
 class MenuItemFactory extends Factory
 {

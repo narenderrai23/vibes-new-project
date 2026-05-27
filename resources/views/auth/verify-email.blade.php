@@ -16,22 +16,14 @@
     @endif
 
     <div class="d-flex flex-column align-items-center gap-3">
-<<<<<<< HEAD
         <form action="{{ route('admin.verification.send') }}" method="POST" class="w-100">
-=======
-        <form action="{{ route('verification.send') }}" method="POST" class="w-100">
->>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
             @csrf
             <button type="submit" class="btn btn-primary w-100 py-2 fs-16 fw-semibold">
                 {{ __('Resend Verification Email') }}
             </button>
         </form>
 
-<<<<<<< HEAD
         <form action="{{ route('admin.logout') }}" method="POST" class="w-100">
-=======
-        <form action="{{ route('logout') }}" method="POST" class="w-100">
->>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
             @csrf
             <button type="submit" class="btn btn-link text-muted fs-14 w-100 text-center text-decoration-underline">
                 {{ __('Log out') }}

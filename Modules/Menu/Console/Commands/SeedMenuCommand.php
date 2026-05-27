@@ -1,16 +1,9 @@
 <?php
 
-<<<<<<< HEAD
 namespace Modules\Menu\Console\Commands;
 
 use Illuminate\Console\Command;
 use Modules\Menu\database\seeders\MenuDatabaseSeeder;
-=======
-namespace Nasirkhan\ModuleManager\Modules\Menu\Console\Commands;
-
-use Illuminate\Console\Command;
-use Nasirkhan\ModuleManager\Modules\Menu\database\seeders\MenuDatabaseSeeder;
->>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 
 class SeedMenuCommand extends Command
 {

@@ -1,11 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
 use Modules\Backup\Controllers\BackupController;
-=======
-use Nasirkhan\ModuleManager\Modules\Backup\Controllers\BackupController;
->>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 
 /*
 |--------------------------------------------------------------------------
