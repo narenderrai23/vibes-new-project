@@ -33,6 +33,10 @@ class CenterDatabaseSeeder extends Seeder
         $this->call(CenterMasterSeeder::class);
         echo " Insert: centers\n\n";
 
+        // Seed center portal login accounts
+        $this->call(CenterUserSeeder::class);
+        echo " Insert: center users\n\n";
+
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }

@@ -56,7 +56,7 @@ function sidebarGroupOpen(string ...$patterns): bool
 
         {{-- Dashboard --}}
         <li class="nav-item">
-            <a class="nav-link {{ sidebarActive('backend.home', 'backend.dashboard') }}"
+            <a class="nav-link {{ sidebarActive('backend.home', 'admin.dashboard') }}"
                href="{{ route('backend.home') }}">
                 <i class="nav-icon ti ti-layout-grid"></i>
                 &nbsp;{{ __('Dashboard') }}

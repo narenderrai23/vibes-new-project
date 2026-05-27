@@ -1,0 +1,76 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+use Modules\Category\Enums\CategoryStatus;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('categories', function (Blueprint $table) {
+            $table->id();
+
+            $table->string('name');
+            $table->string('slug')->nullable();
+            $table->text('description')->nullable();
+
+            $table->string('group_name')->nullable();
+            $table->string('image')->nullable();
+
+            $table->string('meta_title')->nullable();
+            $table->text('meta_description')->nullable();
+            $table->text('meta_keyword')->nullable();
+
+            $table->integer('order')->nullable();
+            $table->string('status')->default(CategoryStatus::Active->name);
+
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->unsignedBigInteger('deleted_by')->nullable();
+
+            $table->timestamps();
+            $table->softDeletes();
+
+            // Foreign keys for audit trail
+            $table->foreign('created_by')
+                ->references('id')
+                ->on('users')
+                ->noActionOnDelete();
+
+            $table->foreign('updated_by')
+                ->references('id')
+                ->on('users')
+                ->noActionOnDelete();
+
+            $table->foreign('deleted_by')
+                ->references('id')
+                ->on('users')
+                ->noActionOnDelete();
+
+            // Indexes
+            $table->unique('slug');
+            $table->index('status');
+            $table->index('created_by');
+            $table->index('updated_by');
+            $table->index('deleted_by');
+            $table->index(['status', 'created_at'], 'categories_status_created_index');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('categories');
+    }
+};

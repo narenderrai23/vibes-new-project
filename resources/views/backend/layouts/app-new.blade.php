@@ -89,19 +89,19 @@
     <!-- /Main Wrapper -->
 
     <!-- jQuery — loaded first, others depend on it -->
-    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
 
     <!-- Bootstrap Bundle JS -->
-    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Slimscroll JS -->
-    <script src="{{ asset('assets/js/jquery.slimscroll.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/jquery.slimscroll.min.js') }}"></script>
 
     <!-- Select2 JS -->
-    <script src="{{ asset('assets/js/select2.min.js') }}" defer></script>
+    {{-- <script src="{{ asset('assets/js/select2.min.js') }}"></script> --}}
 
     <!-- SmartHR Main Script -->
-    <script src="{{ asset('assets/js/script.js') }}" defer></script>
+    <script src="{{ asset('assets/js/script.js') }}"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {

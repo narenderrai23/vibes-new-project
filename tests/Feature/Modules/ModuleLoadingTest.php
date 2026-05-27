@@ -52,7 +52,7 @@ class ModuleLoadingTest extends TestCase
     #[DataProvider('moduleProvider')]
     public function test_vendor_service_provider_class_exists(string $module): void
     {
-        $class = "Nasirkhan\\ModuleManager\\Modules\\{$module}\\Providers\\{$module}ServiceProvider";
+        $class = "Modules\\{$module}\\Providers\\{$module}ServiceProvider";
 
         $this->assertTrue(
             class_exists($class),
@@ -70,7 +70,7 @@ class ModuleLoadingTest extends TestCase
     {
         // Prefer published provider, fall back to vendor provider
         $publishedClass = "Modules\\{$module}\\Providers\\{$module}ServiceProvider";
-        $vendorClass = "Nasirkhan\\ModuleManager\\Modules\\{$module}\\Providers\\{$module}ServiceProvider";
+        $vendorClass = "Modules\\{$module}\\Providers\\{$module}ServiceProvider";
 
         $expectedClass = class_exists($publishedClass) ? $publishedClass : $vendorClass;
 
@@ -104,7 +104,7 @@ class ModuleLoadingTest extends TestCase
             // Trigger re-registration in a fresh container
             $app = $this->createApplication();
 
-            $vendorClass = 'Nasirkhan\\ModuleManager\\Modules\\Backup\\Providers\\BackupServiceProvider';
+            $vendorClass = 'Modules\\Backup\\Providers\\BackupServiceProvider';
             $loadedKeys = array_keys($app->getLoadedProviders());
 
             $this->assertNotContains(

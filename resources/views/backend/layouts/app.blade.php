@@ -24,11 +24,11 @@
         <link rel="preload" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/light/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
         <noscript><link href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/light/style.css" rel="stylesheet" /></noscript>
 
-        <!-- CDNs for JS — moved to defer, loaded after HTML parse -->
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
-        <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.0.0/dist/js/coreui.bundle.min.js" defer></script>
-        <script src="https://cdn.jsdelivr.net/npm/simplebar@6.2.5/dist/simplebar.min.js" defer></script>
+        <!-- CDNs for JS — loaded synchronously to support inline child view scripts -->
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.0.0/dist/js/coreui.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simplebar@6.2.5/dist/simplebar.min.js"></script>
 
         @vite(["resources/sass/app-backend.scss"])
 

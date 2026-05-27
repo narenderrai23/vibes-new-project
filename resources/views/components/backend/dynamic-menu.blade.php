@@ -1,7 +1,7 @@
 @props(['location' => 'admin-sidebar', 'cssClass' => 'sidebar-nav', 'containerTag' => 'ul'])
 
 @php
-    use Nasirkhan\ModuleManager\Modules\Menu\Models\Menu;
+    use Modules\Menu\Models\Menu;
 
     try {
         $user = auth()->user();

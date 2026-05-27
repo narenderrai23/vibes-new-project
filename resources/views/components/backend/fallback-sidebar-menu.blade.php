@@ -111,7 +111,7 @@
         @endforeach
     @else
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('backend.dashboard') }}">
+            <a class="nav-link" href="{{ route('admin.dashboard') }}">
                 <i class="nav-icon ti ti-layout-grid" aria-hidden="true"></i>
                 &nbsp;@lang('Dashboard')
             </a>

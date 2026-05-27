@@ -4,10 +4,15 @@ use App\Http\Controllers\Backend\BackendController;
 use App\Http\Controllers\Backend\NotificationsController;
 use App\Http\Controllers\Backend\RolesController;
 use App\Http\Controllers\Backend\UserController as BackendUserController;
-use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\UserProfileController;
 use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Route;
+
+Route::redirect('/login', '/student/login')->name('login');
+Route::redirect('/admin', '/admin/dashboard')->name('backend.home');
+Route::redirect('/center', '/center/dashboard');
+Route::redirect('/trainer', '/trainer/dashboard');
+Route::redirect('/student', '/student/dashboard');
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +28,14 @@ require __DIR__.'/auth.php';
 */
 
 // Named 'home' — used by auth redirects, layouts, etc.
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+// Route::get('/', function () {
+//     if (!auth()->check()) {
+//         return redirect()->route('login');
+//     }else{
+//         return redirect()->route('admin.dashboard');
+//     }
+//     // Note: You should also define what happens if they are NOT logged in!
+// });
 
 // Language Switch
 Route::get('language/{language}', [LanguageController::class, 'switch'])->name('language.switch');
@@ -54,8 +65,7 @@ Route::group(['as' => 'frontend.'], function () {
 | Backend Routes
 |--------------------------------------------------------------------------
 */
-Route::group(['prefix' => 'admin', 'as' => 'backend.', 'middleware' => ['auth', 'can:view_backend']], function () {
-    Route::get('/', [BackendController::class, 'index'])->name('home');
+Route::group(['prefix' => 'admin', 'as' => 'backend.', 'middleware' => ['auth:web', 'can:view_backend']], function () {
     Route::get('dashboard', [BackendController::class, 'index'])->name('dashboard');
 
     // Notifications

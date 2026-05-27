@@ -4,7 +4,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use Nasirkhan\ModuleManager\Modules\Settings\Models\Setting;
+use Modules\Settings\Models\Setting;
 use Sqids\Sqids;
 
 /*

@@ -103,7 +103,7 @@ function sidebar1Open(string ...$patterns): bool
                     <ul>
 
                         {{-- Dashboard --}}
-                        <li class="{{ sidebar1Active('backend.home', 'backend.dashboard') ? 'active' : '' }}">
+                        <li class="{{ sidebar1Active('backend.home', 'admin.dashboard') ? 'active' : '' }}">
                             <a href="{{ route('backend.home') }}">
                                 <i class="ti ti-smart-home"></i>
                                 <span>{{ __('Dashboard') }}</span>

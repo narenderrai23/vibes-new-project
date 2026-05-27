@@ -4,6 +4,8 @@ namespace Modules\Center\Providers;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
+use Modules\Auth\Http\Middleware\AuthenticateGuard;
+use App\Http\Middleware\RedirectIfAuthenticated;
 use Symfony\Component\Finder\Finder;
 
 class CenterServiceProvider extends ServiceProvider
@@ -30,6 +32,10 @@ class CenterServiceProvider extends ServiceProvider
         $this->registerViews();
         $this->loadRoutesFrom(base_path('Modules/Center/routes/web.php'));
         $this->loadMigrationsFrom(base_path('Modules/Center/database/migrations'));
+
+        $router = $this->app['router'];
+        $router->aliasMiddleware('auth.guard', AuthenticateGuard::class);
+        $router->aliasMiddleware('auth.guest', RedirectIfAuthenticated::class);
 
         // register commands
         $this->registerCommands('\Modules\Center\Console\Commands');

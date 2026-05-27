@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
+require __DIR__.'/auth.php';
+
+// ── Authenticated center routes ──────────────────────────────────────
+Route::prefix('center')->name('center.')->middleware(['web', 'auth.guard:center'])->group(function () {
+    Route::get('dashboard', fn () => view('center::portal.dashboard'))->name('dashboard');
+});
+
 /*
  * Frontend Routes
  */

@@ -45,6 +45,6 @@ class ResetPasswordController extends Controller
             return back()->withErrors(['email' => __($status)]);
         }
 
-        return redirect()->route('login')->with('status', __($status));
+        return redirect()->route('admin.login')->with('status', __($status));
     }
 }

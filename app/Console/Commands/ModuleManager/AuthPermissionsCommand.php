@@ -1,0 +1,76 @@
+<?php
+
+namespace App\Console\Commands\ModuleManager;
+
+use Illuminate\Console\Command;
+use Illuminate\Support\Str;
+
+class AuthPermissionsCommand extends Command
+{
+    /**
+     * The name and signature of the console command.
+     */
+    protected $signature = 'auth:permissions {name} {--R|remove}';
+
+    /**
+     * The console command description.
+     */
+    protected $description = 'Create Permissions for default mothods. The Names shoule be plural.';
+
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function handle(): int
+    {
+        /** @var class-string $permissionClass */
+        $permissionClass = config('permission.models.permission', 'App\Models\Permission');
+
+        $permissions = $this->generatePermissions();
+
+        // check if its remove
+        if ($this->option('remove')) {
+            // remove permission
+            if ($permissionClass::whereIn('name', $this->generatePermissions())->delete()) {
+                $this->warn('Permissions '.implode(', ', $permissions).' deleted.');
+            } else {
+                $this->warn('No permissions for '.$this->getNameArgument().' found!');
+            }
+        } else {
+            // create permissions
+            foreach ($permissions as $permission) {
+                $permissionClass::firstOrCreate(['name' => $permission]);
+            }
+
+            $this->info('Permissions '.implode(', ', $permissions).' created.');
+        }
+
+        return self::SUCCESS;
+    }
+
+    private function generatePermissions()
+    {
+        $abilities = ['view', 'add', 'edit', 'delete', 'restore'];
+        $name = $this->getNameArgument();
+
+        return array_map(function ($val) use ($name) {
+            return $val.'_'.$name;
+        }, $abilities);
+    }
+
+    private function getNameArgument()
+    {
+        return strtolower(Str::plural($this->argument('name')));
+    }
+}

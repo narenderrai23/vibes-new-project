@@ -2,60 +2,119 @@
 
 @section('title', __('Log in'))
 
-@section('content')
-<div class="flex flex-col gap-6">
-    <x-auth-header
-        :title="__('Log in to your account')"
-        :description="__('Enter your email and password below to log in')"
-    />
+{{-- Admin — dark navy panel --}}
+@section('panel-bg', 'linear-gradient(135deg, #1a1f36 0%, #2d3561 100%)')
+@section('btn-color', '#4f46e5')
+@section('link-color', '#4f46e5')
 
-    <x-auth-session-status class="text-center" :status="session('status')" />
+@section('panel-content')
+    <h1 class="text-white fs-40 fw-bold">
+        Manage your<br>organisation<br>with confidence.
+    </h1>
+    <div class="my-4 mx-auto authen-overlay-img">
+        <img src="{{ asset('assets/img/bg/authentication-bg-01.png') }}" alt="">
+    </div>
+    <p class="text-white fs-20 fw-semibold text-center">
+        Full control over users,<br>roles &amp; permissions.
+    </p>
+@endsection
+
+@section('content')
+<form action="{{ route('admin.login') }}" method="POST">
+    @csrf
+
+    <div class="text-center mb-4">
+        <h2 class="fs-28 fw-bold mb-1">{{ __('Sign In') }}</h2>
+        <p class="text-muted">{{ __('Please enter your details to sign in') }}</p>
+
+        <!-- Session Status -->
+        <x-auth-session-status class="text-center mt-2" :status="session('status')" />
+    </div>
 
     @if ($errors->any())
-        <div class="rounded-md bg-red-50 p-3 text-sm text-red-600">
-            @foreach ($errors->all() as $error)
-                <p>{{ $error }}</p>
-            @endforeach
+        <div class="alert alert-danger py-2 px-3 mb-4 fs-14" role="alert">
+            <ul class="mb-0 ps-3">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
     @endif
 
-    <form action="{{ route('login') }}" method="POST" class="flex flex-col gap-6">
-        @csrf
+    <div class="mb-3">
+        <label class="form-label" for="email">{{ __('Email Address') }}</label>
+        <div class="input-group">
+            <input type="email" name="email" id="email" value="{{ old('email') }}" class="form-control border-end-0 @error('email') is-invalid @enderror" required autofocus>
+            <span class="input-group-text border-start-0">
+                <i class="ti ti-mail"></i>
+            </span>
+        </div>
+        @error('email')
+            <div class="invalid-feedback d-block mt-1">{{ $message }}</div>
+        @enderror
+    </div>
 
-        <x-forms.group name="email" label="Email Address" required>
-            <x-forms.input class="w-full" type="email" name="email" value="{{ old('email') }}" required autofocus />
-        </x-forms.group>
+    <div class="mb-3">
+        <label class="form-label" for="password">{{ __('Password') }}</label>
+        <div class="pass-group">
+            <input type="password" name="password" id="password" class="pass-input form-control @error('password') is-invalid @enderror" required>
+            <span class="ti toggle-password ti-eye-off"></span>
+        </div>
+        @error('password')
+            <div class="invalid-feedback d-block mt-1">{{ $message }}</div>
+        @enderror
+    </div>
 
-        <x-forms.group name="password" label="Password" required>
-            <x-forms.input class="w-full" type="password" name="password" required />
-        </x-forms.group>
-
-        <div class="flex items-center justify-between">
-            <div class="flex items-center">
-                <input type="checkbox" name="remember" id="remember"
-                    class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-900">
-                <label for="remember" class="ml-2 text-sm text-gray-600 dark:text-gray-400">
-                    {{ __('Remember me') }}
-                </label>
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <div class="form-check form-check-md mb-0">
+            <input class="form-check-input" id="remember_me" name="remember" type="checkbox" {{ old('remember') ? 'checked' : '' }}>
+            <label for="remember_me" class="form-check-label mt-0">{{ __('Remember Me') }}</label>
+        </div>
+        @if (Route::has('admin.password.request'))
+            <div class="text-end">
+                <a href="{{ route('admin.password.request') }}" class="link-danger">{{ __('Forgot Password?') }}</a>
             </div>
+        @endif
+    </div>
 
-            @if (Route::has('password.request'))
-                <x-ui.link class="text-sm" :href="route('password.request')">
-                    {{ __('Forgot your password?') }}
-                </x-ui.link>
-            @endif
-        </div>
+    <div class="mb-4">
+        <button type="submit" class="btn btn-primary w-100 py-2 fs-16 fw-semibold">{{ __('Sign In') }}</button>
+    </div>
 
-        <x-ui.button class="w-full" variant="primary" type="submit">
-            {{ __('Log in') }}
-        </x-ui.button>
-    </form>
-
-    @if (Route::has('register'))
-        <div class="space-x-1 text-center text-sm tracking-widest text-zinc-600 dark:text-zinc-400">
-            {{ __("Don't have an account?") }}
-            <x-ui.link :href="route('register')">{{ __('Sign up') }}</x-ui.link>
+    @if (Route::has('admin.register'))
+        <div class="text-center mb-4">
+            <h6 class="fw-normal text-dark mb-0">
+                {{ __("Don't have an account?") }}
+                <a href="{{ route('admin.register') }}" class="hover-a fw-semibold text-primary ms-1">{{ __('Create Account') }}</a>
+            </h6>
         </div>
     @endif
-</div>
+
+    <div class="login-or">
+        <span class="span-or">{{ __('Or') }}</span>
+    </div>
+
+    <div class="mt-3">
+        <div class="d-flex align-items-center justify-content-center flex-wrap gap-2">
+            <div class="text-center flex-fill">
+                <a href="{{ route('admin.social.login', 'facebook') }}"
+                    class="br-10 p-2 btn btn-outline-light border d-flex align-items-center justify-content-center">
+                    <img class="img-fluid m-1" src="{{ asset('assets/img/icons/facebook-logo.svg') }}" alt="Facebook" style="height: 20px;">
+                </a>
+            </div>
+            <div class="text-center flex-fill">
+                <a href="{{ route('admin.social.login', 'google') }}"
+                    class="br-10 p-2 btn btn-outline-light border d-flex align-items-center justify-content-center">
+                    <img class="img-fluid m-1" src="{{ asset('assets/img/icons/google-logo.svg') }}" alt="Google" style="height: 20px;">
+                </a>
+            </div>
+            <div class="text-center flex-fill">
+                <a href="{{ route('admin.social.login', 'apple') }}"
+                    class="bg-dark br-10 p-2 btn btn-dark d-flex align-items-center justify-content-center">
+                    <img class="img-fluid m-1" src="{{ asset('assets/img/icons/apple-logo.svg') }}" alt="Apple" style="height: 20px;">
+                </a>
+            </div>
+        </div>
+    </div>
+</form>
 @endsection

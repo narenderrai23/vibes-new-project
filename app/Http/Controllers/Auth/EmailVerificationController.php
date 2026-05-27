@@ -13,7 +13,7 @@ class EmailVerificationController extends Controller
     public function notice(): View|RedirectResponse
     {
         if (Auth::user()->hasVerifiedEmail()) {
-            return redirect()->intended(route('home'));
+            return redirect()->intended(route('admin.dashboard'));
         }
 
         return view('auth.verify-email');
@@ -22,7 +22,7 @@ class EmailVerificationController extends Controller
     public function send(Request $request): RedirectResponse
     {
         if (Auth::user()->hasVerifiedEmail()) {
-            return redirect()->intended(route('home'));
+            return redirect()->intended(route('admin.dashboard'));
         }
 
         Auth::user()->sendEmailVerificationNotification();

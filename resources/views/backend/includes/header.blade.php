@@ -238,7 +238,7 @@ $notifications_latest = optional($notifications)->take(5);
                     </div>
                     <a
                         class="dropdown-item"
-                        href="{{ route("logout") }}"
+                        href="{{ route("admin.logout") }}"
                         onclick="
                             event.preventDefault();
                             document.getElementById('logout-form').submit();
@@ -248,7 +248,7 @@ $notifications_latest = optional($notifications)->take(5);
                         &nbsp;
                         @lang("Logout")
                     </a>
-                    <form id="logout-form" style="display: none" action="{{ route("logout") }}" method="POST">
+                    <form id="logout-form" style="display: none" action="{{ route("admin.logout") }}" method="POST">
                         @csrf
                     </form>
                 </div>

@@ -5,7 +5,6 @@ namespace Database\Seeders\Auth;
 use App\Events\Backend\UserCreated;
 use App\Models\User;
 use Carbon\Carbon;
-use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 /**
@@ -23,55 +22,48 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Factory::create();
-
         $users = [
             [
-                'id' => 1,
                 'username' => '100001',
                 'name' => 'Super Admin',
-                'email' => 'super@admin.com',
-                'password' => 'secret',
+                'email' => 'admin@gmail.com',
+                'password' => 'admin',
                 'email_verified_at' => Carbon::now(),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
-                'id' => 2,
                 'username' => '100002',
                 'name' => 'Admin Istrator',
                 'email' => 'admin@admin.com',
-                'password' => 'secret',
+                'password' => 'admin',
                 'email_verified_at' => Carbon::now(),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
-                'id' => 3,
                 'username' => '100003',
                 'name' => 'Manager User',
                 'email' => 'manager@manager.com',
-                'password' => 'secret',
+                'password' => 'admin',
                 'email_verified_at' => Carbon::now(),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
-                'id' => 4,
                 'username' => '100004',
                 'name' => 'Executive User',
                 'email' => 'executive@executive.com',
-                'password' => 'secret',
+                'password' => 'admin',
                 'email_verified_at' => Carbon::now(),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
-                'id' => 5,
                 'username' => '100005',
                 'name' => 'General User',
                 'email' => 'user@user.com',
-                'password' => 'secret',
+                'password' => 'admin',
                 'email_verified_at' => Carbon::now(),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -79,9 +71,14 @@ class UserTableSeeder extends Seeder
         ];
 
         foreach ($users as $user_data) {
-            $user = User::create($user_data);
+            $user = User::query()->updateOrCreate(
+                ['email' => $user_data['email']],
+                $user_data
+            );
 
-            event(new UserCreated($user));
+            if ($user->wasRecentlyCreated) {
+                event(new UserCreated($user));
+            }
         }
     }
 }

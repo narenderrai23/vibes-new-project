@@ -1,0 +1,160 @@
+<?php
+
+namespace Modules\Tag\Providers;
+
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\ServiceProvider;
+use Symfony\Component\Finder\Finder;
+
+class TagServiceProvider extends ServiceProvider
+{
+    /**
+     * @var string
+     */
+    protected $moduleName = 'Tag';
+
+    /**
+     * @var string
+     */
+    protected $moduleNameLower = 'tag';
+
+    /**
+     * Boot the application events.
+     */
+    public function boot(): void
+    {
+        $this->registerTranslations();
+        $this->registerConfig();
+        $this->registerViews();
+        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+
+        // Load migrations from module
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+
+        // Publish migrations with proper tags
+        if ($this->app->runningInConsole()) {
+            $this->publishesMigrations([
+                __DIR__.'/../database/migrations' => database_path('migrations'),
+            ], ['migrations', 'tag-migrations']);
+        }
+
+        // register commands
+        $this->registerCommands('Modules\Tag\Console\Commands');
+
+        // Register seeders
+        $this->registerSeeders();
+    }
+
+    /**
+     * Register the service provider.
+     */
+    public function register(): void
+    {
+        // Event Service Provider
+        $this->app->register(EventServiceProvider::class);
+    }
+
+    /**
+     * Register config.
+     *
+     * @return void
+     */
+    protected function registerConfig()
+    {
+        $configPath = __DIR__.'/../Config/config.php';
+
+        // Merge config from module (package defaults)
+        $this->mergeConfigFrom($configPath, $this->moduleNameLower);
+
+        // Publish config for customization
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                $configPath => config_path($this->moduleNameLower.'.php'),
+            ], ['config', 'tag-config', 'tag-module-config']);
+        }
+    }
+
+    /**
+     * Register views.
+     *
+     * @return void
+     */
+    public function registerViews()
+    {
+        $sourcePath = __DIR__.'/../Resources/views';
+
+        // Load views from module with 'tag' namespace
+        $this->loadViewsFrom($sourcePath, $this->moduleNameLower);
+
+        // Publish views for customization
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                $sourcePath => resource_path('views/vendor/'.$this->moduleNameLower),
+            ], ['views', 'tag-views', 'tag-module-views']);
+        }
+    }
+
+    /**
+     * Register translations.
+     *
+     * @return void
+     */
+    public function registerTranslations()
+    {
+        $this->loadTranslationsFrom(__DIR__.'/../lang', 'tag');
+    }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return [];
+    }
+
+    /**
+     * Register commands.
+     *
+     * @param  string  $namespace
+     */
+    protected function registerCommands($namespace = '')
+    {
+        $consolePath = __DIR__.'/../Console';
+        if (! is_dir($consolePath)) {
+            return;
+        }
+
+        $finder = new Finder; // from Symfony\Component\Finder;
+        $finder->files()->name('*.php')->in($consolePath);
+
+        $classes = [];
+        foreach ($finder as $file) {
+            $class = $namespace.'\\'.$file->getBasename('.php');
+            array_push($classes, $class);
+        }
+
+        $this->commands($classes);
+    }
+
+    /**
+     * Register module seeders.
+     *
+     * @return void
+     */
+    protected function registerSeeders()
+    {
+        // Publish seeders so they can be customized
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__.'/../database/seeders' => database_path('seeders/'.$this->moduleName),
+            ], ['seeders', 'tag-seeders']);
+        }
+
+        // Register the seeder in the container for automatic discovery
+        $this->app->singleton($this->moduleNameLower.'.database.seeder', function () {
+            return 'Modules\\'.$this->moduleName.'\\database\\seeders\\'.$this->moduleName.'DatabaseSeeder';
+        });
+    }
+}
