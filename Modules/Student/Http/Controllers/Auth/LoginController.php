@@ -2,7 +2,10 @@
 
 namespace Modules\Student\Http\Controllers\Auth;
 
+<<<<<<< HEAD
 use Illuminate\Auth\Events\Lockout;
+=======
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -16,12 +19,22 @@ class LoginController extends Controller
 {
     protected string $guard = 'student';
 
+<<<<<<< HEAD
     public function create(): View
+=======
+    protected string $redirectTo = '/student/dashboard';
+
+    public function showLoginForm(): View
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
     {
         return view('student::auth.login');
     }
 
+<<<<<<< HEAD
     public function store(Request $request): RedirectResponse
+=======
+    public function login(Request $request): RedirectResponse
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
     {
         $request->validate([
             'email'    => ['required', 'string', 'email'],
@@ -44,7 +57,20 @@ class LoginController extends Controller
         RateLimiter::clear($this->throttleKey($request));
         $request->session()->regenerate();
 
+<<<<<<< HEAD
         return redirect()->intended(route('student.dashboard'));
+=======
+        return redirect()->intended($this->redirectTo);
+    }
+
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::guard($this->guard)->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('student.login');
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
     }
 
     protected function ensureIsNotRateLimited(Request $request): void
@@ -53,8 +79,11 @@ class LoginController extends Controller
             return;
         }
 
+<<<<<<< HEAD
         event(new Lockout($request));
 
+=======
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
         $seconds = RateLimiter::availableIn($this->throttleKey($request));
 
         throw ValidationException::withMessages([
@@ -67,6 +96,10 @@ class LoginController extends Controller
 
     protected function throttleKey(Request $request): string
     {
+<<<<<<< HEAD
         return Str::transliterate('student|' . Str::lower($request->string('email')) . '|' . $request->ip());
+=======
+        return 'student|' . Str::lower($request->string('email')) . '|' . $request->ip();
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
     }
 }

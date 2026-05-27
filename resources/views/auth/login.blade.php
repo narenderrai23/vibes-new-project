@@ -20,7 +20,11 @@
 @endsection
 
 @section('content')
+<<<<<<< HEAD
 <form action="{{ route('admin.login') }}" method="POST">
+=======
+<form action="{{ route('login') }}" method="POST">
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
     @csrf
 
     <div class="text-center mb-4">
@@ -53,6 +57,7 @@
             <div class="invalid-feedback d-block mt-1">{{ $message }}</div>
         @enderror
     </div>
+<<<<<<< HEAD
 
     <div class="mb-3">
         <label class="form-label" for="password">{{ __('Password') }}</label>
@@ -86,6 +91,41 @@
             <h6 class="fw-normal text-dark mb-0">
                 {{ __("Don't have an account?") }}
                 <a href="{{ route('admin.register') }}" class="hover-a fw-semibold text-primary ms-1">{{ __('Create Account') }}</a>
+=======
+
+    <div class="mb-3">
+        <label class="form-label" for="password">{{ __('Password') }}</label>
+        <div class="pass-group">
+            <input type="password" name="password" id="password" class="pass-input form-control @error('password') is-invalid @enderror" required>
+            <span class="ti toggle-password ti-eye-off"></span>
+        </div>
+        @error('password')
+            <div class="invalid-feedback d-block mt-1">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <div class="form-check form-check-md mb-0">
+            <input class="form-check-input" id="remember_me" name="remember" type="checkbox" {{ old('remember') ? 'checked' : '' }}>
+            <label for="remember_me" class="form-check-label mt-0">{{ __('Remember Me') }}</label>
+        </div>
+        @if (Route::has('password.request'))
+            <div class="text-end">
+                <a href="{{ route('password.request') }}" class="link-danger">{{ __('Forgot Password?') }}</a>
+            </div>
+        @endif
+    </div>
+
+    <div class="mb-4">
+        <button type="submit" class="btn btn-primary w-100 py-2 fs-16 fw-semibold">{{ __('Sign In') }}</button>
+    </div>
+
+    @if (Route::has('register'))
+        <div class="text-center mb-4">
+            <h6 class="fw-normal text-dark mb-0">
+                {{ __("Don't have an account?") }}
+                <a href="{{ route('register') }}" class="hover-a fw-semibold text-primary ms-1">{{ __('Create Account') }}</a>
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
             </h6>
         </div>
     @endif
@@ -97,19 +137,31 @@
     <div class="mt-3">
         <div class="d-flex align-items-center justify-content-center flex-wrap gap-2">
             <div class="text-center flex-fill">
+<<<<<<< HEAD
                 <a href="{{ route('admin.social.login', 'facebook') }}"
+=======
+                <a href="{{ route('social.login', 'facebook') }}"
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
                     class="br-10 p-2 btn btn-outline-light border d-flex align-items-center justify-content-center">
                     <img class="img-fluid m-1" src="{{ asset('assets/img/icons/facebook-logo.svg') }}" alt="Facebook" style="height: 20px;">
                 </a>
             </div>
             <div class="text-center flex-fill">
+<<<<<<< HEAD
                 <a href="{{ route('admin.social.login', 'google') }}"
+=======
+                <a href="{{ route('social.login', 'google') }}"
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
                     class="br-10 p-2 btn btn-outline-light border d-flex align-items-center justify-content-center">
                     <img class="img-fluid m-1" src="{{ asset('assets/img/icons/google-logo.svg') }}" alt="Google" style="height: 20px;">
                 </a>
             </div>
             <div class="text-center flex-fill">
+<<<<<<< HEAD
                 <a href="{{ route('admin.social.login', 'apple') }}"
+=======
+                <a href="{{ route('social.login', 'apple') }}"
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
                     class="bg-dark br-10 p-2 btn btn-dark d-flex align-items-center justify-content-center">
                     <img class="img-fluid m-1" src="{{ asset('assets/img/icons/apple-logo.svg') }}" alt="Apple" style="height: 20px;">
                 </a>

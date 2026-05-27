@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 namespace Modules\Menu\Http\Controllers\Backend;
+=======
+namespace Nasirkhan\ModuleManager\Modules\Menu\Http\Controllers\Backend;
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 
 use App\Authorizable;
 use App\Http\Controllers\Backend\BackendBaseController;
@@ -8,7 +12,11 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+<<<<<<< HEAD
 use Modules\Menu\Models\Menu;
+=======
+use Nasirkhan\ModuleManager\Modules\Menu\Models\Menu;
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 
 class MenusController extends BackendBaseController
 {
@@ -29,7 +37,11 @@ class MenusController extends BackendBaseController
         $this->module_icon = 'fa-solid fa-list';
 
         // module model name, path
+<<<<<<< HEAD
         $this->module_model = 'Modules\\Menu\\Models\\Menu';
+=======
+        $this->module_model = 'Nasirkhan\\ModuleManager\\Modules\\Menu\\Models\\Menu';
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
     }
 
     /**

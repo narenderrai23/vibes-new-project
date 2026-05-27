@@ -1,12 +1,20 @@
 <?php
 
+<<<<<<< HEAD
 namespace Modules\Settings\Http\Controllers;
+=======
+namespace Nasirkhan\ModuleManager\Modules\Settings\Http\Controllers;
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
+<<<<<<< HEAD
 use Modules\Settings\Models\Setting;
+=======
+use Nasirkhan\ModuleManager\Modules\Settings\Models\Setting;
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 
 class SettingController extends Controller
 {
@@ -35,7 +43,11 @@ class SettingController extends Controller
         $this->module_icon = 'fas fa-cogs';
 
         // module model name, path
+<<<<<<< HEAD
         $this->module_model = "Modules\Settings\Models\Setting";
+=======
+        $this->module_model = "Nasirkhan\ModuleManager\Modules\Settings\Models\Setting";
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
     }
 
     /**

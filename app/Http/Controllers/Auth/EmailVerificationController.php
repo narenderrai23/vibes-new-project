@@ -13,7 +13,11 @@ class EmailVerificationController extends Controller
     public function notice(): View|RedirectResponse
     {
         if (Auth::user()->hasVerifiedEmail()) {
+<<<<<<< HEAD
             return redirect()->intended(route('admin.dashboard'));
+=======
+            return redirect()->intended(route('backend.dashboard'));
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
         }
 
         return view('auth.verify-email');
@@ -22,7 +26,11 @@ class EmailVerificationController extends Controller
     public function send(Request $request): RedirectResponse
     {
         if (Auth::user()->hasVerifiedEmail()) {
+<<<<<<< HEAD
             return redirect()->intended(route('admin.dashboard'));
+=======
+            return redirect()->intended(route('backend.dashboard'));
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
         }
 
         Auth::user()->sendEmailVerificationNotification();

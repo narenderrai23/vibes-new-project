@@ -1,7 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+<<<<<<< HEAD
 use Modules\Settings\Http\Controllers\SettingController;
+=======
+use Nasirkhan\ModuleManager\Modules\Settings\Http\Controllers\SettingController;
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 
 /*
 |--------------------------------------------------------------------------

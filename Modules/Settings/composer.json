@@ -16,7 +16,11 @@
     },
     "autoload": {
         "psr-4": {
+<<<<<<< HEAD
             "Modules\\Settings\\": ""
+=======
+            "Nasirkhan\\ModuleManager\\Modules\\Settings\\": ""
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
         }
     }
 }

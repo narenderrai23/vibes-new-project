@@ -1,9 +1,16 @@
 <?php
 
+<<<<<<< HEAD
 namespace Modules\Menu\Observers;
 
 use Illuminate\Support\Facades\Log;
 use Modules\Menu\Models\Menu;
+=======
+namespace Nasirkhan\ModuleManager\Modules\Menu\Observers;
+
+use Illuminate\Support\Facades\Log;
+use Nasirkhan\ModuleManager\Modules\Menu\Models\Menu;
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 
 class MenuObserver
 {

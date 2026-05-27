@@ -39,7 +39,11 @@ use Illuminate\Support\Facades\Route;
 *
 * --------------------------------------------------------------------
 */
+<<<<<<< HEAD
 Route::group(['namespace' => '\Modules\Menu\Http\Controllers\Backend', 'as' => 'backend.', 'middleware' => ['web', 'auth', 'can:view_backend'], 'prefix' => 'admin'], function () {
+=======
+Route::group(['namespace' => '\Nasirkhan\ModuleManager\Modules\Menu\Http\Controllers\Backend', 'as' => 'backend.', 'middleware' => ['web', 'auth', 'can:view_backend'], 'prefix' => 'admin'], function () {
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
     /*
     * These routes need view-backend permission
     * (good if you want to allow more than one group in the backend,

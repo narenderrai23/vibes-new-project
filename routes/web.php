@@ -32,7 +32,11 @@ require __DIR__.'/auth.php';
 //     if (!auth()->check()) {
 //         return redirect()->route('login');
 //     }else{
+<<<<<<< HEAD
 //         return redirect()->route('admin.dashboard');
+=======
+//         return redirect()->route('backend.dashboard');
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 //     }
 //     // Note: You should also define what happens if they are NOT logged in!
 // });

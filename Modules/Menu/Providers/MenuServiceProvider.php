@@ -1,18 +1,31 @@
 <?php
 
+<<<<<<< HEAD
 namespace Modules\Menu\Providers;
+=======
+namespace Nasirkhan\ModuleManager\Modules\Menu\Providers;
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
+<<<<<<< HEAD
 use Modules\Menu\Console\Commands\SeedMenuCommand;
 use Modules\Menu\Livewire\MenuItemComponent;
 use Modules\Menu\Models\Menu;
 use Modules\Menu\Models\MenuItem;
 use Modules\Menu\Observers\MenuItemObserver;
 use Modules\Menu\Observers\MenuObserver;
+=======
+use Nasirkhan\ModuleManager\Modules\Menu\Console\Commands\SeedMenuCommand;
+use Nasirkhan\ModuleManager\Modules\Menu\Livewire\MenuItemComponent;
+use Nasirkhan\ModuleManager\Modules\Menu\Models\Menu;
+use Nasirkhan\ModuleManager\Modules\Menu\Models\MenuItem;
+use Nasirkhan\ModuleManager\Modules\Menu\Observers\MenuItemObserver;
+use Nasirkhan\ModuleManager\Modules\Menu\Observers\MenuObserver;
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 use Symfony\Component\Finder\Finder;
 
 class MenuServiceProvider extends ServiceProvider
@@ -48,7 +61,11 @@ class MenuServiceProvider extends ServiceProvider
         }
 
         // register commands
+<<<<<<< HEAD
         $this->registerCommands('Modules\Menu\Console\Commands');
+=======
+        $this->registerCommands('Nasirkhan\ModuleManager\Modules\Menu\Console\Commands');
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 
         $this->registerLivewireComponents();
 
@@ -204,7 +221,11 @@ class MenuServiceProvider extends ServiceProvider
 
         // Register the seeder in the container for automatic discovery
         $this->app->singleton($this->moduleNameLower.'.database.seeder', function () {
+<<<<<<< HEAD
             return 'Modules\\'.$this->moduleName.'\\database\\seeders\\'.$this->moduleName.'DatabaseSeeder';
+=======
+            return 'Nasirkhan\\ModuleManager\\Modules\\'.$this->moduleName.'\\database\\seeders\\'.$this->moduleName.'DatabaseSeeder';
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
         });
 
         // Register a console command for seeding

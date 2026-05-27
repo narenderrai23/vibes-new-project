@@ -445,7 +445,11 @@ return [
             'description' => 'Admin dashboard',
             'type' => 'link',
             'url' => null,
+<<<<<<< HEAD
             'route_name' => 'admin.dashboard',
+=======
+            'route_name' => 'backend.dashboard',
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
             'route_parameters' => null,
             'opens_new_tab' => false,
             'sort_order' => 0,

@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 namespace Modules\Menu\Console\Commands;
+=======
+namespace Nasirkhan\ModuleManager\Modules\Menu\Console\Commands;
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 
 use Illuminate\Console\Command;
 

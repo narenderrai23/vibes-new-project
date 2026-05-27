@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 namespace Modules\Backup\Tests\Feature;
+=======
+namespace Nasirkhan\ModuleManager\Modules\Backup\Tests\Feature;
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;

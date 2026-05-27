@@ -1,10 +1,18 @@
 <?php
 
+<<<<<<< HEAD
 namespace Modules\Settings\Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Modules\Settings\Models\Setting;
+=======
+namespace Nasirkhan\ModuleManager\Modules\Settings\Tests\Feature;
+
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Nasirkhan\ModuleManager\Modules\Settings\Models\Setting;
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 use Tests\TestCase;
 
 class SettingTest extends TestCase

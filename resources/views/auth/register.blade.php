@@ -3,7 +3,11 @@
 @section('title', __('Register'))
 
 @section('content')
+<<<<<<< HEAD
 <form action="{{ route('admin.register') }}" method="POST">
+=======
+<form action="{{ route('register') }}" method="POST">
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
     @csrf
 
     <div class="text-center mb-4">
@@ -79,7 +83,11 @@
     <div class="text-center mb-4">
         <h6 class="fw-normal text-dark mb-0">
             {{ __('Already have an account?') }}
+<<<<<<< HEAD
             <a href="{{ route('admin.login') }}" class="hover-a fw-semibold text-primary ms-1">{{ __('Log in') }}</a>
+=======
+            <a href="{{ route('login') }}" class="hover-a fw-semibold text-primary ms-1">{{ __('Log in') }}</a>
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
         </h6>
     </div>
 </form>

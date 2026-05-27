@@ -1,11 +1,19 @@
 <?php
 
+<<<<<<< HEAD
 namespace Modules\Menu\database\factories;
+=======
+namespace Nasirkhan\ModuleManager\Modules\Menu\database\factories;
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 
 use App\Models\Model;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
+<<<<<<< HEAD
 use Modules\Menu\Models\Menu;
+=======
+use Nasirkhan\ModuleManager\Modules\Menu\Models\Menu;
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 
 /**
  * @extends Factory<Model>

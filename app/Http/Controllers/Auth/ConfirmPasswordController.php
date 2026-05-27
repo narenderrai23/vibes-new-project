@@ -33,6 +33,10 @@ class ConfirmPasswordController extends Controller
 
         $request->session()->put('auth.password_confirmed_at', time());
 
+<<<<<<< HEAD
         return redirect()->intended(route('admin.dashboard'));
+=======
+        return redirect()->intended(route('backend.dashboard'));
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
     }
 }

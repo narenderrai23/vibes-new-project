@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 namespace Modules\LogViewer\Providers;
+=======
+namespace Nasirkhan\ModuleManager\Modules\LogViewer\Providers;
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 
 use Illuminate\Support\ServiceProvider;
 

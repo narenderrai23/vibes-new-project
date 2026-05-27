@@ -37,6 +37,10 @@ class RegisterController extends Controller
 
         Auth::login($user);
 
+<<<<<<< HEAD
         return redirect()->route('admin.dashboard');
+=======
+        return redirect()->route('backend.dashboard');
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
     }
 }

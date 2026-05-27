@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 namespace Modules\Menu\Models;
+=======
+namespace Nasirkhan\ModuleManager\Modules\Menu\Models;
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 
 use App\Models\BaseModel;
 use App\Models\User;
@@ -11,7 +15,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+<<<<<<< HEAD
 use Modules\Menu\database\factories\MenuFactory;
+=======
+use Nasirkhan\ModuleManager\Modules\Menu\database\factories\MenuFactory;
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 
 class Menu extends BaseModel
 {

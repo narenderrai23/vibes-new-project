@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+<<<<<<< HEAD
+=======
+use Modules\Trainer\Http\Controllers\Auth\LoginController;
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 use Modules\Trainer\Http\Controllers\Backend\TrainersController;
 
 /*
@@ -9,11 +13,28 @@ use Modules\Trainer\Http\Controllers\Backend\TrainersController;
 |--------------------------------------------------------------------------
 */
 
+<<<<<<< HEAD
 require __DIR__.'/auth.php';
 
 // ── Authenticated trainer routes ──────────────────────────────────────
 Route::prefix('trainer')->name('trainer.')->middleware(['web', 'auth.guard:trainer'])->group(function () {
     Route::get('dashboard', fn () => view('trainer::portal.dashboard'))->name('dashboard');
+=======
+Route::prefix('trainer')->name('trainer.')->middleware('web')->group(function () {
+
+    // ── Guest-only ────────────────────────────────────────────────────────
+    Route::middleware('auth.guest:trainer')->group(function () {
+        Route::get('login',  [LoginController::class, 'showLoginForm'])->name('login');
+        Route::post('login', [LoginController::class, 'login'])->name('login.submit');
+    });
+
+    // ── Authenticated trainer routes ──────────────────────────────────────
+    Route::middleware('auth.guard:trainer')->group(function () {
+        Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
+        Route::get('dashboard', fn () => view('trainer::portal.dashboard'))->name('dashboard');
+    });
+>>>>>>> c68af1d8ffb067e2aeebc0981e74d924bf367634
 });
 
 // ── Admin backend — manage trainers ──────────────────────────────────────────
