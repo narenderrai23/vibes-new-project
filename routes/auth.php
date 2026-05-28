@@ -5,7 +5,6 @@ use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\SocialLoginController;
 use App\Http\Controllers\Auth\VerifyEmailController;
@@ -17,10 +16,11 @@ Route::prefix('admin')->name('admin.')->middleware('web')->group(function () {
         Route::get('login', [LoginController::class, 'create'])->name('login');
         Route::post('login', [LoginController::class, 'store']);
 
-        if (user_registration()) {
-            Route::get('register', [RegisterController::class, 'create'])->name('register');
-            Route::post('register', [RegisterController::class, 'store']);
-        }
+        Route::get('login/otp', [LoginController::class, 'showOtpRequestForm'])->name('login.otp.request');
+        Route::post('login/otp', [LoginController::class, 'sendOtp'])->name('login.otp.send');
+        Route::get('login/otp/verify', [LoginController::class, 'showOtpVerifyForm'])->name('login.otp.verify');
+        Route::post('login/otp/verify', [LoginController::class, 'verifyOtp'])->name('login.otp.authenticate');
+
 
         Route::get('forgot-password', [ForgotPasswordController::class, 'create'])->name('password.request');
         Route::post('forgot-password', [ForgotPasswordController::class, 'store'])->name('password.email');

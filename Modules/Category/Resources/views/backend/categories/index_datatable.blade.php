@@ -1,10 +1,10 @@
-@extends("backend.layouts.app")
+@extends('backend.layouts.app')
 
-@section("title")
+@section('title')
     {{ __($module_action) }} {{ __($module_title) }}
 @endsection
 
-@section("breadcrumbs")
+@section('breadcrumbs')
     <x-backend.breadcrumbs>
         <x-backend.breadcrumb-item type="active" icon="{{ $module_icon }}">
             {{ __($module_title) }}
@@ -12,15 +12,10 @@
     </x-backend.breadcrumbs>
 @endsection
 
-@section("content")
+@section('content')
     <div class="card">
+        <x-backend.section-header :module_name="$module_name" :module_title="$module_title" :module_icon="$module_icon" :module_action="$module_action" />
         <div class="card-body">
-            <x-backend.section-header
-                :module_name="$module_name"
-                :module_title="$module_title"
-                :module_icon="$module_icon"
-                :module_action="$module_action"
-            />
 
             <div class="row mt-4">
                 <div class="col">
@@ -30,13 +25,13 @@
                                 <tr>
                                     <th>#</th>
                                     <th>
-                                        @lang("category::text.name")
+                                        @lang('category::text.name')
                                     </th>
                                     <th>
-                                        @lang("category::text.updated_at")
+                                        @lang('category::text.updated_at')
                                     </th>
                                     <th class="text-end">
-                                        @lang("category::text.action")
+                                        @lang('category::text.action')
                                     </th>
                                 </tr>
                             </thead>
@@ -58,14 +53,14 @@
     </div>
 @endsection
 
-@push("after-styles")
+@push('after-styles')
     <!-- DataTables Core and Extensions -->
-    <link href="{{ asset("vendor/datatable/datatables.min.css") }}" rel="stylesheet" />
+    <link href="{{ asset('vendor/datatable/datatables.min.css') }}" rel="stylesheet" />
 @endpush
 
-@push("after-scripts")
+@push('after-scripts')
     <!-- DataTables Core and Extensions -->
-    <script type="module" src="{{ asset("vendor/datatable/datatables.min.js") }}"></script>
+    <script type="module" src="{{ asset('vendor/datatable/datatables.min.js') }}"></script>
 
     <script type="module">
         $('#datatable').DataTable({
@@ -73,8 +68,7 @@
             serverSide: true,
             responsive: true,
             ajax: '{{ route("backend.$module_name.index_data") }}',
-            columns: [
-                {
+            columns: [{
                     data: 'id',
                     name: 'id',
                 },

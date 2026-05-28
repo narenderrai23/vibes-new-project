@@ -1,9 +1,9 @@
 @props([
-    'data'          => '',
-    'module_name'   => '',
-    'module_path'   => '',
-    'module_title'  => '',
-    'module_icon'   => '',
+    'data' => '',
+    'module_name' => '',
+    'module_path' => '',
+    'module_title' => '',
+    'module_icon' => '',
     'module_action' => '',
 ])
 
@@ -13,49 +13,37 @@
             {{ $slot }}
         </div>
     @else
+        <x-backend.section-header :data="$data" :module_name="$module_name" :module_title="$module_title" :module_icon="$module_icon"
+            :module_action="$module_action" />
         <div class="card-body">
-            <x-backend.section-header
-                :data="$data"
-                :module_name="$module_name"
-                :module_title="$module_title"
-                :module_icon="$module_icon"
-                :module_action="$module_action"
-            />
+
 
             <div class="row mt-4">
                 <div class="col">
-                    <form
-                        action="{{ route("backend.$module_name.update", $data) }}"
-                        method="POST"
-                        enctype="multipart/form-data"
-                    >
+                    <form action="{{ route("backend.$module_name.update", $data) }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
 
-                    @include("$module_path.$module_name.form")
+                        @include("$module_path.$module_name.form")
 
-                    <div class="row">
-                        <div class="col-4 mt-4">
-                            <x-backend.buttons.save />
-                        </div>
+                        <div class="row">
+                            <div class="col-4 mt-4">
+                                <x-backend.buttons.save />
+                            </div>
 
-                        <div class="col-8 mt-4">
-                            <div class="float-end">
-                                @can('delete_' . $module_name)
-                                    <a
-                                        href="{{ route("backend.$module_name.destroy", $data) }}"
-                                        class="btn btn-danger"
-                                        data-method="DELETE"
-                                        data-token="{{ csrf_token() }}"
-                                        data-toggle="tooltip"
-                                        title="{{ __('Delete') }}"
-                                    >
-                                        <i class="ti ti-trash" aria-hidden="true"></i>
-                                    </a>
-                                @endcan
+                            <div class="col-8 mt-4">
+                                <div class="float-end">
+                                    @can('delete_' . $module_name)
+                                        <a href="{{ route("backend.$module_name.destroy", $data) }}" class="btn btn-danger"
+                                            data-method="DELETE" data-token="{{ csrf_token() }}" data-toggle="tooltip"
+                                            title="{{ __('Delete') }}">
+                                            <i class="ti ti-trash" aria-hidden="true"></i>
+                                        </a>
+                                    @endcan
+                                </div>
                             </div>
                         </div>
-                    </div>
 
                     </form>
 

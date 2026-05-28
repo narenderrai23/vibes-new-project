@@ -2,6 +2,8 @@
 
 namespace Modules\Student\Http\Controllers\Auth;
 
+use App\Http\Controllers\Auth\Concerns\HandlesOtpLogin;
+use App\Support\PanelRedirector;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -11,9 +13,12 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
+use Modules\Student\Models\Student;
 
 class LoginController extends Controller
 {
+    use HandlesOtpLogin;
+
     protected string $guard = 'student';
 
     public function create(): View
@@ -44,7 +49,7 @@ class LoginController extends Controller
         RateLimiter::clear($this->throttleKey($request));
         $request->session()->regenerate();
 
-        return redirect()->intended(route('student.dashboard'));
+        return redirect()->intended(app(PanelRedirector::class)->dashboardUrlForGuard($this->guard));
     }
 
     protected function ensureIsNotRateLimited(Request $request): void
@@ -68,5 +73,25 @@ class LoginController extends Controller
     protected function throttleKey(Request $request): string
     {
         return Str::transliterate('student|' . Str::lower($request->string('email')) . '|' . $request->ip());
+    }
+
+    protected function findUserByEmail(string $email): ?Student
+    {
+        return Student::where('email', $email)->first();
+    }
+
+    protected function findUserByMobile(string $mobile): ?Student
+    {
+        return Student::where('mobile', $mobile)->first();
+    }
+
+    protected function getRouteNamePrefix(): string
+    {
+        return 'student';
+    }
+
+    protected function getAuthViewPrefix(): string
+    {
+        return 'student::auth.';
     }
 }

@@ -1,24 +1,60 @@
-<!-- Breadcrumb -->
-<div class="d-md-flex d-block align-items-center justify-content-between page-breadcrumb mb-3">
-	<div class="my-auto mb-2">
-		<h2 class="mb-1">Starter </h2>
-		<nav>
-			<ol class="breadcrumb mb-0">
-				<li class="breadcrumb-item">
-					<a href="index.html"><i class="ti ti-smart-home"></i></a>
-				</li>
-				<li class="breadcrumb-item">
-					Pages
-				</li>
-				<li class="breadcrumb-item active" aria-current="page">Starter </li>
-			</ol>
-		</nav>
-	</div>
-	<div class="head-icons ms-2">
-		<a href="javascript:void(0);" class="" data-bs-toggle="tooltip" data-bs-placement="top"
-			data-bs-original-title="Collapse" id="collapse-header">
-			<i class="ti ti-chevrons-up"></i>
-		</a>
-	</div>
+{{-- resources/views/components/backend/section-header.blade.php --}}
+
+@props([
+    'title' => null,
+    'breadcrumbs' => [],
+])
+
+<div class="card-header d-flex align-items-center justify-content-between flex-wrap row-gap-3">
+
+    {{-- Left Side --}}
+    <div>
+
+        {{-- Title --}}
+        <h5 class="mb-1 d-flex align-items-center gap-2 flex-wrap">
+
+            @if ($title)
+                {{ $title }}
+            @else
+                {{ $slot }}
+            @endif
+
+        </h5>
+
+        {{-- Breadcrumbs --}}
+        @if (count($breadcrumbs))
+            <nav>
+                <ol class="breadcrumb mb-0">
+                    @foreach ($breadcrumbs as $breadcrumb)
+
+                        @if (!$loop->last)
+                            <li class="breadcrumb-item">
+                                <a href="{{ $breadcrumb['url'] ?? 'javascript:void(0);' }}">
+                                    @if (isset($breadcrumb['icon']))
+                                        <i class="{{ $breadcrumb['icon'] }}"></i>
+                                    @endif
+
+                                    {{ $breadcrumb['label'] }}
+                                </a>
+                            </li>
+                        @else
+                            <li class="breadcrumb-item active">
+                                {{ $breadcrumb['label'] }}
+                            </li>
+                        @endif
+
+                    @endforeach
+                </ol>
+            </nav>
+        @endif
+
+    </div>
+
+    {{-- Right Toolbar --}}
+    @isset($toolbar)
+        <div class="d-flex align-items-center gap-2">
+            {{ $toolbar }}
+        </div>
+    @endisset
+
 </div>
-<!-- /Breadcrumb -->

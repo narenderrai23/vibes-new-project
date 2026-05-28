@@ -21,12 +21,12 @@
     {{-- Form Mode Indicator --}}
     @if($menuItem)
         <div class="alert alert-info">
-            <i class="fas fa-edit"></i> Editing menu item: <strong>{{ $menuItem->name }}</strong>
+            <i class="ti ti-pencil"></i> Editing menu item: <strong>{{ $menuItem->name }}</strong>
             <small class="d-block">Created: {{ $menuItem->created_at->format('M j, Y') }} | Last updated: {{ $menuItem->updated_at->diffForHumans() }}</small>
         </div>
     @else
         <div class="alert alert-success">
-            <i class="fas fa-plus-circle"></i> Creating new menu item
+            <i class="ti ti-plus"></i> Creating new menu item
         </div>
     @endif
 
@@ -480,7 +480,7 @@
             
             @if($menuItem)
                 <a href="{{ route('backend.menuitems.show', $menuItem) }}" class="btn btn-info ms-2">
-                    <i class="fas fa-eye"></i> View
+                    <i class="ti ti-eye"></i> View
                 </a>
             @endif
         </div>

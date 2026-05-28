@@ -81,6 +81,10 @@
         <button type="submit" class="btn btn-primary w-100 py-2 fs-16 fw-semibold">{{ __('Sign In') }}</button>
     </div>
 
+    <div class="text-center mb-4">
+        <a href="{{ route('admin.login.otp.request') }}" class="link-primary">{{ __('Sign in with Email or SMS OTP') }}</a>
+    </div>
+
     @if (Route::has('admin.register'))
         <div class="text-center mb-4">
             <h6 class="fw-normal text-dark mb-0">

@@ -23,7 +23,7 @@
             <!--/.col-->
             <div class="col-4">
                 <div class="btn-toolbar float-end" role="toolbar" aria-label="Toolbar with button groups">
-                    <a href="{{ route('backend.menuitems.create') }}" class="btn btn-success btn-sm ms-1" data-toggle="tooltip" title="{{ __($module_action) }} {{ __($module_title) }}"><i class="fas fa-plus-circle"></i> New Menu Item</a>
+                    <a href="{{ route('backend.menuitems.create') }}" class="btn btn-success btn-sm ms-1" data-toggle="tooltip" title="{{ __($module_action) }} {{ __($module_title) }}"><i class="ti ti-plus"></i> New Menu Item</a>
                 </div>
             </div>
             <!--/.col-->

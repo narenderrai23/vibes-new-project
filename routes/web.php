@@ -4,7 +4,6 @@ use App\Http\Controllers\Backend\BackendController;
 use App\Http\Controllers\Backend\NotificationsController;
 use App\Http\Controllers\Backend\RolesController;
 use App\Http\Controllers\Backend\UserController as BackendUserController;
-use App\Http\Controllers\Frontend\UserProfileController;
 use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,26 +38,6 @@ require __DIR__.'/auth.php';
 
 // Language Switch
 Route::get('language/{language}', [LanguageController::class, 'switch'])->name('language.switch');
-
-Route::group(['as' => 'frontend.'], function () {
-    // Also accessible as home
-    // Route::get('/', [HomeController::class, 'index'])->name('index');
-
-    Route::middleware('auth')->group(function () {
-        $module_name = 'users';
-
-        Route::get('profile/edit', [UserProfileController::class, 'editProfile'])->name("{$module_name}.profileEdit");
-        Route::post('profile/edit', [UserProfileController::class, 'updateProfile'])->name("{$module_name}.profileUpdate");
-
-        Route::get('profile/change-password', [UserProfileController::class, 'changePassword'])->name("{$module_name}.changePassword");
-        Route::post('profile/change-password', [UserProfileController::class, 'updatePassword'])->name("{$module_name}.changePasswordUpdate");
-
-        Route::post('profile/resend-email', [UserProfileController::class, 'resendEmailConfirmation'])->name("{$module_name}.resendEmailConfirmation");
-        Route::post('profile/unlink-provider', [UserProfileController::class, 'unlinkProvider'])->name("{$module_name}.unlinkProvider");
-
-        Route::get('profile/{username?}', [UserProfileController::class, 'profile'])->name("{$module_name}.profile");
-    });
-});
 
 /*
 |--------------------------------------------------------------------------

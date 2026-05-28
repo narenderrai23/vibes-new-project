@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Events\Auth\UserLoginSuccess;
+use App\Http\Controllers\Auth\Concerns\HandlesOtpLogin;
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Support\PanelRedirector;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -15,6 +18,10 @@ use Illuminate\View\View;
 
 class LoginController extends Controller
 {
+    use HandlesOtpLogin;
+
+    protected string $guard = 'web';
+
     public function create(): View
     {
         return view('auth.login');
@@ -46,7 +53,7 @@ class LoginController extends Controller
         RateLimiter::clear($this->throttleKey($request));
         $request->session()->regenerate();
 
-        return redirect()->intended(route('admin.dashboard'));
+        return redirect()->intended(app(PanelRedirector::class)->dashboardUrlForGuard($this->guard));
     }
 
     protected function ensureIsNotRateLimited(Request $request): void
@@ -70,5 +77,20 @@ class LoginController extends Controller
     protected function throttleKey(Request $request): string
     {
         return Str::transliterate(Str::lower($request->string('email')).'|'.$request->ip());
+    }
+
+    protected function findUserByEmail(string $email): ?User
+    {
+        return User::where('email', $email)->first();
+    }
+
+    protected function getRouteNamePrefix(): string
+    {
+        return 'admin';
+    }
+
+    protected function getAuthViewPrefix(): string
+    {
+        return 'auth.';
     }
 }

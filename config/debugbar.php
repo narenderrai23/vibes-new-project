@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'editor' => env('DEBUGBAR_EDITOR') ?: env('IGNITION_EDITOR', 'kiro'),
+    'editor' => env('DEBUGBAR_EDITOR') ?: env('IGNITION_EDITOR', 'vscode'),
 
     /*
     |--------------------------------------------------------------------------

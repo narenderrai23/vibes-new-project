@@ -1,56 +1,101 @@
 <div class="row mb-3">
     <div class="col-12 col-sm-4 mb-3">
         <div class="form-group">
-            <?php
-            $field_name = "name";
-            $field_lable = label_case($field_name);
-            $field_placeholder = $field_lable;
-            $required = "required";
-            ?>
+            @php
+                $field_name = "name";
+                $field_lable = label_case($field_name);
+                $field_placeholder = $field_lable;
+                $required = "required";
+            @endphp
 
-            {{ html()->label($field_lable, $field_name)->class("form-label") }} {!! field_required($required) !!}
-            {{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required"]) }}
+            <label for="{{ $field_name }}" class="form-label">
+                {{ $field_lable }}
+            </label>
+            {!! field_required($required) !!}
+
+            <input
+                type="text"
+                name="{{ $field_name }}"
+                id="{{ $field_name }}"
+                class="form-control"
+                placeholder="{{ $field_placeholder }}"
+                value="{{ old($field_name, $data->$field_name ?? '') }}"
+                {{ $required }}
+            >
         </div>
     </div>
+
     <div class="col-12 col-sm-4 mb-3">
         <div class="form-group">
-            <?php
-            $field_name = "slug";
-            $field_lable = label_case($field_name);
-            $field_placeholder = $field_lable;
-            $required = "";
-            ?>
+            @php
+                $field_name = "slug";
+                $field_lable = label_case($field_name);
+                $field_placeholder = $field_lable;
+                $required = "";
+            @endphp
 
-            {{ html()->label($field_lable, $field_name)->class("form-label") }} {!! field_required($required) !!}
-            {{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required"]) }}
+            <label for="{{ $field_name }}" class="form-label">
+                {{ $field_lable }}
+            </label>
+            {!! field_required($required) !!}
+
+            <input
+                type="text"
+                name="{{ $field_name }}"
+                id="{{ $field_name }}"
+                class="form-control"
+                placeholder="{{ $field_placeholder }}"
+                value="{{ old($field_name, $data->$field_name ?? '') }}"
+            >
         </div>
     </div>
+
     <div class="col-12 col-sm-4 mb-3">
         <div class="form-group">
-            <?php
-            $field_name = "group_name";
-            $field_lable = label_case($field_name);
-            $field_placeholder = $field_lable;
-            $required = "";
-            ?>
+            @php
+                $field_name = "group_name";
+                $field_lable = label_case($field_name);
+                $field_placeholder = $field_lable;
+                $required = "";
+            @endphp
 
-            {{ html()->label($field_lable, $field_name)->class("form-label") }} {!! field_required($required) !!}
-            {{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required"]) }}
+            <label for="{{ $field_name }}" class="form-label">
+                {{ $field_lable }}
+            </label>
+            {!! field_required($required) !!}
+
+            <input
+                type="text"
+                name="{{ $field_name }}"
+                id="{{ $field_name }}"
+                class="form-control"
+                placeholder="{{ $field_placeholder }}"
+                value="{{ old($field_name, $data->$field_name ?? '') }}"
+            >
         </div>
     </div>
 </div>
+
 <div class="row mb-3">
     <div class="col-8">
         <div class="form-group">
-            <?php
-            $field_name = "image";
-            $field_lable = label_case($field_name);
-            $field_placeholder = $field_lable;
-            $required = "";
-            ?>
+            @php
+                $field_name = "image";
+                $field_lable = label_case($field_name);
+                $required = "";
+            @endphp
 
-            {{ html()->label($field_lable, $field_name)->class("form-label") }} {!! field_required($required) !!}
-            {{ html()->input("file", $field_name)->class("form-control")->attributes(["$required"]) }}
+            <label for="{{ $field_name }}" class="form-label">
+                {{ $field_lable }}
+            </label>
+            {!! field_required($required) !!}
+
+            <input
+                type="file"
+                name="{{ $field_name }}"
+                id="{{ $field_name }}"
+                class="form-control"
+            >
         </div>
     </div>
 
@@ -64,13 +109,13 @@
                         data-title="Path: {{ asset($data->$field_name) }}"
                     >
                         <img
-                            src="{{ asset($data->getMedia($module_name)->first()->getUrl("thumb300"),) }}"
+                            src="{{ asset($data->getMedia($module_name)->first()->getUrl('thumb300')) }}"
                             class="figure-img img-fluid img-thumbnail rounded"
                             alt=""
-                        />
+                        >
                     </a>
-                    <!-- <figcaption class="figure-caption">Path: </figcaption> -->
                 </figure>
+
                 <div class="form-check">
                     <input
                         class="form-check-input"
@@ -78,68 +123,119 @@
                         value="image_remove"
                         id="image_remove"
                         name="image_remove"
-                    />
-                    <label class="form-check-label" for="image_remove">Remove this image</label>
+                    >
+
+                    <label class="form-check-label" for="image_remove">
+                        Remove this image
+                    </label>
                 </div>
             </div>
         </div>
+
         <x-library.lightbox />
     @endif
 </div>
+
 <div class="row">
     <div class="col-12 mb-3">
         <div class="form-group">
-            <?php
-            $field_name = "description";
-            $field_lable = label_case($field_name);
-            $field_placeholder = $field_lable;
-            $required = "";
-            ?>
+            @php
+                $field_name = "description";
+                $field_lable = label_case($field_name);
+                $field_placeholder = $field_lable;
+                $required = "";
+            @endphp
 
-            {{ html()->label($field_lable, $field_name)->class("form-label") }} {!! field_required($required) !!}
-            {{ html()->textarea($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required"]) }}
+            <label for="{{ $field_name }}" class="form-label">
+                {{ $field_lable }}
+            </label>
+            {!! field_required($required) !!}
+
+            <textarea
+                name="{{ $field_name }}"
+                id="{{ $field_name }}"
+                class="form-control"
+                placeholder="{{ $field_placeholder }}"
+            >{{ old($field_name, $data->$field_name ?? '') }}</textarea>
         </div>
     </div>
 </div>
+
 <hr />
+
 <div class="row">
     <div class="col-12 col-sm-4 mb-3">
         <div class="form-group">
-            <?php
-            $field_name = "meta_title";
-            $field_lable = label_case($field_name);
-            $field_placeholder = $field_lable;
-            $required = "";
-            ?>
+            @php
+                $field_name = "meta_title";
+                $field_lable = label_case($field_name);
+                $field_placeholder = $field_lable;
+                $required = "";
+            @endphp
 
-            {{ html()->label($field_lable, $field_name)->class("form-label") }} {!! field_required($required) !!}
-            {{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required"]) }}
+            <label for="{{ $field_name }}" class="form-label">
+                {{ $field_lable }}
+            </label>
+            {!! field_required($required) !!}
+
+            <input
+                type="text"
+                name="{{ $field_name }}"
+                id="{{ $field_name }}"
+                class="form-control"
+                placeholder="{{ $field_placeholder }}"
+                value="{{ old($field_name, $data->$field_name ?? '') }}"
+            >
         </div>
     </div>
+
     <div class="col-12 col-sm-4 mb-3">
         <div class="form-group">
-            <?php
-            $field_name = "meta_keyword";
-            $field_lable = label_case($field_name);
-            $field_placeholder = $field_lable;
-            $required = "";
-            ?>
+            @php
+                $field_name = "meta_keyword";
+                $field_lable = label_case($field_name);
+                $field_placeholder = $field_lable;
+                $required = "";
+            @endphp
 
-            {{ html()->label($field_lable, $field_name)->class("form-label") }} {!! field_required($required) !!}
-            {{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required"]) }}
+            <label for="{{ $field_name }}" class="form-label">
+                {{ $field_lable }}
+            </label>
+            {!! field_required($required) !!}
+
+            <input
+                type="text"
+                name="{{ $field_name }}"
+                id="{{ $field_name }}"
+                class="form-control"
+                placeholder="{{ $field_placeholder }}"
+                value="{{ old($field_name, $data->$field_name ?? '') }}"
+            >
         </div>
     </div>
+
     <div class="col-12 col-sm-4 mb-3">
         <div class="form-group">
-            <?php
-            $field_name = "meta_description";
-            $field_lable = label_case($field_name);
-            $field_placeholder = $field_lable;
-            $required = "";
-            ?>
+            @php
+                $field_name = "meta_description";
+                $field_lable = label_case($field_name);
+                $field_placeholder = $field_lable;
+                $required = "";
+            @endphp
 
-            {{ html()->label($field_lable, $field_name)->class("form-label") }} {!! field_required($required) !!}
-            {{ html()->text($field_name)->placeholder($field_placeholder)->class("form-control")->attributes(["$required"]) }}
+            <label for="{{ $field_name }}" class="form-label">
+                {{ $field_lable }}
+            </label>
+            {!! field_required($required) !!}
+
+            <input
+                type="text"
+                name="{{ $field_name }}"
+                id="{{ $field_name }}"
+                class="form-control"
+                placeholder="{{ $field_placeholder }}"
+                value="{{ old($field_name, $data->$field_name ?? '') }}"
+            >
         </div>
     </div>
 </div>
@@ -147,16 +243,35 @@
 <div class="row mb-3">
     <div class="col-12 col-sm-4">
         <div class="form-group">
-            <?php
-            $field_name = "status";
-            $field_lable = label_case($field_name);
-            $field_placeholder = "-- Select an option --";
-            $required = "required";
-            $select_options = \Modules\Category\Enums\CategoryStatus::toArray();
-            ?>
+            @php
+                $field_name = "status";
+                $field_lable = label_case($field_name);
+                $required = "required";
+                $select_options = \Modules\Category\Enums\CategoryStatus::toArray();
+            @endphp
 
-            {{ html()->label($field_lable, $field_name)->class("form-label") }} {!! field_required($required) !!}
-            {{ html()->select($field_name, $select_options)->class("form-select")->attributes(["$required"]) }}
+            <label for="{{ $field_name }}" class="form-label">
+                {{ $field_lable }}
+            </label>
+            {!! field_required($required) !!}
+
+            <select
+                name="{{ $field_name }}"
+                id="{{ $field_name }}"
+                class="form-select"
+                {{ $required }}
+            >
+                <option value="">-- Select an option --</option>
+
+                @foreach ($select_options as $key => $value)
+                    <option
+                        value="{{ $key }}"
+                        {{ old($field_name, $data->$field_name ?? '') == $key ? 'selected' : '' }}
+                    >
+                        {{ $value }}
+                    </option>
+                @endforeach
+            </select>
         </div>
     </div>
 </div>

@@ -86,6 +86,10 @@
         </button>
     </div>
 
+    <div class="text-center mb-3">
+        <a href="{{ route('student.login.otp.request') }}" class="portal-link text-decoration-none fs-13">{{ __('Sign in with Email or SMS OTP') }}</a>
+    </div>
+
     <div class="text-center">
         <a href="{{ route('admin.login') }}" class="portal-link text-decoration-none fs-13">
             <i class="ti ti-arrow-left me-1"></i>Back to Admin Login

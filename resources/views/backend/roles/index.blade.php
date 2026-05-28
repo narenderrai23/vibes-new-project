@@ -1,10 +1,10 @@
-@extends("backend.layouts.app-new")
+@extends('backend.layouts.app')
 
-@section("title")
+@section('title')
     {{ __($module_action) }} {{ __($module_title) }}
 @endsection
 
-@section("breadcrumbs")
+@section('breadcrumbs')
     <x-backend.breadcrumbs>
         <x-backend.breadcrumb-item type="active" icon="{{ $module_icon }}">
             {{ __($module_title) }}
@@ -12,22 +12,19 @@
     </x-backend.breadcrumbs>
 @endsection
 
-@section("content")
+@section('content')
     <div class="card">
-        <div class="card-body">
-            <x-backend.section-header>
-                <i class="{{ $module_icon }}"></i>
-                {{ __($module_title) }}
-                <small class="text-muted">{{ __($module_action) }}</small>
+        <x-backend.section-header>
+            <i class="{{ $module_icon }}"></i>
+            {{ __($module_title) }}
+            <small class="text-muted">{{ __($module_action) }}</small>
 
-                <x-slot name="toolbar">
-                    <x-backend.buttons.create
-                        title="{{ __('Create') }} {{ ucwords(Str::singular($module_name)) }}"
-                        route='{{ route("backend.$module_name.create") }}'
-                        :small="true"
-                    />
-                </x-slot>
-            </x-backend.section-header>
+            <x-slot name="toolbar">
+                <x-backend.buttons.create title="{{ __('Create') }} {{ ucwords(Str::singular($module_name)) }}"
+                    route='{{ route("backend.$module_name.create") }}' :small="true" />
+            </x-slot>
+        </x-backend.section-header>
+        <div class="card-body">
 
             <div class="row">
                 <div class="col">
@@ -38,7 +35,7 @@
                                     <th>{{ __("labels.backend.$module_name.fields.name") }}</th>
                                     <th>{{ __("labels.backend.$module_name.fields.permissions") }}</th>
                                     <th>{{ __("labels.backend.$module_name.fields.users_count") }}</th>
-                                    <th>{{ __("labels.backend.action") }}</th>
+                                    <th>{{ __('labels.backend.action') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -62,19 +59,15 @@
                                             </span>
                                         </td>
                                         <td class="text-end">
-                                            @can("edit_" . $module_name)
+                                            @can('edit_' . $module_name)
                                                 <x-backend.buttons.edit
                                                     title="{{ __('Edit') }} {{ ucwords(Str::singular($module_name)) }}"
-                                                    route='{!! route("backend.$module_name.edit", $module_name_singular) !!}'
-                                                    small="true"
-                                                />
+                                                    route='{!! route("backend.$module_name.edit", $module_name_singular) !!}' small="true" />
                                             @endcan
 
                                             <x-backend.buttons.show
                                                 title="{{ __('Show') }} {{ ucwords(Str::singular($module_name)) }}"
-                                                route='{!! route("backend.$module_name.show", $module_name_singular) !!}'
-                                                small="true"
-                                            />
+                                                route='{!! route("backend.$module_name.show", $module_name_singular) !!}' small="true" />
                                         </td>
                                     </tr>
                                 @endforeach
@@ -87,7 +80,7 @@
         <div class="card-footer">
             <div class="row">
                 <div class="col-12 mt-2">
-                    {{ $$module_name->links("pagination::bootstrap-5") }}
+                    {{ $$module_name->links('pagination::bootstrap-5') }}
                 </div>
             </div>
         </div>

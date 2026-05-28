@@ -11,6 +11,8 @@ use Spatie\Backup\Tasks\Cleanup\Strategies\DefaultStrategy;
 use Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumAgeInDays;
 use Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumStorageInMegabytes;
 
+$backupNotificationChannels = env('BACKUP_NOTIFICATIONS_ENABLED', false) ? ['mail'] : [];
+
 return [
 
     'backup' => [
@@ -204,12 +206,12 @@ return [
     'notifications' => [
 
         'notifications' => [
-            BackupHasFailedNotification::class => ['mail'],
-            UnhealthyBackupWasFoundNotification::class => ['mail'],
-            CleanupHasFailedNotification::class => ['mail'],
-            BackupWasSuccessfulNotification::class => ['mail'],
-            HealthyBackupWasFoundNotification::class => ['mail'],
-            CleanupWasSuccessfulNotification::class => ['mail'],
+            BackupHasFailedNotification::class => $backupNotificationChannels,
+            UnhealthyBackupWasFoundNotification::class => $backupNotificationChannels,
+            CleanupHasFailedNotification::class => $backupNotificationChannels,
+            BackupWasSuccessfulNotification::class => $backupNotificationChannels,
+            HealthyBackupWasFoundNotification::class => $backupNotificationChannels,
+            CleanupWasSuccessfulNotification::class => $backupNotificationChannels,
         ],
 
         /*

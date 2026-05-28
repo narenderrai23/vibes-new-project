@@ -1,4 +1,4 @@
-@extends('backend.layouts.app-new')
+@extends('backend.layouts.app')
 
 @section('content')
 @php $user = Auth::guard('web')->user(); @endphp

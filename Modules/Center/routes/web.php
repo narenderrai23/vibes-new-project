@@ -17,22 +17,6 @@ Route::prefix('center')->name('center.')->middleware(['web', 'auth.guard:center'
 });
 
 /*
- * Frontend Routes
- */
-Route::group([
-    'namespace'  => '\Modules\Center\Http\Controllers\Frontend',
-    'as'         => 'frontend.',
-    'middleware' => 'web',
-    'prefix'     => '',
-], function () {
-
-    $module_name     = 'centers';
-    $controller_name = 'CentersController';
-    Route::get("$module_name",              ['as' => "$module_name.index", 'uses' => "$controller_name@index"]);
-    Route::get("$module_name/{id}/{slug?}", ['as' => "$module_name.show",  'uses' => "$controller_name@show"]);
-});
-
-/*
  * Backend Routes
  */
 Route::group([

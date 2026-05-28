@@ -45,17 +45,17 @@
     <td class="text-center">
         <div class="btn-group btn-group-sm" role="group">
             <a href="{{ route('backend.menuitems.show', $item->id) }}" class="btn btn-outline-primary btn-sm" title="View">
-                <i class="fas fa-eye"></i>
+                <i class="ti ti-eye"></i>
             </a>
             <a href="{{ route('backend.menuitems.edit', $item->id) }}" class="btn btn-outline-warning btn-sm" title="Edit">
-                <i class="fas fa-edit"></i>
+                <i class="ti ti-pencil"></i>
             </a>
             @if($item->children->count() == 0)
                 <form method="POST" action="{{ route('backend.menuitems.destroy', $item->id) }}" class="d-inline">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-outline-danger btn-sm" title="Delete" onclick="return confirm('Are you sure you want to delete this menu item?')">
-                        <i class="fas fa-trash"></i>
+                        <i class="ti ti-trash"></i>
                     </button>
                 </form>
             @endif

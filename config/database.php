@@ -59,7 +59,6 @@ return [
             ]) : [],
             'dump' => [
                 'dump_binary_path' => env('MYSQL_DUMP_BINARY_PATH', ''),
-                'add_extra_option' => '--protocol=TCP',
             ],
         ],
 

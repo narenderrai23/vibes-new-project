@@ -192,9 +192,9 @@
                             <dt class="col-sm-5">Visible:</dt>
                             <dd class="col-sm-7">
                                 @if($$module_name_singular->is_visible)
-                                    <span class="badge bg-success"><i class="fas fa-eye"></i> Yes</span>
+                                    <span class="badge bg-success"><i class="ti ti-eye"></i> Yes</span>
                                 @else
-                                    <span class="badge bg-danger"><i class="fas fa-eye-slash"></i> No</span>
+                                    <span class="badge bg-danger"><i class="ti ti-eye-off"></i> No</span>
                                 @endif
                             </dd>
 
@@ -300,10 +300,10 @@
                                         </td>
                                         <td>
                                             <a href="{{ route('backend.menuitems.show', $child) }}" class="btn btn-sm btn-primary">
-                                                <i class="fas fa-eye"></i>
+                                                <i class="ti ti-eye"></i>
                                             </a>
                                             <a href="{{ route('backend.menuitems.edit', $child) }}" class="btn btn-sm btn-warning">
-                                                <i class="fas fa-edit"></i>
+                                                <i class="ti ti-pencil"></i>
                                             </a>
                                         </td>
                                     </tr>

@@ -2,6 +2,8 @@
 
 namespace Modules\Trainer\Http\Controllers\Auth;
 
+use App\Http\Controllers\Auth\Concerns\HandlesOtpLogin;
+use App\Support\PanelRedirector;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -11,9 +13,12 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
+use Modules\Trainer\Models\Trainer;
 
 class LoginController extends Controller
 {
+    use HandlesOtpLogin;
+
     protected string $guard = 'trainer';
 
     public function create(): View
@@ -44,7 +49,7 @@ class LoginController extends Controller
         RateLimiter::clear($this->throttleKey($request));
         $request->session()->regenerate();
 
-        return redirect()->intended(route('trainer.dashboard'));
+        return redirect()->intended(app(PanelRedirector::class)->dashboardUrlForGuard($this->guard));
     }
 
     protected function ensureIsNotRateLimited(Request $request): void
@@ -68,5 +73,20 @@ class LoginController extends Controller
     protected function throttleKey(Request $request): string
     {
         return Str::transliterate('trainer|' . Str::lower($request->string('email')) . '|' . $request->ip());
+    }
+
+    protected function findUserByEmail(string $email): ?Trainer
+    {
+        return Trainer::where('email', $email)->first();
+    }
+
+    protected function getRouteNamePrefix(): string
+    {
+        return 'trainer';
+    }
+
+    protected function getAuthViewPrefix(): string
+    {
+        return 'auth.';
     }
 }

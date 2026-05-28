@@ -36,7 +36,7 @@
                     <x-backend.buttons.create 
                         route="{{ route('backend.menuitems.create', ['menu_id' => ${$module_name_singular}->id]) }}"
                         title="{{ __('menu::text.add_menu_item') }}"
-                        icon="fas fa-plus-circle"
+                        icon="ti ti-plus"
                         small="true"
                     />
                     <x-backend.buttons.edit route='{!!route("backend.$module_name.edit", ${$module_name_singular})!!}' title="{{__('Edit')}} {{ $module_title }}" small="true" />
@@ -118,7 +118,7 @@
                     <x-backend.buttons.create 
                         route="{{ route('backend.menuitems.create', ['menu_id' => ${$module_name_singular}->id]) }}"
                         title="{{ __('menu::text.add_item') }}"
-                        icon="fas fa-plus-circle"
+                        icon="ti ti-plus"
                         small="true"
                     />
                 </div>

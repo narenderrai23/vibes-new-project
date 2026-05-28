@@ -14,14 +14,6 @@ $notifications_latest = optional($notifications)->take(5);
         >
             <i class="ti ti-list"></i>
         </button>
-        <ul class="header-nav d-none d-lg-flex">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route("home") }}" target="_blank">
-                    {{ app_name() }}&nbsp;
-                    <i class="ti ti-external-link"></i>
-                </a>
-            </li>
-        </ul>
         <ul class="header-nav ms-auto">
             <li class="nav-item dropdown">
                 <button

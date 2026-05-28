@@ -25,9 +25,13 @@ class CenterFactory extends Factory
     public function definition()
     {
         return [
+            'code'              => $this->faker->unique()->bothify('CTR-###'),
             'name'              => $this->faker->unique()->words(2, true),
-            'slug'              => '',
-            'description'       => $this->faker->paragraph,
+            'mobile'            => $this->faker->phoneNumber,
+            'email'             => $this->faker->safeEmail,
+            'address'           => $this->faker->address,
+            'city'              => $this->faker->city,
+            'gst_no'            => $this->faker->bothify('??######'),
             'status'            => 1,
             'created_at'        => Carbon::now(),
             'updated_at'        => Carbon::now(),

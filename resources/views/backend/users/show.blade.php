@@ -1,4 +1,4 @@
-@extends("backend.layouts.app-new")
+@extends('backend.layouts.app')
 
 @section("title")
     {{ $$module_name_singular->name }} - {{ $$module_name_singular->username }} - {{ __($module_action) }}
