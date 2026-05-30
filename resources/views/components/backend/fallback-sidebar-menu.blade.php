@@ -42,7 +42,7 @@
     $notifications_count = optional($notifications)->count();
 @endphp
 
-<ul class="sidebar-nav" data-coreui="navigation" data-simplebar>
+<ul class="sidebar-nav" data-simplebar>
     @if ($fallbackMenuItems->isNotEmpty())
         @foreach ($fallbackMenuItems as $item)
             @if ($item['type'] === 'divider')

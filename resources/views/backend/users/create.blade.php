@@ -5,7 +5,8 @@
 @endsection
 
 @section("breadcrumbs")
-    <x-backend.breadcrumbs>
+    <x-backend.breadcrumbs :title="__($module_title)">
+        <x-backend.breadcrumb-item route="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</x-backend.breadcrumb-item>
 
         <x-backend.breadcrumb-item
             route='{{ route("backend.$module_name.index") }}'

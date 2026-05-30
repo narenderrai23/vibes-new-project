@@ -30,7 +30,7 @@ class CategoriesController extends Controller
         $this->module_path = 'category::frontend';
 
         // module icon
-        $this->module_icon = 'fa-regular fa-sun';
+        $this->module_icon = 'ti ti-sun';
 
         // module model name, path
         $this->module_model = 'Modules\\Category\\Models\\Category';

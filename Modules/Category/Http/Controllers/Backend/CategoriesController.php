@@ -25,7 +25,7 @@ class CategoriesController extends BackendBaseController
         $this->module_path = 'category::backend';
 
         // module icon
-        $this->module_icon = 'fa-solid fa-diagram-project';
+        $this->module_icon = 'ti ti-sitemap';
 
         // module model name, path
         $this->module_model = 'Modules\\Category\\Models\\Category';

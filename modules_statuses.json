@@ -6,5 +6,6 @@
     "Center": true,
     "Auth": true,
     "Student": true,
-    "Trainer": true
+    "Trainer": true,
+    "Course": true
 }

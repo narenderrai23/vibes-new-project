@@ -26,7 +26,7 @@
             <span class="text-muted">-</span>
         @endif
         @if($item->opens_new_tab)
-            <i class="fas fa-external-link-alt text-muted ms-1" title="Opens in new tab"></i>
+            <i class="ti ti-external-link text-muted ms-1" title="Opens in new tab"></i>
         @endif
     </td>
     <td>

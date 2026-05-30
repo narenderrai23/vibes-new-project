@@ -2,7 +2,7 @@
     {{-- Validation Summary --}}
     @if ($errors->any())
         <div class="alert alert-danger">
-            <h6><i class="fas fa-exclamation-triangle"></i> Please fix the following errors:</h6>
+            <h6><i class="ti ti-alert-triangle"></i> Please fix the following errors:</h6>
             <ul class="mb-0">
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -14,7 +14,7 @@
     {{-- General Errors --}}
     @error('general')
         <div class="alert alert-danger">
-            <i class="fas fa-exclamation-triangle"></i> {{ $message }}
+            <i class="ti ti-alert-triangle"></i> {{ $message }}
         </div>
     @enderror
 
@@ -122,7 +122,7 @@
                 <div class="input-group">
                     <input type="text" wire:model="slug" class="form-control" placeholder="e.g., home, about-us, contact" />
                     <button type="button" wire:click="generateSlug" class="btn btn-outline-secondary" title="Generate from name">
-                        <i class="fas fa-magic"></i>
+                        <i class="ti ti-wand"></i>
                     </button>
                 </div>
                 @error("slug")
@@ -222,7 +222,7 @@
         <div class="col-sm-3 col-12 mb-3">
             <div class="form-group">
                 <label for="icon" class="form-label">Icon Class</label>
-                <input type="text" wire:model="icon" class="form-control" placeholder="e.g., fas fa-home" />
+                <input type="text" wire:model="icon" class="form-control" placeholder="e.g., ti ti-home" />
                 <small class="form-text text-muted">FontAwesome or similar icon class</small>
                 @error("icon")
                     <span class="text-danger">{{ $message }}</span>
@@ -463,18 +463,18 @@
                 wire:loading.attr="disabled"
             >
                 <span wire:loading.remove>
-                    <i class="fas {{ $menuItem ? "fa-save" : "fa-plus-circle" }}"></i>
+                    <i class="ti {{ $menuItem ? "ti-device-floppy" : "ti-circle-plus" }}"></i>
                     {{ $menuItem ? "Update" : "Create" }} Menu Item
                 </span>
                 <span wire:loading>
-                    <i class="fas fa-spinner fa-spin"></i>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     Saving...
                 </span>
             </button>
             
             @if(!$menuItem)
                 <button type="button" wire:click="resetForm" class="btn btn-outline-secondary ms-2">
-                    <i class="fas fa-undo"></i> Reset Form
+                    <i class="ti ti-arrow-back-up"></i> Reset Form
                 </button>
             @endif
             
@@ -488,12 +488,12 @@
             <div class="float-end">
                 @if($menu_id)
                     <a href="{{ route('backend.menus.show', $menu_id) }}" class="btn btn-secondary">
-                        <i class="fas fa-times-circle"></i>
+                        <i class="ti ti-circle-x"></i>
                         Cancel
                     </a>
                 @else
                     <a href="{{ route('backend.menuitems.index') }}" class="btn btn-secondary">
-                        <i class="fas fa-times-circle"></i>
+                        <i class="ti ti-circle-x"></i>
                         Cancel
                     </a>
                 @endif

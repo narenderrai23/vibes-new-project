@@ -3,7 +3,8 @@
 @section('title') {{ __($module_action) }} {{ __($module_title) }} @endsection
 
 @section('breadcrumbs')
-<x-backend.breadcrumbs>
+<x-backend.breadcrumbs :title="__($module_title)">
+    <x-backend.breadcrumb-item route="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</x-backend.breadcrumb-item>
     <x-backend.breadcrumb-item route='{{route("backend.$module_name.index")}}' icon='{{ $module_icon }}'>
         {{ __($module_title) }}
     </x-backend.breadcrumb-item>
@@ -13,39 +14,30 @@
 
 @section('content')
 <div class="card">
+    <x-backend.section-header>
+        <i class="{{ $module_icon }}"></i>
+        {{ __($module_title) }} "{{ ${$module_name_singular}->name }}"
+        <small class="text-muted">{{ __($module_action) }}</small>
+
+        <x-slot name="toolbar">
+            <x-backend.buttons.return-back />
+            <x-backend.buttons.list
+                route="{{ route("backend.$module_name.index") }}"
+                title="{{ __('menu::text.menu_list') }}"
+                icon="ti ti-list"
+                small="true"
+            />
+            <x-backend.buttons.create
+                route="{{ route('backend.menuitems.create', ['menu_id' => ${$module_name_singular}->id]) }}"
+                title="{{ __('menu::text.add_menu_item') }}"
+                icon="ti ti-plus"
+                small="true"
+            />
+            <x-backend.buttons.edit route='{!!route("backend.$module_name.edit", ${$module_name_singular})!!}' title="{{__('Edit')}} {{ $module_title }}" small="true" />
+        </x-slot>
+    </x-backend.section-header>
+
     <div class="card-body">
-        <div class="row">
-            <div class="col-8">
-                <h4 class="card-title mb-0">
-                    <i class="{{ $module_icon }}"></i> {{ __($module_title) }} "{{ ${$module_name_singular}->name }}"
-                    <small class="text-muted">{{ __($module_action) }}</small>
-                </h4>
-                <div class="small text-muted">
-                    {{ __('menu::text.updated_at') }} {{ ${$module_name_singular}->updated_at->diffForHumans() }}
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="btn-toolbar float-end" role="toolbar" aria-label="Toolbar with button groups">
-                    <x-backend.buttons.return-back />
-                    <x-backend.buttons.list 
-                        route="{{ route("backend.$module_name.index") }}"
-                        title="{{ __('menu::text.menu_list') }}"
-                        icon="fas fa-list"
-                        small="true"
-                    />
-                    <x-backend.buttons.create 
-                        route="{{ route('backend.menuitems.create', ['menu_id' => ${$module_name_singular}->id]) }}"
-                        title="{{ __('menu::text.add_menu_item') }}"
-                        icon="ti ti-plus"
-                        small="true"
-                    />
-                    <x-backend.buttons.edit route='{!!route("backend.$module_name.edit", ${$module_name_singular})!!}' title="{{__('Edit')}} {{ $module_title }}" small="true" />
-                </div>
-            </div>
-        </div>
-
-        <hr>
-
         <div class="row mt-4">
             <div class="col-12 col-sm-6">
                 <div class="form-group mb-3">
@@ -112,7 +104,7 @@
             <div class="col-12">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h5 class="mb-0">
-                        <i class="fas fa-list"></i> {{ __('menu::text.menu_items') }}
+                        <i class="ti ti-list"></i> {{ __('menu::text.menu_items') }}
                         <span class="badge bg-primary">{{ ${$module_name_singular}->allItems->count() }}</span>
                     </h5>
                     <x-backend.buttons.create 
@@ -145,7 +137,7 @@
                     </div>
                 @else
                     <div class="alert alert-info">
-                        <i class="fas fa-info-circle"></i>
+                        <i class="ti ti-info-circle"></i>
                         {{ __('menu::text.no_menu_items') }}
                         <a href="{{ route('backend.menuitems.create', ['menu_id' => ${$module_name_singular}->id]) }}" class="alert-link">
                             {{ __('menu::text.add_first_item') }}

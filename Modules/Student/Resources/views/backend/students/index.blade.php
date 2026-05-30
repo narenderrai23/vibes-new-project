@@ -5,7 +5,8 @@
 @endsection
 
 @section('breadcrumbs')
-    <x-backend.breadcrumbs>
+    <x-backend.breadcrumbs :title="__($module_title)">
+        <x-backend.breadcrumb-item route="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</x-backend.breadcrumb-item>
         <x-backend.breadcrumb-item type="active"
             icon='{{ $module_icon }}'>{{ __($module_title) }}</x-backend.breadcrumb-item>
     </x-backend.breadcrumbs>
@@ -14,7 +15,19 @@
 @section('content')
     <div class="card">
 
-        <x-backend.section-header :module_name="$module_name" :module_title="$module_title" :module_icon="$module_icon" :module_action="$module_action" />
+        <x-backend.section-header>
+            <i class="{{ $module_icon }}"></i>
+            {{ __($module_title) }}
+            <small class="text-muted">{{ __($module_action) }}</small>
+
+            <x-slot name="toolbar">
+                <x-backend.buttons.return-back :small="true" />
+                @can('add_' . $module_name)
+                    <x-backend.buttons.create route='{{ route("backend.$module_name.create") }}'
+                        title="{{ __(ucwords(Str::singular($module_name))) }} {{ __('Create') }}" :small="true" />
+                @endcan
+            </x-slot>
+        </x-backend.section-header>
         <div class="card-body">
 
             <div class="row mt-4">
@@ -66,11 +79,11 @@
                                         <a href='{!! route("backend.$module_name.edit", $module_name_singular) !!}' class='btn btn-sm btn-primary mt-1'
                                             data-toggle="tooltip"
                                             title="Edit {{ ucwords(Str::singular($module_name)) }}"><i
-                                                class="fas fa-wrench"></i></a>
+                                                class="ti ti-tool"></i></a>
                                         <a href='{!! route("backend.$module_name.show", $module_name_singular) !!}' class='btn btn-sm btn-success mt-1'
                                             data-toggle="tooltip"
                                             title="Show {{ ucwords(Str::singular($module_name)) }}"><i
-                                                class="fas fa-tv"></i></a>
+                                                class="ti ti-device-desktop"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -158,6 +158,47 @@ function sidebar1Open(string ...$patterns): bool
                         </li>
                         @endcan
 
+                        {{-- People (Students / Trainers) --}}
+                        @can('view_backend')
+                        <li class="submenu {{ sidebar1Open('backend.students.*', 'backend.trainers.*') ? 'active' : '' }}">
+                            <a href="javascript:void(0);">
+                                <i class="ti ti-users-group"></i>
+                                <span>{{ __('People') }}</span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul>
+                                <li class="{{ sidebar1Active('backend.students.*') ? 'active' : '' }}">
+                                    <a href="{{ route('backend.students.index') }}">
+                                        <i class="ti ti-user"></i>{{ __('Students') }}
+                                    </a>
+                                </li>
+                                <li class="{{ sidebar1Active('backend.trainers.*') ? 'active' : '' }}">
+                                    <a href="{{ route('backend.trainers.index') }}">
+                                        <i class="ti ti-chalkboard"></i>{{ __('Trainers') }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        @endcan
+
+                        {{-- Academy (Courses) --}}
+                        @can('view_backend')
+                        <li class="submenu {{ sidebar1Open('backend.courses.*') ? 'active' : '' }}">
+                            <a href="javascript:void(0);">
+                                <i class="ti ti-school"></i>
+                                <span>{{ __('Academy') }}</span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul>
+                                <li class="{{ sidebar1Active('backend.courses.*') ? 'active' : '' }}">
+                                    <a href="{{ route('backend.courses.index') }}">
+                                        <i class="ti ti-book"></i>{{ __('Courses') }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        @endcan
+
                         {{-- Users & Roles --}}
                         @can('view_users')
                         <li class="submenu {{ sidebar1Open('backend.users.*', 'backend.roles.*') ? 'active' : '' }}">

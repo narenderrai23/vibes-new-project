@@ -283,7 +283,7 @@ if (! function_exists('icon')) {
     /**
      * A short and easy way to show icon fonts.
      */
-    function icon(string $string = 'fa-regular fa-circle-check'): string
+    function icon(string $string = 'ti ti-circle-check'): string
     {
         return "<i class='".$string."'></i>&nbsp;";
     }

@@ -8,6 +8,7 @@ use App\Traits\AutoDiscoverModuleSeeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
 use Modules\Center\database\seeders\CenterDatabaseSeeder;
+use Modules\Course\database\seeders\CourseDatabaseSeeder;
 use Modules\Student\database\seeders\StudentDatabaseSeeder;
 use Modules\Trainer\database\seeders\TrainerDatabaseSeeder;
 
@@ -35,6 +36,9 @@ class DatabaseSeeder extends Seeder
 
         // Seed Center module data
         $this->call(CenterDatabaseSeeder::class);
+
+        // Seed course catalogue
+        $this->call(CourseDatabaseSeeder::class);
 
         // Seed portal login accounts and sample data
         $this->call(StudentDatabaseSeeder::class);

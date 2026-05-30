@@ -11,7 +11,7 @@
             <div class="card shadow-sm">
                 <div class="card-header bg-warning text-dark">
                     <h5 class="mb-0">
-                        <i class="fa-solid fa-building me-2"></i>Center Dashboard
+                        <i class="ti ti-building me-2"></i>Center Dashboard
                     </h5>
                 </div>
                 <div class="card-body">

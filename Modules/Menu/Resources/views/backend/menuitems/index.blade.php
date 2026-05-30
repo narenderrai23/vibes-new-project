@@ -3,33 +3,25 @@
 @section('title') {{ __($module_action) }} {{ __($module_title) }} @endsection
 
 @section('breadcrumbs')
-<x-backend.breadcrumbs>
+<x-backend.breadcrumbs :title="__($module_title)">
+    <x-backend.breadcrumb-item route="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</x-backend.breadcrumb-item>
     <x-backend.breadcrumb-item type="active" icon='{{ $module_icon }}'>{{ __($module_title) }}</x-backend.breadcrumb-item>
 </x-backend.breadcrumbs>
 @endsection
 
 @section('content')
 <div class="card">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-8">
-                <h4 class="card-title mb-0">
-                    <i class="{{ $module_icon }}"></i> {{ __($module_title) }} <small class="text-muted">{{ __($module_action) }}</small>
-                </h4>
-                <div class="small text-muted">
-                    {{ __($module_name) }} Management Dashboard
-                </div>
-            </div>
-            <!--/.col-->
-            <div class="col-4">
-                <div class="btn-toolbar float-end" role="toolbar" aria-label="Toolbar with button groups">
-                    <a href="{{ route('backend.menuitems.create') }}" class="btn btn-success btn-sm ms-1" data-toggle="tooltip" title="{{ __($module_action) }} {{ __($module_title) }}"><i class="ti ti-plus"></i> New Menu Item</a>
-                </div>
-            </div>
-            <!--/.col-->
-        </div>
-        <!--/.row-->
+    <x-backend.section-header>
+        <i class="{{ $module_icon }}"></i>
+        {{ __($module_title) }}
+        <small class="text-muted">{{ __($module_action) }}</small>
 
+        <x-slot name="toolbar">
+            <a href="{{ route('backend.menuitems.create') }}" class="btn btn-success btn-sm ms-1" data-toggle="tooltip" title="{{ __($module_action) }} {{ __($module_title) }}"><i class="ti ti-plus"></i> New Menu Item</a>
+        </x-slot>
+    </x-backend.section-header>
+
+    <div class="card-body">
         <div class="row mt-4">
             <div class="col">
                 <div class="table-responsive">
@@ -63,7 +55,7 @@
             </div>
             <div class="col-5">
                 <div class="float-end">
-                    <a href="{{ route('backend.menus.index') }}" class="btn btn-warning btn-sm ms-1" data-toggle="tooltip" title="Manage Menus"><i class="fas fa-list"></i> Manage Menus</a>
+                    <a href="{{ route('backend.menus.index') }}" class="btn btn-warning btn-sm ms-1" data-toggle="tooltip" title="Manage Menus"><i class="ti ti-list"></i> Manage Menus</a>
                 </div>
             </div>
         </div>
@@ -137,7 +129,7 @@
                     if (row.route_name) {
                         return '<code>' + row.route_name + '</code>';
                     } else if (row.url) {
-                        return '<a href="' + row.url + '" target="_blank" class="text-decoration-none">' + row.url + ' <i class="fas fa-external-link-alt"></i></a>';
+                        return '<a href="' + row.url + '" target="_blank" class="text-decoration-none">' + row.url + ' <i class="ti ti-external-link"></i></a>';
                     }
                     return '<span class="text-muted">N/A</span>';
                 },

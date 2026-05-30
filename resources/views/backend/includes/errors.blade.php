@@ -9,6 +9,6 @@
                 <li>{{ $error }}</li>
             @endforeach
         </ul>
-        <button class="btn-close" data-coreui-dismiss="alert" type="button" aria-label="Close"></button>
+        <button class="btn-close" data-bs-dismiss="alert" type="button" aria-label="Close"></button>
     </div>
 @endif

@@ -59,7 +59,7 @@
 @endphp
 
 @if ($hasChildren)
-    <li class="nav-group" @if ($isActive) data-coreui-show="true" @endif>
+    <li class="nav-group @if ($isActive) show @endif">
         <a class="nav-link nav-group-toggle" href="#">
             <i class="nav-icon {{ $icon }}" aria-hidden="true"></i>
             &nbsp;{{ $text }}

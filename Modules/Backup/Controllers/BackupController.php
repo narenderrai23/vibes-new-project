@@ -41,7 +41,7 @@ class BackupController extends Controller
         $this->module_path = 'backups';
 
         // module icon
-        $this->module_icon = 'fas fa-archive';
+        $this->module_icon = 'ti ti-archive';
     }
 
     /**

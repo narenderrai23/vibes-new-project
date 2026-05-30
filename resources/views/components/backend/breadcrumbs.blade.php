@@ -3,9 +3,9 @@
     <div class="my-auto mb-2">
 
         {{-- Page Title --}}
-        @isset($title)
+        @if (!empty(trim($title ?? '')))
             <h2 class="mb-1">{!! $title !!}</h2>
-        @endisset
+        @endif
 
         {{-- Breadcrumb --}}
         <nav>

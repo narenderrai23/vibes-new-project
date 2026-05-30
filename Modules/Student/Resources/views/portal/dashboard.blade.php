@@ -11,7 +11,7 @@
             <div class="card shadow-sm">
                 <div class="card-header bg-primary text-white">
                     <h5 class="mb-0">
-                        <i class="fa-solid fa-graduation-cap me-2"></i>Student Dashboard
+                        <i class="ti ti-school me-2"></i>Student Dashboard
                     </h5>
                 </div>
                 <div class="card-body">

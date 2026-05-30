@@ -5,7 +5,9 @@
 @endsection
 
 @section("breadcrumbs")
-    <x-backend.breadcrumbs />
+    <x-backend.breadcrumbs :title="__('Dashboard')">
+        <x-backend.breadcrumb-item type="active">{{ __('Dashboard') }}</x-backend.breadcrumb-item>
+    </x-backend.breadcrumbs>
 @endsection
 
 @section("content")

@@ -46,7 +46,7 @@
             {!! $icon !!}&nbsp;{!! $message['message'] !!}
 
             @if ($message['important'])
-                <button class="btn-close" data-coreui-dismiss="alert" type="button" aria-label="Close"></button>
+                <button class="btn-close" data-bs-dismiss="alert" type="button" aria-label="Close"></button>
             @endif
         </div>
     @endif

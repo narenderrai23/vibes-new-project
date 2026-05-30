@@ -46,6 +46,19 @@ class Student extends Authenticatable
         ];
     }
 
+    /**
+     * Status label as an HTML badge (for datatables / show pages).
+     */
+    public function getStatusLabelAttribute(): string
+    {
+        return match ((int) ($this->attributes['status'] ?? -1)) {
+            0       => '<span class="badge bg-danger">Inactive</span>',
+            1       => '<span class="badge bg-success">Active</span>',
+            2       => '<span class="badge bg-warning text-dark">Pending</span>',
+            default => '<span class="badge bg-secondary">Unknown</span>',
+        };
+    }
+
     protected static function newFactory()
     {
         return \Modules\Student\database\factories\StudentFactory::new();

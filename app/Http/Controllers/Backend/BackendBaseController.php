@@ -39,7 +39,7 @@ class BackendBaseController extends Controller
         $this->module_path = 'backend';
 
         // module icon
-        $this->module_icon = 'fas fa-tags';
+        $this->module_icon = 'ti ti-tag';
 
         // module model name, path
         $this->module_model = "App\Models\BaseModel";

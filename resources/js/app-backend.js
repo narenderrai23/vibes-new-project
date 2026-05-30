@@ -1,29 +1,9 @@
-// External dependencies (jQuery, CoreUI, SimpleBar, Select2) are loaded via CDN
+// External dependencies (jQuery, Bootstrap, SimpleBar, Select2) are loaded via CDN
 import "/resources/js/laravel.js";
 import "/resources/js/backend-custom.js";
 
-// Initialize sidebar immediately if DOM is ready, or wait for DOMContentLoaded
-function initializeSidebar() {
-    const sidebar = document.querySelector('#sidebar');
-    if (sidebar && window.coreui && window.coreui.Sidebar) {
-        try {
-            // Create sidebar instance if it doesn't exist
-            if (!window.coreui.Sidebar.getInstance(sidebar)) {
-                new window.coreui.Sidebar(sidebar);
-            }
-        } catch (error) {
-            console.warn('Failed to initialize sidebar:', error);
-        }
-    }
-}
-
-// Try to initialize immediately (in case DOM is already loaded)
-initializeSidebar();
-
-// Also initialize on DOMContentLoaded to be safe
+// Initialize Select2 on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
-    initializeSidebar();
-    
     // Initialize Select2
     $('.select2').select2({
         placeholder: '-- Select an option --',
@@ -33,8 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Enable tooltips everywhere
-const tooltipTriggerList = document.querySelectorAll('[data-toggle="tooltip"]')
-const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new coreui.Tooltip(tooltipTriggerEl))
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
 const header = document.querySelector('header.header');
 
@@ -85,9 +65,7 @@ function convertToSlug(source, destination) {
 }
 
 /*!
- * Color mode toggler for CoreUI's docs (https://coreui.io/)
- * Copyright (c) 2024 creativeLabs Łukasz Holeczek
- * Licensed under the Creative Commons Attribution 3.0 Unported License.
+ * Color mode toggler, adapted from Bootstrap's docs (https://getbootstrap.com/)
  */
 
 (() => {
@@ -109,10 +87,8 @@ function convertToSlug(source, destination) {
 
     const setTheme = theme => {
         if (theme === 'auto') {
-            document.documentElement.setAttribute('data-coreui-theme', (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'))
             document.documentElement.setAttribute('data-bs-theme', (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'))
         } else {
-            document.documentElement.setAttribute('data-coreui-theme', theme)
             document.documentElement.setAttribute('data-bs-theme', theme)
         }
     }
@@ -121,10 +97,10 @@ function convertToSlug(source, destination) {
 
     const showActiveTheme = theme => {
         const activeThemeIcon = document.querySelector('.theme-icon-active')
-        const btnToActive = document.querySelector(`[data-coreui-theme-value="${theme}"]`)
+        const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`)
         const svgOfActiveBtn = btnToActive.querySelector('svg.theme-icon')
 
-        document.querySelectorAll('[data-coreui-theme-value]').forEach(element => {
+        document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
             element.classList.remove('active')
         })
 
@@ -142,10 +118,10 @@ function convertToSlug(source, destination) {
     window.addEventListener('DOMContentLoaded', () => {
         showActiveTheme(getPreferredTheme())
 
-        document.querySelectorAll('[data-coreui-theme-value]')
+        document.querySelectorAll('[data-bs-theme-value]')
             .forEach(toggle => {
                 toggle.addEventListener('click', () => {
-                    const theme = toggle.getAttribute('data-coreui-theme-value')
+                    const theme = toggle.getAttribute('data-bs-theme-value')
                     setStoredTheme(theme)
                     setTheme(theme)
                     showActiveTheme(theme)

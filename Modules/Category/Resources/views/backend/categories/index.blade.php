@@ -5,7 +5,8 @@
 @endsection
 
 @section("breadcrumbs")
-    <x-backend.breadcrumbs>
+    <x-backend.breadcrumbs :title="__($module_title)">
+        <x-backend.breadcrumb-item route="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</x-backend.breadcrumb-item>
         <x-backend.breadcrumb-item type="active" icon="{{ $module_icon }}">
             {{ __($module_title) }}
         </x-backend.breadcrumb-item>
@@ -74,7 +75,7 @@
                                                 href="{!! route("backend.$module_name.edit", $module_name_singular) !!}"
                                                 title="Edit {{ ucwords(Str::singular($module_name)) }}"
                                             >
-                                                <i class="fas fa-wrench"></i>
+                                                <i class="ti ti-tool"></i>
                                             </a>
                                             <a
                                                 class="btn btn-sm btn-success mt-1"
@@ -82,7 +83,7 @@
                                                 href="{!! route("backend.$module_name.show", $module_name_singular) !!}"
                                                 title="Show {{ ucwords(Str::singular($module_name)) }}"
                                             >
-                                                <i class="fas fa-tv"></i>
+                                                <i class="ti ti-device-desktop"></i>
                                             </a>
                                         </td>
                                     </tr>

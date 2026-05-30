@@ -11,7 +11,7 @@
             <div class="card shadow-sm">
                 <div class="card-header bg-success text-white">
                     <h5 class="mb-0">
-                        <i class="fa-solid fa-person-chalkboard me-2"></i>Trainer Dashboard
+                        <i class="ti ti-presentation me-2"></i>Trainer Dashboard
                     </h5>
                 </div>
                 <div class="card-body">

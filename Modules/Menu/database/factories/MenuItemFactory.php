@@ -23,7 +23,7 @@ class MenuItemFactory extends Factory
     public function definition(): array
     {
         $types = ['link', 'dropdown', 'divider', 'heading', 'external'];
-        $icons = ['fas fa-home', 'fas fa-user', 'fas fa-cog', 'fas fa-info', 'fas fa-envelope'];
+        $icons = ['ti ti-home', 'ti ti-user', 'ti ti-settings', 'ti ti-info-circle', 'ti ti-mail'];
 
         return [
             'menu_id' => Menu::factory(),

@@ -43,7 +43,7 @@ class RolesController extends Controller
         $this->module_path = 'roles';
 
         // module icon
-        $this->module_icon = 'fa-solid fa-user-shield';
+        $this->module_icon = 'ti ti-shield-lock';
 
         // module model name, path
         $this->module_model = "App\Models\Role";

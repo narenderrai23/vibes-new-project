@@ -21,7 +21,7 @@ class AuthsController extends BackendBaseController
         $this->module_path = 'auth::backend';
 
         // module icon
-        $this->module_icon = 'fa-regular fa-sun';
+        $this->module_icon = 'ti ti-sun';
 
         // module model name, path
         $this->module_model = "Modules\Auth\Models\Auth";

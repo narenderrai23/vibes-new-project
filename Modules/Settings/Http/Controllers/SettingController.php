@@ -32,7 +32,7 @@ class SettingController extends Controller
         $this->module_path = 'settings';
 
         // module icon
-        $this->module_icon = 'fas fa-cogs';
+        $this->module_icon = 'ti ti-settings';
 
         // module model name, path
         $this->module_model = "Modules\Settings\Models\Setting";

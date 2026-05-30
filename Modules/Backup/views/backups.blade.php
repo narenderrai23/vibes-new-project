@@ -5,7 +5,8 @@
 @endsection
 
 @section('breadcrumbs')
-    <x-backend.breadcrumbs>
+    <x-backend.breadcrumbs :title="__($module_title)">
+        <x-backend.breadcrumb-item route="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</x-backend.breadcrumb-item>
         <x-backend.breadcrumb-item route='{{ route("backend.$module_name.index") }}' icon="{{ $module_icon }}">
             {{ __($module_title) }}
         </x-backend.breadcrumb-item>
@@ -77,7 +78,7 @@
                                                 <a href="{{ route("backend.$module_name.download", $backup['file_name']) }}"
                                                     class="btn btn-primary btn-sm m-1" data-toggle="tooltip"
                                                     title="@lang('Download File')">
-                                                    <i class="fas fa-cloud-download-alt"></i>
+                                                    <i class="ti ti-cloud-download"></i>
                                                     &nbsp;
                                                     @lang('Download')
                                                 </a>

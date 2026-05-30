@@ -4,13 +4,14 @@
     {{ __($module_action) }} {{ __($module_title) }}
 @endsection
 
-{{-- @section("breadcrumbs")
-    <x-backend.breadcrumbs>
+@section("breadcrumbs")
+    <x-backend.breadcrumbs :title="__($module_title)">
+        <x-backend.breadcrumb-item route="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</x-backend.breadcrumb-item>
         <x-backend.breadcrumb-item type="active" icon="{{ $module_icon }}">
             {{ __($module_title) }}
         </x-backend.breadcrumb-item>
     </x-backend.breadcrumbs>
-@endsection --}}
+@endsection
 
 @section("content")
     <div class="card mb-4">

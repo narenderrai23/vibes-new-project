@@ -5,7 +5,8 @@
 @endsection
 
 @section('breadcrumbs')
-    <x-backend.breadcrumbs>
+    <x-backend.breadcrumbs :title="__($module_title)">
+        <x-backend.breadcrumb-item route="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</x-backend.breadcrumb-item>
         <x-backend.breadcrumb-item type="active"
             icon='{{ $module_icon }}'>{{ __($module_title) }}</x-backend.breadcrumb-item>
     </x-backend.breadcrumbs>
@@ -18,7 +19,11 @@
             :module_title="$module_title"
             :module_icon="$module_icon"
             :module_action="$module_action"
-        />
+        >
+            <i class="{{ $module_icon }}"></i>
+            {{ __($module_title) }}
+             
+        </x-backend.section-header>
         <div class="card-body p-0">
             <div class="custom-datatable-filter table-responsive">
                 <table id="datatable" class="table table-bordered table-hover table-responsive-sm">

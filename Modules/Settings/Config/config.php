@@ -5,7 +5,7 @@ return [
         'app' => [
             'title' => 'General',
             'desc' => 'All the general settings for application.',
-            'icon' => 'fas fa-cube',
+            'icon' => 'ti ti-box',
 
             'elements' => [
                 [
@@ -86,7 +86,7 @@ return [
         'email' => [
             'title' => 'Email',
             'desc' => 'Email settings for app',
-            'icon' => 'fas fa-envelope',
+            'icon' => 'ti ti-mail',
 
             'elements' => [
                 [
@@ -104,7 +104,7 @@ return [
         'social' => [
             'title' => 'Social Profiles',
             'desc' => 'Link of all the online/social profiles.',
-            'icon' => 'fas fa-users',
+            'icon' => 'ti ti-users',
 
             'elements' => [
                 [
@@ -199,7 +199,7 @@ return [
         'meta' => [
             'title' => 'Meta ',
             'desc' => 'Application Meta Data',
-            'icon' => 'fa-solid fa-earth-asia',
+            'icon' => 'ti ti-world',
 
             'elements' => [
                 [
@@ -270,7 +270,7 @@ return [
         'analytics' => [
             'title' => 'Analytics',
             'desc' => 'Application Analytics',
-            'icon' => 'fas fa-chart-line',
+            'icon' => 'ti ti-chart-line',
 
             'elements' => [
                 [
@@ -289,7 +289,7 @@ return [
         'custom_css' => [
             'title' => 'Custom Code',
             'desc' => 'Custom code area',
-            'icon' => 'fa-solid fa-file-code',
+            'icon' => 'ti ti-file-code',
 
             'elements' => [
                 [

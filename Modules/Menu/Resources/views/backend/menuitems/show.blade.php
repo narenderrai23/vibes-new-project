@@ -3,11 +3,12 @@
 @section('title') {{ __($module_action) }} {{ __($module_title) }} @endsection
 
 @section('breadcrumbs')
-<x-backend.breadcrumbs>
-    <x-backend.breadcrumb-item route='{{ route("backend.menus.index") }}' icon='fa-solid fa-list'>
+<x-backend.breadcrumbs :title="__($module_title)">
+    <x-backend.breadcrumb-item route="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</x-backend.breadcrumb-item>
+    <x-backend.breadcrumb-item route='{{ route("backend.menus.index") }}' icon='ti ti-list'>
         {{ __('Menus') }}
     </x-backend.breadcrumb-item>
-    <x-backend.breadcrumb-item route='{{ route("backend.menus.show", $$module_name_singular->menu_id) }}' icon='fa-solid fa-list'>
+    <x-backend.breadcrumb-item route='{{ route("backend.menus.show", $$module_name_singular->menu_id) }}' icon='ti ti-list'>
         {{ $$module_name_singular->menu->name }}
     </x-backend.breadcrumb-item>
     <x-backend.breadcrumb-item type="active">{{ $$module_name_singular->name }}</x-backend.breadcrumb-item>
@@ -16,32 +17,23 @@
 
 @section('content')
 <div class="card">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-8">
-                <h4 class="card-title mb-0">
-                    <i class="{{ $module_icon }}"></i> {{ __($module_title) }} <small class="text-muted">{{ __($module_action) }}</small>
-                </h4>
-                <div class="small text-muted">
-                    {{ $$module_name_singular->name }}
-                </div>
-            </div>
-            <!--/.col-->
-            <div class="col-4">
-                <div class="btn-toolbar float-end" role="toolbar" aria-label="Toolbar with button groups">
-                    <a href="{{ route('backend.menus.show', $$module_name_singular->menu_id) }}" class="btn btn-secondary btn-sm ms-1" data-toggle="tooltip" title="Back to Menu"><i class="fas fa-arrow-left"></i> Back to Menu</a>
-                    <a href="{{ route('backend.menuitems.edit', $$module_name_singular) }}" class="btn btn-primary btn-sm ms-1" data-toggle="tooltip" title="Edit {{ __($module_title) }}"><i class="fas fa-wrench"></i> Edit</a>
-                </div>
-            </div>
-            <!--/.col-->
-        </div>
-        <!--/.row-->
+    <x-backend.section-header>
+        <i class="{{ $module_icon }}"></i>
+        {{ __($module_title) }}
+        <small class="text-muted">{{ __($module_action) }}</small>
 
+        <x-slot name="toolbar">
+            <a href="{{ route('backend.menus.show', $$module_name_singular->menu_id) }}" class="btn btn-secondary btn-sm ms-1" data-toggle="tooltip" title="Back to Menu"><i class="ti ti-arrow-left"></i> Back to Menu</a>
+            <a href="{{ route('backend.menuitems.edit', $$module_name_singular) }}" class="btn btn-primary btn-sm ms-1" data-toggle="tooltip" title="Edit {{ __($module_title) }}"><i class="ti ti-tool"></i> Edit</a>
+        </x-slot>
+    </x-backend.section-header>
+
+    <div class="card-body">
         <div class="row mt-4">
             <div class="col-12 col-sm-4 mb-3">
                 <div class="card border-primary">
                     <div class="card-header bg-primary text-white">
-                        <i class="fas fa-info-circle"></i> Basic Information
+                        <i class="ti ti-info-circle"></i> Basic Information
                     </div>
                     <div class="card-body">
                         <dl class="row">
@@ -104,7 +96,7 @@
             <div class="col-12 col-sm-4 mb-3">
                 <div class="card border-info">
                     <div class="card-header bg-info text-white">
-                        <i class="fas fa-link"></i> Navigation & Display
+                        <i class="ti ti-link"></i> Navigation & Display
                     </div>
                     <div class="card-body">
                         <dl class="row">
@@ -112,7 +104,7 @@
                             <dt class="col-sm-4">URL:</dt>
                             <dd class="col-sm-8">
                                 <a href="{{ $$module_name_singular->url }}" target="_blank" class="text-decoration-none">
-                                    {{ $$module_name_singular->url }} <i class="fas fa-external-link-alt"></i>
+                                    {{ $$module_name_singular->url }} <i class="ti ti-external-link"></i>
                                 </a>
                             </dd>
                             @endif
@@ -165,7 +157,7 @@
             <div class="col-12 col-sm-4 mb-3">
                 <div class="card border-success">
                     <div class="card-header bg-success text-white">
-                        <i class="fas fa-shield-alt"></i> Status & Security
+                        <i class="ti ti-shield"></i> Status & Security
                     </div>
                     <div class="card-body">
                         <dl class="row">
@@ -183,9 +175,9 @@
                             <dt class="col-sm-5">Active:</dt>
                             <dd class="col-sm-7">
                                 @if($$module_name_singular->is_active)
-                                    <span class="badge bg-success"><i class="fas fa-check"></i> Yes</span>
+                                    <span class="badge bg-success"><i class="ti ti-check"></i> Yes</span>
                                 @else
-                                    <span class="badge bg-danger"><i class="fas fa-times"></i> No</span>
+                                    <span class="badge bg-danger"><i class="ti ti-x"></i> No</span>
                                 @endif
                             </dd>
 
@@ -233,7 +225,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <i class="fas fa-align-left"></i> Descriptions & SEO
+                        <i class="ti ti-align-left"></i> Descriptions & SEO
                     </div>
                     <div class="card-body">
                         <dl class="row">
@@ -260,7 +252,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <i class="fas fa-sitemap"></i> Child Items ({{ $$module_name_singular->children->count() }})
+                        <i class="ti ti-sitemap"></i> Child Items ({{ $$module_name_singular->children->count() }})
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -322,7 +314,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <i class="fas fa-code"></i> Additional Data & Notes
+                        <i class="ti ti-code"></i> Additional Data & Notes
                     </div>
                     <div class="card-body">
                         <dl class="row">
@@ -367,7 +359,7 @@
                 <div class="float-end">
                     @if($$module_name_singular->getFullUrl())
                         <a href="{{ $$module_name_singular->getFullUrl() }}" class="btn btn-success btn-sm" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> Visit Link
+                            <i class="ti ti-external-link"></i> Visit Link
                         </a>
                     @endif
                 </div>

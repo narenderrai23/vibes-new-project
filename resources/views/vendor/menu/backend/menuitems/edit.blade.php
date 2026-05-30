@@ -5,13 +5,14 @@
 @endsection
 
 @section('breadcrumbs')
-    <x-backend.breadcrumbs>
-        <x-backend.breadcrumb-item route='{{ route('backend.menus.index') }}' icon="fa-solid fa-list">
+    <x-backend.breadcrumbs :title="__($module_title)">
+        <x-backend.breadcrumb-item route="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</x-backend.breadcrumb-item>
+        <x-backend.breadcrumb-item route="{{ route('backend.menus.index') }}" icon="ti ti-list">
             {{ __('Menus') }}
         </x-backend.breadcrumb-item>
         @if ($$module_name_singular->menu_id)
-            <x-backend.breadcrumb-item route='{{ route('backend.menus.show', $$module_name_singular->menu_id) }}'
-                icon="fa-solid fa-list">
+            <x-backend.breadcrumb-item route="{{ route('backend.menus.show', $$module_name_singular->menu_id) }}"
+                icon="ti ti-list">
                 {{ __('Menu Details') }}
             </x-backend.breadcrumb-item>
         @endif

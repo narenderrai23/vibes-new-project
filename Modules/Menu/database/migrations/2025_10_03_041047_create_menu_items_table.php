@@ -38,7 +38,7 @@ return new class extends Migration
             $table->string('path')->nullable(); // Materialized path for quick queries
 
             // Display Properties
-            $table->string('icon')->nullable(); // Icon class (e.g., "fas fa-home")
+            $table->string('icon')->nullable(); // Icon class (e.g., "ti ti-home")
             $table->string('badge_text')->nullable(); // Badge text (e.g., "New", "3")
             $table->string('badge_color')->nullable(); // Badge color class
             $table->text('css_classes')->nullable(); // Additional CSS classes

@@ -4,15 +4,15 @@
             <button
                 class="btn btn-outline-primary collapsed"
                 type="button"
-                data-coreui-toggle="collapse"
-                data-coreui-target="#activityLogSection"
+                data-bs-toggle="collapse"
+                data-bs-target="#activityLogSection"
                 aria-expanded="false"
                 aria-controls="activityLogSection"
             >
                 @lang("Activity Log")
             </button>
         </div>
-        <div id="activityLogSection" class="collapse" aria-labelledby="activityLog" data-parent="#activityLogBlock">
+        <div id="activityLogSection" class="collapse" aria-labelledby="activityLog" data-bs-parent="#activityLogBlock">
             <div class="card-body">
                 <div class="row">
                     <div class="col">

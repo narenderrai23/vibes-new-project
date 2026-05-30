@@ -85,7 +85,7 @@ class NewRegistrationNotificationForSocial extends Notification
             'title' => 'Registration Completed!',
             'module' => 'User',
             'type' => 'created', // created, published, viewed,
-            'icon' => 'fas fa-user',
+            'icon' => 'ti ti-user',
             'text' => $text,
             'url_backend' => $url_backend,
             'url_frontend' => $url_frontend,

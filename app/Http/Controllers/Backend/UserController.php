@@ -54,7 +54,7 @@ class UserController extends Controller
         $this->module_path = 'backend';
 
         // module icon
-        $this->module_icon = 'fa-solid fa-user-group';
+        $this->module_icon = 'ti ti-users';
 
         // module model name, path
         $this->module_model = "App\Models\User";
